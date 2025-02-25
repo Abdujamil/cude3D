@@ -1,0 +1,25 @@
+{
+  "name": "cube3d",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "terser": "^5.39.0",
+    "vite": "^6.1.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-minify": "^2.1.0"
+  },
+  "dependencies": {
+    "lil-gui": "^0.20.0",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "stats.js": "^0.17.0",
+    "three": "^0.173.0",
+    "visualizer": "^3.1.0"
+  }
+}
