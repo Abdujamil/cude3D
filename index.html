@@ -3,14 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Интерактивный 3D-куб на Three.js. Простая и красивая визуализация с анимацией и эффектами.">
+    <meta name="description"
+          content="Интерактивный 3D-куб на Three.js. Простая и красивая визуализация с анимацией и эффектами.">
     <title>Three.js Cube</title>
-    <link rel="shortcut icon" href="/public/img/favicon.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon.webp" type="image/x-icon">
     <link rel="stylesheet" href="/src/css/reset.css">
     <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/test.css">
 </head>
 <body>
-    <div class="slider_cube">
+<div class="slider_cube">
     <div class="slider_cube-nav-box">
         <button class="slider_cube-nav"></button>
         <button class="slider_cube-nav"></button>
@@ -42,8 +44,25 @@
         </div>
     </div>
 </div>
+<div class="security-box__text">
+    <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>
+</div>
 <main>
 </main>
 <script type="module" src="./src/js/main.js"></script>
+<script >
+    // document.querySelectorAll('.card').forEach(card => {
+    //     card.addEventListener('mouseover', function () {
+    //         let textElement = document.getElementById('security-text');
+    //         textElement.textContent = this.getAttribute('data-text');
+    //         textElement.style.opacity = "1";
+    //
+    //         console.log('hover', textElement);
+    //     });
+    //     card.addEventListener('mouseout', function () {
+    //         document.getElementById('security-text').style.opacity = "0";
+    //     });
+    // });
+</script>
 </body>
 </html>

@@ -91,7 +91,7 @@ export default defineConfig({
     },
     plugins: [
         ViteMinifyPlugin({}),
-        visualizer({open: true}),
+        // visualizer({open: true}),
         compression({algorithm: 'brotliCompress'}),
         compression({algorithm: 'gzip'}),
     ]

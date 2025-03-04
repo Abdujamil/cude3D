@@ -3,55 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/test.css">
+    <link rel="stylesheet" href="/src/css/test.css">
     <title>HTML Куб в Three.js</title>
 </head>
 <body>
 <!--<main>-->
 <!--    <div class="container">-->
-<!--&lt;!&ndash;        <div class="box security-box">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="box__title">&ndash;&gt;-->
-<!--&lt;!&ndash;                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="box__content">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="cards">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__title">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p>Резервное копирование</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__image">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="/img/search.png" alt="word-icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__title">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p>Доступ  и хранение</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__image">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="/img/person.png" alt="word-icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__title">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p>Безопасность</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__image">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="/img/lock.png" alt="word-icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__title">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p>Шифрование</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="card__image">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="/img/files.png" alt="word-icon">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <div class="box security-box">-->
+<!--            <div class="box__title">-->
+<!--                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>-->
+<!--            </div>-->
+<!--            <div class="box__content">-->
+<!--                <div class="cards">-->
+<!--                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Резервное копирование</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="/img/search.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Доступ и хранение</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="/img/person.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Безопасность</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="/img/lock.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Шифрование</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="/img/files.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="security-box__text">-->
+<!--                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>-->
+<!--            </div>-->
+<!--        </div>-->
 <!--    </div>-->
 <!--</main>-->
+<script>
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mouseover', function() {
+            let textElement = document.getElementById('security-text');
+            textElement.textContent = this.getAttribute('data-text');
+            textElement.style.opacity = "1";
+        });
+        card.addEventListener('mouseout', function() {
+            document.getElementById('security-text').style.opacity = "0";
+        });
+    });
+</script>
 <script type="module">
     import * as THREE from "three";
     import {CSS3DRenderer, CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
@@ -225,7 +241,7 @@
             </div>
             <div class="box__content">
                 <div class="cards">
-                    <div class="card">
+                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">
                         <div class="card__title">
                             <p>Резервное копирование</p>
                         </div>
@@ -233,15 +249,15 @@
                             <img src="/img/search.png" alt="word-icon">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">
                         <div class="card__title">
-                            <p>Доступ  и хранение</p>
+                            <p>Доступ и хранение</p>
                         </div>
                         <div class="card__image">
                             <img src="/img/person.png" alt="word-icon">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">
                         <div class="card__title">
                             <p>Безопасность</p>
                         </div>
@@ -249,7 +265,7 @@
                             <img src="/img/lock.png" alt="word-icon">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
                         <div class="card__title">
                             <p>Шифрование</p>
                         </div>
@@ -258,6 +274,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="security-box__text">
+                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>
             </div>
         </div>`
     };

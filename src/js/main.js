@@ -1,14 +1,16 @@
-import {Raycaster, Vector2, Fog, Object3D} from 'three/src/Three.js';
-import {scene, camera, renderer, controls} from './scene.js';
+import {Raycaster, Vector2, Fog, Object3D, Group} from 'three/src/Three.js';
+import {scene, camera, renderer, controls, cssRenderer} from './scene.js';
 import {getRotationPercentage, loadEnvironment} from './functions.js';
 import {loadModel} from "./modelLoader.js";
 import {setupDebug} from "./debug.js";
 import {setupPostProcessing} from "./postProcessing.js";
 import {settings} from "./config.js";
-import {CSS3DRenderer, CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
+import {CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
+import {GUI} from "lil-gui";
 
 window.addEventListener('DOMContentLoaded', () => {
-    document.body.appendChild(renderer.domElement);
+    // document.body.appendChild(cssRenderer.domElement);
+    // document.body.appendChild(renderer.domElement);
 
     // Array of rotations for each side (front, right, back, left, top, bottom)
     let isAnimating = false; // Animation flag
@@ -35,11 +37,261 @@ window.addEventListener('DOMContentLoaded', () => {
     // Загрузка image
     loadEnvironment();
 
+    // Создаем куб с HTML-гранями
+    const cubeGroup = new Group();
+    const facesGroup = new Group();
+
     // const cube = new THREE.Mesh(geometry, material);
     const cube = new Object3D();
     cube.rotation.set(0, 0, 0);
     cube.position.y = -0.00;
     // cube.position.y = 0.53;
+
+
+    // Позиции граней
+    const positions = [
+        {x: 0, y: -4, z: 487, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+        {x: 1, y: -4, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+        {x: -515, y: -4, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+        {x: 515, y: -4, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+    ];
+
+    // Создаем HTML-элементы для граней куба
+    let currentFace = null;
+    let faces = [];
+
+    function createFace(contentId) {
+        const div = document.createElement("div");
+        div.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
+        div.style.background = 'rgba(5,5,5,0.4)';
+        // div.style.background = 'rgba(255,255,255,0.4)';
+        // div.style.width = "960px";
+        div.style.border = '1px solid black';
+        div.style.height = "520px";
+        div.style.padding = "40px";
+        div.innerHTML = contentHTML[contentId];
+        div.style.overflow = "hidden";
+        let object = new CSS3DObject(div);
+        faces.push(object);
+        currentFace = object;
+        return currentFace;
+    }
+
+    function updateBlur() {
+        faces.forEach(face => {
+            face.element.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
+        });
+    }
+
+    const gui = new GUI();
+    gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
+
+    const facesFolder = gui.addFolder("Faces Positions");
+
+    positions.forEach((pos, index) => {
+        const faceFolder = facesFolder.addFolder(`Face ${index + 1} (${pos.contentId})`);
+        faceFolder.add(pos, "x", -1000, 1000, 1).name("Position X").onChange(() => updateFacePosition(index));
+        faceFolder.add(pos, "z", -1000, 1000, 1).name("Position Z").onChange(() => updateFacePosition(index));
+    });
+
+    function updateFacePosition(index) {
+        const face = faces[index];
+        if (face) {
+            face.position.set(positions[index].x, positions[index].y, positions[index].z);
+        }
+    }
+
+    const contentHTML = {
+        "front-content": `
+            <div class="box micro-box">
+            <div class="box__img">
+                <img src="/img/microphone.webp" alt="microphone">
+            </div>
+            <div class="box__content">
+                <ul class="text-list">
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Бесплатные 30 минут при регистрации.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Стоимость минуты от 1 рубля.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Покупайте минуты себе и делитесь ими.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Покупка минут в подарок.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Пополнение баланса другого аккаунта.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Пополнение балансом мобильного телефона.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Пополнение банковской картой, QR-кодом, СБП.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Платите только за использованные секунды. </p>
+                    </li>
+                    <li>
+                        <img src="/img/done.png" alt="done icon">
+                        <p>Постоплата, рассрочка платежа  юр. лицам.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            `,
+        "back-content": `
+            <div class="box export-box">
+            <div class="box__title">
+                <h2>Экспорт файла</h2>
+            </div>
+            <div class="box__content">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>DOCX</h3>
+                            <p>MS Word</p>
+                        </div>
+                        <div class="card__image">
+                            <img src="/img/word-icon.png" alt="word-icon">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>XLSX</h3>
+                            <p>MS Excel </p>
+                        </div>
+                        <div class="card__image">
+                            <img src="/img/excel-icon.png" alt="word-icon">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>PDF</h3>
+                            <p style="opacity: 0">Pdf</p>
+                        </div>
+                        <div class="card__image">
+                            <img src="/img/pdf-icon.png" alt="pdf-icon">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>TXT</h3>
+                            <p>Блокнот</p>
+                        </div>
+                        <div class="card__image">
+                            <img src="/img/txt-icon.png" alt="word-icon">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card__title">
+                            <h3>SRT</h3>
+                            <p>Субтитры</p>
+                        </div>
+                        <div class="card__image">
+                            <img src="/img/youtube-icon.png" alt="word-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box_foot">
+                <p>
+                    Вы можете экспортировать файлы в нужный для Вас формат и делиться готовым результатом.
+                </p>
+            </div>
+        </div>
+          `,
+        "left-content": `
+           <div class="box support-lan-box">
+            <div class="box__img">
+                <img src="/img/react.png" alt="react">
+            </div>
+            <div class="box__text">
+                <div class="title">
+                    <h2>Поддерживаемые языки</h2>
+                </div>
+                <div class="text">
+                    <p>
+                        Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:
+                        English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем
+                        высококачественные услуги, обеспечивая точность и эффективность процесса.
+                        <br>
+                        <br>
+                        С нами ваша информация будет представлена в удобном и понятном виде, гарантируя легкость
+                        восприятия и использования.
+                    </p>
+                </div>
+                <a href="#" class="text-link">Все поддерживаемые языки</a>
+            </div>
+        </div>
+           `,
+        "right-content": `
+             <div class="box security-box">
+            <div class="box__title">
+                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>
+            </div>
+            <div class="box__content">
+                <div class="cards">
+                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">
+                        <div class="card__title">
+                            <p class="animate-text" id="animate-text1">Резервное копирование</p>
+                        </div>
+                        <div class="card__image">
+                            <img class="search-icon" src="/img/search.png" alt="search-icon">
+                        </div>
+                    </div>
+                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">
+                        <div class="card__title">
+                            <p class="animate-text" id="animate-text2">Доступ и хранение</p>
+                        </div>
+                        <div class="card__image">
+                            <img class="person-icon" src="/img/person.png" alt="person-icon">
+                        </div>
+                    </div>
+                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">
+                        <div class="card__title">
+                            <p class="animate-text" id="animate-text3">Безопасность</p>
+                        </div>
+                        <div class="card__image">
+                            <img class="lock-icon" src="/img/lock.png" alt="lock-icon">
+                        </div>
+                    </div>
+                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
+                        <div class="card__title">
+                            <p class="animate-text" id="animate-text4">Шифрование</p>
+                        </div>
+                        <div class="card__image">
+                            <img class="files-icon" src="/img/files.png" alt="files-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>`
+    };
+
+    positions.forEach(({x, y, z, rx, ry, contentId}) => {
+        const face = createFace(contentId); // Используем готовый HTML контент
+        face.position.set(x, y, z);
+        face.rotation.y = ry;
+        face.rotation.x = rx;
+        facesGroup.add(face);
+    });
+    // facesGroup.scale.set(0.0017, 0.00205, 0.0018);
+    // facesGroup.scale.set(0.00168, 0.00168, 0.00168);
+
+    facesGroup.scale.set(0.0017, 0.002, 0.0018);
+
 
     // Inner cube
     const baseScale = 1;
@@ -77,7 +329,36 @@ window.addEventListener('DOMContentLoaded', () => {
     // currentRotationY = initialRotation;
     // targetRotationY = initialRotation;
 
-    loadModel(cube, "cube_bevel_0.04_meshopt.glb");
+    // loadModel(cube, "cube3.glb");
+
+    loadModel(cube, "new_cube.glb");
+    // loadModel(cube, "cube_bevel_0.04_meshopt.glb");
+
+    // loadModel(cube, "cube_bevel_0.04_meshopt.glb");
+    //
+    // const gui = new GUI();
+    // const scrollFolder = gui.addFolder('Задний блюр');
+    // scrollFolder.add(settings, "backgroundBlur", 0, 60)
+    //     .onChange(() => {
+    //         updateBlur();
+    //     });
+    //
+    // const cubeOptions = {
+    //     'Куб 3': 'cube3.glb',
+    //     'Куб 4': 'cube4.glb',
+    //     'Куб (Mesh)': 'cube_bevel_0.04_meshopt.glb'
+    // };
+    //
+    // const cubeSettings = { currentCube: 'Куб 3' };
+    //
+    // const cubeFolder = gui.addFolder('Выбор куба');
+    // cubeFolder.add(cubeSettings, 'currentCube', Object.keys(cubeOptions))
+    //     .onChange((selectedKey) => {
+    //         const modelPath = cubeOptions[selectedKey];
+    //         loadModel(cube, modelPath);
+    //     });
+    //
+    // cubeFolder.open();
 
     // Фоллбек для requestIdleCallback
     function requestIdleCallbackPolyfill(cb) {
@@ -89,63 +370,6 @@ window.addEventListener('DOMContentLoaded', () => {
     function loadThreeModules() {
         if (threeModulesLoaded) return;
         threeModulesLoaded = true;
-
-        // // HTML-рендерер
-        // const cssRenderer = new CSS3DRenderer();
-        // cssRenderer.setSize(window.innerWidth, window.innerHeight);
-        // document.body.appendChild(cssRenderer.domElement);
-        //
-        // // Создаем HTML-элементы для граней куба
-        // function createFace(contentId) {
-        //     const div = document.createElement("div");
-        //     div.innerHTML = contentHTML[contentId];
-        //     div.style.transform = "rotateY(180deg)"; // Переворачиваем текст
-        //     div.style.display = "flex";
-        //     div.style.justifyContent = "center";
-        //     div.style.alignItems = "center";
-        //
-        //     const object = new CSS3DObject(div);
-        //     return object;
-        // }
-        //
-        //
-        // const faces = [];
-        //
-        // // Позиции граней
-        // const positions = [
-        //     {x: 0, y: 0, z: 100, rx: 0, ry: 0, contentId: "front-content"}, // Передняя
-        //     {x: 0, y: 0, z: -100, rx: 0, ry: Math.PI, contentId: "back-content"}, // Задняя
-        //     {x: -100, y: 0, z: 0, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // Левая
-        //     {x: 100, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // Правая
-        // ];
-        //
-        // const contentHTML = {
-        //     "front-content": `
-        //     <div style="width: 100%;  height: 100%; background: center center no-repeat; background-size: cover;">
-        //         <h2>Первая сторона</h2>
-        //         <img style="width: 120px; height: 120px;" src="/img/microphone.webp" alt="microphone">
-        //     </div>`,
-        //     "back-content": `
-        //     <div style="width: 200px;  height: 200px; color: #ffffff; background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s') center center no-repeat; background-size: cover;">
-        //         <h2>Вторая сторона</h2>
-        //     </div>`,
-        //     "left-content": `
-        //     <div style="width: 200px;  height: 200px; color: #ffffff; background: url('https://static.vecteezy.com/ti/photos-gratuite/p1/29360891-une-petit-vert-lezard-seance-sur-haut-de-une-arbre-bifurquer-generatif-ai-gratuit-photo.jpg') center center no-repeat; background-size: cover;">
-        //         <h2>Третья сторона</h2>
-        //     </div>`,
-        //     "right-content": `
-        //     <div style="width: 200px;  height: 200px; color: #ffffff; background: url('https://static.vecteezy.com/ti/photos-gratuite/t1/2253951-gros-plan-d-un-cameleon-sur-une-branche-photo.jpg') center center no-repeat; background-size: cover;">
-        //         <h2>Четвертая сторона</h2>
-        //     </div>`
-        // };
-        //
-        // positions.forEach(({ x, y, z, rx, ry, contentId }) => {
-        //     const face = createFace(contentId);
-        //     face.position.set(x, y, z);
-        //     face.rotation.set(rx, ry, 0);
-        //     // cube.add(face); // Добавляем HTML-объект к загруженному кубу
-        // });
-
 
         // Post-processing
         const enableSSAO = false; // Отключаем для теста
@@ -185,7 +409,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     const t = Math.min(elapsed / settings.scaleDuration, 1);
                     const eased = easeInOutQuad(t);
                     interactionScale = scaleFrom + (scaleToValue - scaleFrom) * eased;
-                    cube.scale.setScalar(baseScale * interactionScale);
+                    cubeGroup.scale.setScalar(baseScale * interactionScale);
                     if (t >= 1) isScaling = false;
                 }
 
@@ -199,8 +423,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         rotationVelocityAdd *= 0.9;
                     }
 
-                    cube.rotation.y += rotationVelocityAdd;
-                    currentRotationY = cube.rotation.y;
+                    cubeGroup.rotation.y += rotationVelocityAdd;
+                    currentRotationY = cubeGroup.rotation.y;
 
                     if (Math.abs(rotationVelocityAdd) < 0.001) {
                         inertia = false;
@@ -208,18 +432,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (!isAnimating && !inertia && !isScaling) {
-                    cube.rotation.y = currentRotationY;
+                    cubeGroup.rotation.y = currentRotationY;
                     isActive = false;
                 }
 
                 if (isAnimating || inertia || isScaling || isDragging) {
                     updateNavPosition(true);
                     composer.render();
+                    cssRenderer.render(scene, camera);
                 } else {
+                    cssRenderer.render(scene, camera);
                     renderer.render(scene, camera);
                 }
 
                 renderer.shadowMap.enabled = false;
+                cssRenderer.render(scene, camera);
             }
 
             if (isActive || performance.now() - lastInteractionTime < INACTIVITY_TIMEOUT) {
@@ -229,11 +456,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 isActive = false; // Останавливаем рендер
                 // console.log("Rendering stopped");
             }
+
         };
 
-
         // Mouse down handler
-        renderer.domElement.addEventListener('mousedown', (event) => {
+        cssRenderer.domElement.addEventListener('mousedown', (event) => {
             isActive = true;
             animate();
 
@@ -253,31 +480,31 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         // Wheel handler
-        renderer.domElement.addEventListener('wheel', (event) => {
-            isActive = true;
-            animate();
-
-            // Предотвращаем стандартное поведение (например, прокрутку страницы)
-            event.preventDefault();
-
-            inertia = false
-            rotationVelocity = 0
-
-            const sensitivity = 0.01; // Чувствительность прокрутки
-            const rotationSpeed = 0.1; // Скорость вращения
-            const maxRotationSpeed = 0.5;
-
-            // Направление вращения
-            const deltaMoveY = event.deltaY * sensitivity;
-
-            // Устанавливаем целевое значение для вращения
-            targetRotationY = currentRotationY + deltaMoveY * rotationSpeed;
-
-            cube.rotation.y = targetRotationY
-            currentRotationY = targetRotationY
-
-            // console.log('wheel is start');
-        });
+        // cssRenderer.domElement.addEventListener('wheel', (event) => {
+        //     isActive = true;
+        //     animate();
+        //
+        //     // Предотвращаем стандартное поведение (например, прокрутку страницы)
+        //     event.preventDefault();
+        //
+        //     inertia = false
+        //     rotationVelocity = 0
+        //
+        //     const sensitivity = 0.01; // Чувствительность прокрутки
+        //     const rotationSpeed = 0.1; // Скорость вращения
+        //     const maxRotationSpeed = 0.5;
+        //
+        //     // Направление вращения
+        //     const deltaMoveY = event.deltaY * sensitivity;
+        //
+        //     // Устанавливаем целевое значение для вращения
+        //     targetRotationY = currentRotationY + deltaMoveY * rotationSpeed;
+        //
+        //     cube.rotation.y = targetRotationY
+        //     currentRotationY = targetRotationY
+        //
+        //     // console.log('wheel is start');
+        // });
 
         // renderer.domElement.addEventListener('wheel', (event) => {
         //     isActive = true;
@@ -315,7 +542,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         // Mouse move handler
-        renderer.domElement.addEventListener('mousemove', (event) => {
+        cssRenderer.domElement.addEventListener('mousemove', (event) => {
             isActive = true;
             animate();
 
@@ -325,9 +552,9 @@ window.addEventListener('DOMContentLoaded', () => {
             const intersects = raycaster.intersectObjects([cube]);
 
             if (intersects.length === 0) {
-                renderer.domElement.style.cursor = 'default';
+                cssRenderer.domElement.style.cursor = 'default';
             } else {
-                renderer.domElement.style.cursor = 'pointer';
+                cssRenderer.domElement.style.cursor = 'pointer';
             }
 
             if (!isDragging) return
@@ -358,8 +585,8 @@ window.addEventListener('DOMContentLoaded', () => {
             isDragging = false;
         };
 
-        renderer.domElement.addEventListener('mouseup', stopDragging);
-        renderer.domElement.addEventListener('mouseleave', stopDragging);
+        cssRenderer.domElement.addEventListener('mouseup', stopDragging);
+        cssRenderer.domElement.addEventListener('mouseleave', stopDragging);
 
         // Запускаем анимацию
         animate();
@@ -447,30 +674,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener("mousemove", loadThreeModules, {once: true});
     document.addEventListener("touchstart", loadThreeModules, {once: true});
 
-    // let isActiveFirst = false; // Флаг активности
-    // const firstAnimate = () => {
-    //     if (!isActiveFirst) return; // Если анимация выключена, выходим
-    //
-    //     if (isActiveFirst) {
-    //         renderer.render(scene, camera);
-    //         console.log("Rendering");
-    //     } else {
-    //         console.log("Rendering stopped");
-    //         isActiveFirst = false; // Останавливаем рендер
-    //     }
-    // };
-    //
-    // // **Задержка на активацию анимации через 5 секунд**
-    // setTimeout(() => {
-    //     isActiveFirst = true;  // Включаем анимацию через 5 секунд
-    //     firstAnimate();
-    // }, 600); // 5000 миллисекунд (5 секунд)
-    //
-    // // **Задержка на остановку анимации через 8 секунд (через 3 секунды после начала)**
-    // setTimeout(() => {
-    //     isActiveFirst = false;  // Останавливаем анимацию через 3 секунды после начала
-    // }, 600); // 8000 миллисекунд (8 секунд)
-
     let isRendered = false; // Флаг, чтобы убедиться, что рендеринг происходит только один раз
 
     // function updateNavPosition(disable = false) {
@@ -538,6 +741,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const renderOnce = () => {
         if (isRendered) return; // Если уже отрендерили, выходим
+        cssRenderer.render(scene, camera);
         renderer.render(scene, camera); // Отрендерим сцену
         isRendered = true; // Устанавливаем флаг, чтобы рендеринг больше не выполнялся
     };
@@ -561,10 +765,38 @@ window.addEventListener('DOMContentLoaded', () => {
     // planeSecurity.position.z = 0.802
     // cube.add(planeSecurity)
 
-    scene.add(cube);
-    cube.scale.setScalar(baseScale * interactionScale);
+    cubeGroup.add(cube);  // Темно-серый куб
+    cubeGroup.add(facesGroup); // HTML-грани
+
+    scene.add(cubeGroup);
+    cubeGroup.scale.setScalar(baseScale * interactionScale);
 
     // Создаем FPS-счетчик
     setupDebug(camera, cube);
+
+    setTimeout(() => {
+        const securityText = document.getElementById("security-text");
+        const cardsContainer = document.querySelector(".security-box .cards");
+
+        if (!securityText || !cardsContainer) {
+            console.error("Не найден .security-box или security-text");
+            return;
+        }
+
+        cardsContainer.addEventListener("mouseover", function (event) {
+            const card = event.target.closest(".card");
+            if (card && card.dataset.text) {
+                securityText.textContent = card.dataset.text;
+                securityText.style.opacity = "1";
+            }
+        });
+
+        cardsContainer.addEventListener("mouseout", function (event) {
+            const card = event.target.closest(".card");
+            if (card) {
+                securityText.style.opacity = "0";
+            }
+        });
+    }, 300);
 })
 

@@ -1,13 +1,14 @@
 import {GUI} from 'lil-gui';
 import {settings} from './config.js';
+
 export function setupGUI(camera, cube) {
     const gui = new GUI();
 
     const cubeSettings = {
         'Цвет куба': cube.children[0]?.material.color.getHex() || 0x000000,
-        'Прозрачность': cube.children[0]?.material.opacity || 1,
+        'Прозрачность':  cube.children[0]?.material.color.opacity || 1,
         'Отражение': cube.children[0]?.material.reflectivity || 0,
-        'Металличность': cube.children[0]?.material.metalness || 0,
+        'Металличность': cube.children[0]?.material.metalness || 1,
         'Шероховатость': cube.children[0]?.material.roughness || 0,
         'Размер фаски': 0.04,
         'Стиль стекла': 'Обычное',
@@ -29,10 +30,10 @@ export function setupGUI(camera, cube) {
             camera.position.set(0, 0, scrollSettings['Отдаление камеры']);
         });
 
-    scrollFolder.add(scrollSettings, 'Степень уменьшения', 0, 1)
-        .onChange(() => {
-            settings.scaleSmall = scrollSettings['Степень уменьшения'];
-        });
+    // scrollFolder.add(scrollSettings, 'Степень уменьшения', 0, 1)
+    //     .onChange(() => {
+    //         settings.scaleSmall = scrollSettings['Степень уменьшения'];
+    //     });
 
     // scrollFolder.add(scrollSettings, 'Длительность анимации', 100, 1000)
     //     .onChange(() => {
@@ -68,8 +69,7 @@ export function setupGUI(camera, cube) {
         .onChange(() => {
             cube.traverse((child) => {
                 if (child.isMesh) {
-                    child.material.transparent = true;
-                    child.material.opacity = cubeSettings['Прозрачность'];
+                    child.material.opacity = 0.4;
                 }
             });
         });
