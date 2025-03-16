@@ -8,6 +8,9 @@ import {settings} from "./config.js";
 import {CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
 import {GUI} from "lil-gui";
 
+import $ from "jquery";
+import "jquery.easing";
+
 window.addEventListener('DOMContentLoaded', () => {
     // document.body.appendChild(cssRenderer.domElement);
     // document.body.appendChild(renderer.domElement);
@@ -50,10 +53,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Позиции граней
     const positions = [
-        {x: 0, y: -4, z: 487, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-        {x: 1, y: -4, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
-        {x: -515, y: -4, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
-        {x: 515, y: -4, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+        {x: 0, y: -1, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+        {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+        {x: -514, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+        {x: 515, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
     ];
 
     // Создаем HTML-элементы для граней куба
@@ -86,25 +89,26 @@ window.addEventListener('DOMContentLoaded', () => {
     const gui = new GUI();
     gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
 
-    const facesFolder = gui.addFolder("Faces Positions");
-
-    positions.forEach((pos, index) => {
-        const faceFolder = facesFolder.addFolder(`Face ${index + 1} (${pos.contentId})`);
-        faceFolder.add(pos, "x", -1000, 1000, 1).name("Position X").onChange(() => updateFacePosition(index));
-        faceFolder.add(pos, "z", -1000, 1000, 1).name("Position Z").onChange(() => updateFacePosition(index));
-    });
-
-    function updateFacePosition(index) {
-        const face = faces[index];
-        if (face) {
-            face.position.set(positions[index].x, positions[index].y, positions[index].z);
-        }
-    }
+    // const facesFolder = gui.addFolder("Faces Positions");
+    //
+    // positions.forEach((pos, index) => {
+    //     const faceFolder = facesFolder.addFolder(`Face ${index + 1} (${pos.contentId})`);
+    //     faceFolder.add(pos, "y", -1000, 1000, 1).name("Position Y").onChange(() => updateFacePosition(index));
+    //     faceFolder.add(pos, "x", -1000, 1000, 1).name("Position X").onChange(() => updateFacePosition(index));
+    //     faceFolder.add(pos, "z", -1000, 1000, 1).name("Position Z").onChange(() => updateFacePosition(index));
+    // });
+    //
+    // function updateFacePosition(index) {
+    //     const face = faces[index];
+    //     if (face) {
+    //         face.position.set(positions[index].x, positions[index].y, positions[index].z);
+    //     }
+    // }
 
     const contentHTML = {
         "front-content": `
             <div class="box micro-box">
-            <div class="box__img">
+             <div class="box__img">
                 <img src="/img/microphone.webp" alt="microphone">
             </div>
             <div class="box__content">
@@ -150,55 +154,133 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
             `,
         "back-content": `
+           <div class="box security-box">
+            <div class="box__title">
+                <h2>Мы бережно храним и защищаем ваши данные</h2>
+            </div>
+            <div class="box__content">
+                <div class="cards">
+                    <div class="cards__top">
+                        <figure class="card card-1"
+                             data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
+                            <div class="card__title">
+                                <p>
+                                Резервное копирование
+                                </p>
+                            </div>
+                            <div class="card__image-lock card__image">
+                                <img src="/img/1.svg" alt="lock-icon">
+                            </div>
+                        </figure>
+                        <figure class="card card-2"
+                             data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
+                            <div class="card__title">
+                                <p>
+                                Доступ и хранение
+                                </p>
+                            </div>
+                            <div class="card__image-file card__image">
+                                <img src="/img/2.svg" alt="file-icon">
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="cards__bottom">
+                        <figure class="card card-3"
+                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
+                            <div class="card__title">
+                                <p>
+                                Безопасность
+                                </p>
+                            </div>
+                            <div class="card__image-search card__image">
+                                <img src="/img/3.svg" alt="search-icon">
+                            </div>
+                        </figure>
+                        <figure class="card card-4"
+                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
+                            <div class="card__title">
+                                <p>
+                                Шифрование</p>
+                            </div>
+                            <div class="card__image-person card__image">
+                                <img src="/img/4.svg" alt="person-icon">
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+                <div class="security-box__text">
+                    <p id="security-text">
+                        Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.
+                    </p>
+                </div>
+            </div>
+          `,
+        "left-content": `
             <div class="box export-box">
             <div class="box__title">
                 <h2>Экспорт файла</h2>
             </div>
             <div class="box__content">
                 <div class="cards">
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>DOCX</h3>
-                            <p>MS Word</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/word-icon.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>XLSX</h3>
-                            <p>MS Excel </p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/excel-icon.png" alt="word-icon">
+                    <div class="cardWrap">
+                        <div class="card">
+<!--                            <div class="cardBg" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHEWg4bEBkqykz_amIDAnmRsi2Gi4dbRgN3w&s');"></div>-->
+                            <div class="cardBg card__image" style="background-image: url('/img/word-icon.svg');">
+                                <div class="card__title cardInfo">
+                                <h3>DOCX</h3>
+                                <p>MS Word</p>
+                            </div>
+<!--                                <img src="/img/word-icon.png" alt="word-icon">-->
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>PDF</h3>
-                            <p style="opacity: 0">Pdf</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/pdf-icon.png" alt="pdf-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>TXT</h3>
-                            <p>Блокнот</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/txt-icon.png" alt="word-icon">
+                    <div class="cardWrap"> 
+                        <div class="card">
+<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
+                            <div class="cardBg card__image" style="background-image: url('/img/excel-icon.svg');">
+                                <div class="card__title cardInfo">
+                                <h3>XLSX</h3>
+                                <p>MS Excel </p>
+                            </div>
+<!--                                <img src="/img/excel-icon.png" alt="word-icon">-->
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>SRT</h3>
-                            <p>Субтитры</p>
+                    <div class="cardWrap">
+                        <div class="card">
+<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
+                            <div class="cardBg card__image" style="background-image: url('/img/pdf-icon.svg');">
+                                <div class="card__title cardInfo">
+                                <h3>PDF</h3>
+                                <p >Документ</p>
+                            </div>
+<!--                                <img src="/img/pdf-icon.png" alt="pdf-icon">-->
+                            </div>
                         </div>
-                        <div class="card__image">
-                            <img src="/img/youtube-icon.png" alt="word-icon">
+                    </div>
+                    <div class="cardWrap">
+                        <div class="card">
+<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
+                            <div class="cardBg card__image" style="background-image: url('/img/txt-icon.png');" >
+                                <div class="card__title cardInfo">
+                                    <h3>TXT</h3>
+                                    <p>Блокнот</p>
+                                </div>
+<!--                                <img src="/img/txt-icon.png" alt="word-icon">-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardWrap">
+                        <div class="card">
+<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
+                            <div class="cardBg card__image" style="background-image: url('/img/srt-icon.svg');" >
+                                <div class="card__title cardInfo">
+                                    <h3>SRT</h3>
+                                    <p>Субтитры</p>
+                                </div>
+<!--                                <img src="/img/youtube-icon.png" alt="word-icon">-->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -209,75 +291,86 @@ window.addEventListener('DOMContentLoaded', () => {
                 </p>
             </div>
         </div>
-          `,
-        "left-content": `
-           <div class="box support-lan-box">
-            <div class="box__img">
-                <img src="/img/react.png" alt="react">
-            </div>
-            <div class="box__text">
-                <div class="title">
-                    <h2>Поддерживаемые языки</h2>
-                </div>
-                <div class="text">
-                    <p>
-                        Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:
-                        English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем
-                        высококачественные услуги, обеспечивая точность и эффективность процесса.
-                        <br>
-                        <br>
-                        С нами ваша информация будет представлена в удобном и понятном виде, гарантируя легкость
-                        восприятия и использования.
-                    </p>
-                </div>
-                <a href="#" class="text-link">Все поддерживаемые языки</a>
-            </div>
-        </div>
            `,
         "right-content": `
-             <div class="box security-box">
-            <div class="box__title">
-                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>
-            </div>
-            <div class="box__content">
-                <div class="cards">
-                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">
-                        <div class="card__title">
-                            <p class="animate-text" id="animate-text1">Резервное копирование</p>
-                        </div>
-                        <div class="card__image">
-                            <img class="search-icon" src="/img/search.png" alt="search-icon">
-                        </div>
+            <div class="box support-lan-box" xmlns="http://www.w3.org/1999/html">
+                <div class="title">
+                     <h2>Поддерживаемые языки</h2>
+                 </div>
+                 <div class="support-lan-box__container">
+                    <div class="loading">
+<!--                         <div id="nucleus"></div>-->
+<!--                          <div class="arc arc-1">-->
+<!--                                 <div class="electron">-->
+<!--                                      <img src="/img/иконка языка.svg" alt="lang">-->
+<!--                                 </div>-->
+<!--                           </div>-->
+<!--                          <div class="arc arc-2">-->
+<!--                                <div class="electron">-->
+<!--                                  <img src="/img/иконка языка-1.svg" alt="lang">-->
+<!--                                </div>-->
+<!--                          </div>-->
+<!--                          <div class="arc arc-3">-->
+<!--                                 <div class="electron">-->
+<!--                                   <img src="/img/иконка языка-2.svg" alt="lang">-->
+<!--                                 </div>-->
+<!--                          </div>-->
+    
+                      <section>
+                          <div class="cube center nucleus">
+<!--                                  <div class="face front"><img src="/img/lang1.png" alt="front"></div>-->
+<!--                                  <div class="face back"><img src="/img/lang2.png" alt="back"></div>-->
+<!--                                  <div class="face left"><img src="/img/lang3.png" alt="left"></div>-->
+<!--                                  <div class="face right"><img src="/img/lang4.png" alt="right"></div>-->
+<!--                                  <div class="face top"><img src="/img/lang4.png" alt="top"></div>-->
+<!--                                  <div class="face bottom"><img src="/img/lang4.png" alt="bottom"></div>-->
+                                <div id="ui"></div>
+                           </div>
+                           
+<!--                             <div class="center nucleus">-->
+<!--                             </div>  -->
+                         
+                          <article class="ring1">
+                            <div class="r-anim">
+<!--                                <div class="electron">-->
+<!--                                    <img src="/img/lang1.png" alt="lang">-->
+<!--                                </div>-->
+                            </div>
+                          </article>
+                          <article class="ring2">
+                            <div class="r-anim">
+<!--                                <div class="electron">-->
+<!--                                    <img src="/img/lang2.png" alt="lang">-->
+<!--                                </div>-->
+                            </div>
+                          </article>
+                          <article class="ring3">
+                            <div class="r-anim">
+<!--                                <div class="electron">-->
+<!--                                    <img src="/img/lang3.png" alt="lang">-->
+<!--                                </div>-->
+                            </div>
+                          </article>
+                      </section>
                     </div>
-                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">
-                        <div class="card__title">
-                            <p class="animate-text" id="animate-text2">Доступ и хранение</p>
-                        </div>
-                        <div class="card__image">
-                            <img class="person-icon" src="/img/person.png" alt="person-icon">
-                        </div>
+                    <div class="box__text">
+                   
+                    <div class="text-content">
+                        <p>
+                            Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:
+                            English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем
+                            высококачественные услуги, обеспечивая точность и эффективность процесса.
+                            <br>
+                            <br>
+                            С нами ваша информация будет представлена в удобном и понятном виде, гарантируя легкость
+                            восприятия и использования.
+                        </p>
                     </div>
-                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">
-                        <div class="card__title">
-                            <p class="animate-text" id="animate-text3">Безопасность</p>
-                        </div>
-                        <div class="card__image">
-                            <img class="lock-icon" src="/img/lock.png" alt="lock-icon">
-                        </div>
-                    </div>
-                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
-                        <div class="card__title">
-                            <p class="animate-text" id="animate-text4">Шифрование</p>
-                        </div>
-                        <div class="card__image">
-                            <img class="files-icon" src="/img/files.png" alt="files-icon">
-                        </div>
-                    </div>
+                    <a href="#" class="text-link">Все поддерживаемые языки</a>
+                </div> 
                 </div>
             </div>
-
-           
-        </div>`
+            `
     };
 
     positions.forEach(({x, y, z, rx, ry, contentId}) => {
@@ -331,7 +424,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // loadModel(cube, "cube3.glb");
 
+    // loadMicrophoneModel(cube, "microphone.glb");
     loadModel(cube, "new_cube.glb");
+
+
     // loadModel(cube, "cube_bevel_0.04_meshopt.glb");
 
     // loadModel(cube, "cube_bevel_0.04_meshopt.glb");
@@ -439,13 +535,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (isAnimating || inertia || isScaling || isDragging) {
                     updateNavPosition(true);
                     composer.render();
+                    // renderer.render(scene, camera);
                     cssRenderer.render(scene, camera);
                 } else {
+                    composer.render();
+                    // renderer.render(scene, camera);
                     cssRenderer.render(scene, camera);
-                    renderer.render(scene, camera);
                 }
 
-                renderer.shadowMap.enabled = false;
+                renderer.shadowMap.enabled = true;
                 cssRenderer.render(scene, camera);
             }
 
@@ -549,11 +647,17 @@ window.addEventListener('DOMContentLoaded', () => {
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
             raycaster.setFromCamera(mouse, camera);
+
             const intersects = raycaster.intersectObjects([cube]);
 
             if (intersects.length === 0) {
+                isActive = true
+                renderer.domElement.style.cursor = 'default';
                 cssRenderer.domElement.style.cursor = 'default';
+
             } else {
+                isActive = true
+                renderer.domElement.style.cursor = 'pointer';
                 cssRenderer.domElement.style.cursor = 'pointer';
             }
 
@@ -741,29 +845,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const renderOnce = () => {
         if (isRendered) return; // Если уже отрендерили, выходим
-        cssRenderer.render(scene, camera);
         renderer.render(scene, camera); // Отрендерим сцену
+        cssRenderer.render(scene, camera);
         isRendered = true; // Устанавливаем флаг, чтобы рендеринг больше не выполнялся
     };
     // Вызовем рендеринг сразу, например, через небольшую задержку
     setTimeout(() => {
         renderOnce();
     }, 220); // 600 миллисекунд, можно сразу после загрузки страницы
-
-    // setupCubeControls(renderer, cube, cubeState);
-    // planeExport.position.y = -cube.scale.y / 2 + 0.02
-    // planeExport.position.x = -0.825
-    // planeExport.rotation.y = -Math.PI / 2;
-    // cube.add(planeExport)
-    //
-    // planeLanguages.position.y = -cube.scale.y / 2 + 0.02
-    // planeLanguages.position.x = 0.825
-    // planeLanguages.rotation.y = Math.PI / 2;
-    // cube.add(planeLanguages)
-    //
-    // planeSecurity.position.y = -cube.scale.y / 2 + 0.02
-    // planeSecurity.position.z = 0.802
-    // cube.add(planeSecurity)
 
     cubeGroup.add(cube);  // Темно-серый куб
     cubeGroup.add(facesGroup); // HTML-грани
@@ -775,28 +864,263 @@ window.addEventListener('DOMContentLoaded', () => {
     setupDebug(camera, cube);
 
     setTimeout(() => {
-        const securityText = document.getElementById("security-text");
-        const cardsContainer = document.querySelector(".security-box .cards");
+        // const securityText = document.getElementById("security-text");
+        // const cardsContainer = document.querySelector(".security-box .cards");
+        //
+        // if (!securityText || !cardsContainer) {
+        //     console.error("Не найден .security-box или security-text");
+        //     return;
+        // }
+        //
+        // cardsContainer.addEventListener("mouseover", function (event) {
+        //     const card = event.target.closest(".card");
+        //     if (card && card.dataset.text) {
+        //         securityText.textContent = card.dataset.text;
+        //         securityText.style.opacity = "1";
+        //     }
+        // });
+        //
+        // cardsContainer.addEventListener("mouseout", function (event) {
+        //     const card = event.target.closest(".card");
+        //     if (card) {
+        //         securityText.style.opacity = "0";
+        //     }
+        // });
 
-        if (!securityText || !cardsContainer) {
-            console.error("Не найден .security-box или security-text");
-            return;
+        const electrons = document.querySelectorAll('.electron img'); // Берем все изображения
+        const arcs = document.querySelectorAll('.arc'); // Берем все орбиты (они анимируются)
+
+        // const icons = [
+        //     {'url': '/img/lang-icon.svg'},
+        //     {'url': '/img/lang-icon1.svg'},
+        //     {'url': '/img/lang-icon2.svg'},
+        //     {'url': '/img/lang-icon3.svg'},
+        //     {'url': '/img/lang-icon4.svg'},
+        //     {'url': '/img/lang-icon5.svg'},
+        //     {'url': '/img/lang-icon6.svg'},
+        //     {'url': '/img/lang-icon7.svg'},
+        //     {'url': '/img/lang-icon8.svg'},
+        //     {'url': '/img/lang-icon9.svg'},
+        //     {'url': '/img/lang-icon10.svg'},
+        // ];
+        const icons = [
+            {'url': '/img/lang1.png'},
+            {'url': '/img/lang1.png'},
+            {'url': '/img/lang2.png'},
+            {'url': '/img/lang3.png'},
+            {'url': '/img/lang4.png'},
+            {'url': '/img/lang5.png'},
+            {'url': '/img/lang6.png'},
+            {'url': '/img/lang7.png'},
+            {'url': '/img/lang8.png'},
+        ];
+
+        let currentIndexes = [0, 1, 2]; // Индексы текущих иконок
+
+        arcs.forEach((arc, i) => {
+            arc.addEventListener('animationiteration', () => { // Когда орбита завершила оборот
+                electrons[i].style.opacity = '0'; // Плавно исчезает перед сменой
+
+                setTimeout(() => {
+                    currentIndexes[i] = (currentIndexes[i] + 1) % icons.length; // Берем следующую иконку
+                    electrons[i].src = icons[currentIndexes[i]].url; // Меняем картинку
+                    electrons[i].style.opacity = '1'; // Плавно появляется
+                }, 800); // Небольшая задержка для плавности смены
+            });
+        });
+
+        // Export cards script
+        const wrapper = document.querySelectorAll(".cardWrap");
+        wrapper.forEach(element => {
+            let state = {
+                mouseX: 0,
+                mouseY: 0,
+                height: element.clientHeight,
+                width: element.clientWidth
+            };
+
+            element.addEventListener("mousemove", (ele) => {
+                requestAnimationFrame(() => {
+                    const card = element.querySelector(".card");
+                    // const cardText = card.querySelector(".card__title");
+                    const cardBg = card.querySelector(".cardBg");
+
+                    state.mouseX = ele.clientX - element.getBoundingClientRect().left - state.width / 2;
+                    state.mouseY = ele.clientY - element.getBoundingClientRect().top - state.height / 2;
+
+                    const angleX = (state.mouseX / state.width) * 50;
+                    const angleY = (state.mouseY / state.height) * -50;
+                    card.style.transform = `rotateY(${angleX}deg) rotateX(${angleY}deg)`;
+                    // cardText.style.transform = `rotateY(${angleX}deg) rotateX(${angleY}deg)`;
+
+                    const posX = (state.mouseX / state.width) * -60;
+                    const posY = (state.mouseY / state.height) * -60;
+                    cardBg.style.transform = `translateX(${posX}px) translateY(${posY}px)`;
+                    // cardText.style.transform = `translateX(${posX}px) translateY(${posY}px)`;
+                });
+            });
+
+            element.addEventListener("mouseout", () => {
+                setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        const card = element.querySelector(".card");
+                        const cardBg = card.querySelector(".cardBg");
+                        const cardText = card.querySelector(".card__title");
+
+                        card.style.transform = `rotateY(0deg) rotateX(0deg) `;
+                        cardBg.style.transform = `translateX(0px) translateY(0px)`;
+                        cardText.style.transform = `translateX(0px) translateY(0px)`;
+                    });
+                }, 1000);
+            });
+        });
+
+        // Cube random change icon
+        const faces = document.querySelectorAll(".face img"); // Получаем все картинки на кубе
+        function getRandomIcon() {
+            return icons[Math.floor(Math.random() * icons.length)].url; // Берём случайный URL
+        }
+        function updateCubeImages() {
+            faces.forEach(face => {
+                face.src = getRandomIcon(); // Меняем src картинки
+            });
+        }
+        setInterval(updateCubeImages, 2000);
+
+        // Effect text
+
+        // const element = $("#security-text"); // Получаем элемент через jQuery
+        //
+        // function bounceElement(
+        //     $element,
+        //     startPosition = "0",
+        //     endPosition = "72px",
+        //     duration = 500,
+        //     easing = "easeOutBounce"
+        // ) {
+        //     $element.stop(true, true).css("top", startPosition).animate(
+        //         { top: endPosition },
+        //         {
+        //             duration: duration,
+        //             easing: easing,
+        //         }
+        //     );
+        // }
+        //
+        // bounceElement(element);
+        // $(document).ready(function () {
+        //     const $securityText = $(".security-box__text");
+        //     const $cardsContainer = $(".security-box .cards");
+        //
+        //     if ($securityText.length === 0 || $cardsContainer.length === 0) {
+        //         console.error("Не найден .security-box или #security-text");
+        //         return;
+        //     }
+        //
+        //     function bounceElement($element, startPosition = "0px", endPosition = "40px", duration = 500) {
+        //         $element
+        //             .stop(true, true)
+        //             .css({ top: startPosition, opacity: 0 }) // Начальное положение и прозрачность
+        //             .animate(
+        //                 { top: endPosition, opacity: 1 },
+        //                 {
+        //                     duration: duration,
+        //                     easing: "easeOutBounce",
+        //                 }
+        //             );
+        //     }
+        //
+        //     $cardsContainer.on("mouseover", ".card", function () {
+        //         const text = $(this).data("text");
+        //         if (text) {
+        //             $securityText.text(text);
+        //             bounceElement($securityText);
+        //         }
+        //     });
+        //
+        //     $cardsContainer.on("mouseout", ".card", function () {
+        //         $securityText.stop(true, true).fadeOut(200, function () {
+        //             $(this).css({ top: "0px", opacity: 0 }).show();
+        //         });
+        //     });
+        // });
+
+        $(document).ready(function () {
+            const $securityText = $(".security-box__text");
+            const $cardsContainer = $(".security-box .cards");
+            let lastHoveredCard = null; // Отслеживание последней наведённой карточки
+
+            if ($securityText.length === 0 || $cardsContainer.length === 0) {
+                console.error("Не найден .security-box или .security-box__text");
+                return;
+            }
+
+            function bounceElement($element, startPosition = "0px", endPosition = "40px", duration = 500) {
+                $element
+                    .stop(true, true)
+                    .css({ top: startPosition, opacity: 0 })
+                    .animate(
+                        { top: endPosition, opacity: 1 },
+                        {
+                            duration: duration,
+                            easing: "easeOutBounce",
+                        }
+                    );
+            }
+
+            $cardsContainer.on("mouseenter", ".card", function () {
+                // Если мышка снова попала на ту же карту, не запускаем анимацию
+                if (lastHoveredCard === this) return;
+                lastHoveredCard = this; // Запоминаем последнюю карту
+
+                const text = $(this).data("text");
+                if (text) {
+                    $securityText.text(text);
+                    bounceElement($securityText);
+                }
+            });
+
+            $cardsContainer.on("mouseleave", ".card", function () {
+                lastHoveredCard = null; // Сбрасываем последнюю карту, когда мышка уходит
+                $securityText.stop(true, true).fadeOut(200, function () {
+                    $(this).css({ top: "0px", opacity: 0 }).show();
+                });
+            });
+        });
+
+
+        //Animate text
+        const ui = document.getElementById("ui");
+        const languages = ["NL", "JPN", "ITA", "EN", "ESP", "PTB", "FRA", "DEU"];
+        let currentIndex = 0;
+        const animationDuration = 6000; // Время анимации в миллисекундах
+
+        // Создаем 40 текстовых элементов
+        for (let i = 0; i < 40; i++) {
+            let div = document.createElement("div");
+            div.className = "text";
+            div.textContent = languages[currentIndex]; // Начальный язык
+            ui.appendChild(div);
         }
 
-        cardsContainer.addEventListener("mouseover", function (event) {
-            const card = event.target.closest(".card");
-            if (card && card.dataset.text) {
-                securityText.textContent = card.dataset.text;
-                securityText.style.opacity = "1";
-            }
-        });
+        // Функция смены языка после завершения анимации
+        function changeLanguage() {
+            currentIndex = (currentIndex + 1) % languages.length; // Меняем индекс языка
 
-        cardsContainer.addEventListener("mouseout", function (event) {
-            const card = event.target.closest(".card");
-            if (card) {
-                securityText.style.opacity = "0";
-            }
-        });
+            document.querySelectorAll(".text").forEach((div) => {
+                // Здесь можно добавить плавное исчезновение текста
+                // div.style.opacity = "0"; // Начинаем плавное исчезновение текста
+                setTimeout(() => {
+                    div.textContent = languages[currentIndex]; // Меняем язык
+                    // div.style.opacity = "1"; // Плавно возвращаем текст на экран
+                }, 500); // Плавный переход
+            });
+        }
+
+        // Меняем язык через каждые 6.5 секунд (когда анимация заканчивается)
+        setInterval(changeLanguage, animationDuration);
+
+
     }, 300);
 })
 

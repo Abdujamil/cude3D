@@ -279,11 +279,23 @@ export function addPlanesToCube(cubeObject) {
 //         }
 //     });
 // }
+
 export function applyDefaultMaterial(model) {
     model.traverse((child) => {
+
+
+
         if (child.isMesh) {
             child.material.transparent = true;
             child.material.color.set(0x000000);
+            child.material.reflectivity = 0;
+            child.material.opacity = 0.4; // Устанавливаем прозрачность
+
+            // child.material.depthWrite = false;
+            // child.material.emissiveIntensity = 0;
+            // child.material.needsUpdate = true; // Обновляем материал
+            // child.material.side = DoubleSide; // Если у вас односторонний материал
+            // child.renderOrder = 1;
         }
     });
 }

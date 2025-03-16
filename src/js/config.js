@@ -11,8 +11,8 @@ export const settings = {
     durationRotate: 80,
 
     sensitivity: 0.2,
-    rotationSpeed: 0.001,
+    rotationSpeed: 0.0008,
     borderRadius: 4,
 
-    backgroundBlur: 40
+    backgroundBlur: 30
 };

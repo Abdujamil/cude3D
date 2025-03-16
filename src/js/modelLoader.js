@@ -44,9 +44,8 @@ import {addPlanesToCube, applyDefaultMaterial} from "./functions.js";
 //         (error) => console.error(`Ошибка загрузки модели ${modelPath}:`, error)
 //     );
 // }
-
+const loader = new GLTFLoader();
 export function loadModel(cube, modelPath) {
-    const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
 
     // Удаляем предыдущую модель перед загрузкой новой
@@ -68,7 +67,6 @@ export function loadModel(cube, modelPath) {
         `models/${modelPath}`,
         (gltf) => {
             const model = gltf.scene;
-
             applyDefaultMaterial(model);
             // addPlanesToCube(cube);
             cube.add(model);
@@ -77,3 +75,35 @@ export function loadModel(cube, modelPath) {
         (error) => console.error(`Ошибка загрузки модели ${modelPath}:`, error)
     );
 }
+
+// export function loadMicrophoneModel(cube, modelPath) {
+//     loader.load(
+//         `models/${modelPath}`,
+//         (gltf) => {
+//             const model = gltf.scene;
+//             model.scale.set(0.2, 0.2, 0.2);
+//             model.position.set(0, 0, 2);
+//
+//             // Очищаем старые модели
+//             while (cube.children.length > 0) {
+//                 cube.remove(cube.children[0]);
+//             }
+//
+//             cube.add(model);
+//
+//             // Добавляем HTML-контейнер для `CSS3DRenderer`
+//             const modelContainer = document.createElement("div");
+//             modelContainer.id = "model-container";
+//             modelContainer.style.width = "320px";
+//             modelContainer.style.height = "320px";
+//             modelContainer.style.position = "absolute";
+//
+//             const cssObject = new CSS3DObject(modelContainer);
+//             cssObject.position.set(0, 0, 0);
+//
+//             cube.add(cssObject);
+//         },
+//         undefined,
+//         (error) => console.error(`Ошибка загрузки модели ${modelPath}:`, error)
+//     );
+// }

@@ -6,56 +6,70 @@
     <link rel="stylesheet" href="/src/css/test.css">
     <title>HTML Куб в Three.js</title>
 </head>
+<style>
+    body{
+        background-color: #838282;
+    }
+</style>
 <body>
-<!--<main>-->
-<!--    <div class="container">-->
-<!--        <div class="box security-box">-->
-<!--            <div class="box__title">-->
-<!--                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>-->
-<!--            </div>-->
-<!--            <div class="box__content">-->
-<!--                <div class="cards">-->
-<!--                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">-->
-<!--                        <div class="card__title">-->
-<!--                            <p>Резервное копирование</p>-->
-<!--                        </div>-->
-<!--                        <div class="card__image">-->
-<!--                            <img src="/img/search.png" alt="word-icon">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">-->
-<!--                        <div class="card__title">-->
-<!--                            <p>Доступ и хранение</p>-->
-<!--                        </div>-->
-<!--                        <div class="card__image">-->
-<!--                            <img src="/img/person.png" alt="word-icon">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">-->
-<!--                        <div class="card__title">-->
-<!--                            <p>Безопасность</p>-->
-<!--                        </div>-->
-<!--                        <div class="card__image">-->
-<!--                            <img src="/img/lock.png" alt="word-icon">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
-<!--                        <div class="card__title">-->
-<!--                            <p>Шифрование</p>-->
-<!--                        </div>-->
-<!--                        <div class="card__image">-->
-<!--                            <img src="/img/files.png" alt="word-icon">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+<main>
+    <div class="container">
+        <div class="box security-box">
+            <div class="box__title">
+                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>
+            </div>
+            <div class="box__content">
+                <div class="cards">
+                    <div class="cards__top">
+                        <div class="card"
+                             data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">
+                            <div class="card__title">
+                                <p>Резервное копирование</p>
+                            </div>
+                            <div class="card__image">
+                                <img src="public/img/search.png" alt="word-icon">
+                            </div>
+                        </div>
+                        <div class="card"
+                             data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">
+                            <div class="card__title">
+                                <p>Доступ и хранение</p>
+                            </div>
+                            <div class="card__image">
+                                <img src="public/img/person.png" alt="word-icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cards__bottom">
+                        <div class="card"
+                             data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">
+                            <div class="card__title">
+                                <p>Безопасность</p>
+                            </div>
+                            <div class="card__image">
+                                <img src="public/img/lock.png" alt="word-icon">
+                            </div>
+                        </div>
+                        <div class="card"
+                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
+                            <div class="card__title">
+                                <p>Шифрование</p>
+                            </div>
+                            <div class="card__image">
+                                <img src="public/img/files.png" alt="word-icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!--            <div class="security-box__text">-->
-<!--                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</main>-->
+            <div class="security-box__text">
+                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных
+                    копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>
+            </div>
+        </div>
+    </div>
+</main>
 <script>
     document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('mouseover', function() {
@@ -68,245 +82,245 @@
         });
     });
 </script>
-<script type="module">
-    import * as THREE from "three";
-    import {CSS3DRenderer, CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
-    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+<!--<script type="module">-->
+<!--    import * as THREE from "three";-->
+<!--    import {CSS3DRenderer, CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";-->
+<!--    import { OrbitControls } from "three/addons/controls/OrbitControls.js";-->
 
-    // Создаем сцену
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 1300;
+<!--    // Создаем сцену-->
+<!--    const scene = new THREE.Scene();-->
+<!--    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);-->
+<!--    camera.position.z = 1300;-->
 
-    // HTML-рендерер
-    const cssRenderer = new CSS3DRenderer();
-    cssRenderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(cssRenderer.domElement);
+<!--    // HTML-рендерер-->
+<!--    const cssRenderer = new CSS3DRenderer();-->
+<!--    cssRenderer.setSize(window.innerWidth, window.innerHeight);-->
+<!--    document.body.appendChild(cssRenderer.domElement);-->
 
-    // Создаем HTML-элементы для граней куба
-    function createFace(contentId) {
-        const div = document.createElement("div");
-        div.innerHTML = contentHTML[contentId];
-        const object = new CSS3DObject(div);
-        return object;
-    }
+<!--    // Создаем HTML-элементы для граней куба-->
+<!--    function createFace(contentId) {-->
+<!--        const div = document.createElement("div");-->
+<!--        div.innerHTML = contentHTML[contentId];-->
+<!--        const object = new CSS3DObject(div);-->
+<!--        return object;-->
+<!--    }-->
 
-    // Создаем куб с HTML-гранями
-    const cube = new THREE.Group();
-    const faces = [];
+<!--    // Создаем куб с HTML-гранями-->
+<!--    const cube = new THREE.Group();-->
+<!--    const faces = [];-->
 
-    // Позиции граней
-    const positions = [
-        {x: 0, y: 0, z: 490, rx: 0, ry: 0, contentId: "front-content"}, // Передняя
-        {x: 0, y: 0, z: -490, rx: 0, ry: Math.PI, contentId: "back-content"}, // Задняя
-        {x: -490, y: 0, z: 0, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // Левая
-        {x: 490, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // Правая
-    ];
+<!--    // Позиции граней-->
+<!--    const positions = [-->
+<!--        {x: 0, y: 0, z: 490, rx: 0, ry: 0, contentId: "front-content"}, // Передняя-->
+<!--        {x: 0, y: 0, z: -490, rx: 0, ry: Math.PI, contentId: "back-content"}, // Задняя-->
+<!--        {x: -490, y: 0, z: 0, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // Левая-->
+<!--        {x: 490, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // Правая-->
+<!--    ];-->
 
-    const contentHTML = {
-        "front-content": `
-            <div class="box">
-            <div class="box__img">
-                <img src="/img/microphone.webp" alt="microphone">
-            </div>
-            <div class="box__content">
-                <ul class="text-list">
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Бесплатные 30 минут при регистрации.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Стоимость минуты от 1 рубля.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Покупайте минуты себе и делитесь ими.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Покупка минут в подарок.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение баланса другого аккаунта.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение балансом мобильного телефона.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение банковской картой, QR-кодом, СБП.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Платите только за использованные секунды. </p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Постоплата, рассрочка платежа  юр. лицам.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-            `,
-        "back-content": `
-          <div class="box">
-            <div class="box__img">
-                <img src="/img/react.png" alt="react">
-            </div>
-            <div class="box__text">
-                <div class="title">
-                    <h2>Поддерживаемые языки</h2>
-                </div>
-                <div class="text">
-                    <p>
-                        Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:
-                        English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем
-                        высококачественные услуги, обеспечивая точность и эффективность процесса.
-                        <br>
-                        С нами ваша информация будет представлена в удобном и понятном виде, гарантируя легкость
-                        восприятия и использования.
-                    </p>
-                </div>
-                <a href="#" class="text-link">Все поддерживаемые языки</a>
-            </div>
-        </div>`,
-        "left-content": `
-           <div class="box export-box">
-            <div class="box__title">
-                <h2>Экспорт файла</h2>
-            </div>
-            <div class="box__content">
-                <div class="cards">
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>DOCX</h3>
-                            <p>MS Word</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/word-icon.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>XLSX</h3>
-                            <p>MS Excel </p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/excel-icon.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>PDF</h3>
-                            <p style="opacity: 0">Pdf</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/pdf-icon.png" alt="pdf-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>TXT</h3>
-                            <p>Блокнот</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/txt-icon.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__title">
-                            <h3>SRT</h3>
-                            <p>Субтитры</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/youtube-icon.png" alt="word-icon">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box_foot">
-                <p>
-                    Вы можете экспортировать файлы в нужный для Вас формат и делиться готовым результатом.
-                </p>
-            </div>
-        </div>
-           `,
-        "right-content": `
-            <div class="box security-box">
-            <div class="box__title">
-                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>
-            </div>
-            <div class="box__content">
-                <div class="cards">
-                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">
-                        <div class="card__title">
-                            <p>Резервное копирование</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/search.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">
-                        <div class="card__title">
-                            <p>Доступ и хранение</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/person.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">
-                        <div class="card__title">
-                            <p>Безопасность</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/lock.png" alt="word-icon">
-                        </div>
-                    </div>
-                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
-                        <div class="card__title">
-                            <p>Шифрование</p>
-                        </div>
-                        <div class="card__image">
-                            <img src="/img/files.png" alt="word-icon">
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--    const contentHTML = {-->
+<!--        "front-content": `-->
+<!--            <div class="box">-->
+<!--            <div class="box__img">-->
+<!--                <img src="public/img/microphone.webp" alt="microphone">-->
+<!--            </div>-->
+<!--            <div class="box__content">-->
+<!--                <ul class="text-list">-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Бесплатные 30 минут при регистрации.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Стоимость минуты от 1 рубля.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Покупайте минуты себе и делитесь ими.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Покупка минут в подарок.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Пополнение баланса другого аккаунта.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Пополнение балансом мобильного телефона.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Пополнение банковской картой, QR-кодом, СБП.</p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Платите только за использованные секунды. </p>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <img src="public/img/done.png" alt="done icon">-->
+<!--                        <p>Постоплата, рассрочка платежа  юр. лицам.</p>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--            `,-->
+<!--        "back-content": `-->
+<!--          <div class="box">-->
+<!--            <div class="box__img">-->
+<!--                <img src="public/img/react.png" alt="react">-->
+<!--            </div>-->
+<!--            <div class="box__text">-->
+<!--                <div class="title">-->
+<!--                    <h2>Поддерживаемые языки</h2>-->
+<!--                </div>-->
+<!--                <div class="text">-->
+<!--                    <p>-->
+<!--                        Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:-->
+<!--                        English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем-->
+<!--                        высококачественные услуги, обеспечивая точность и эффективность процесса.-->
+<!--                        <br>-->
+<!--                        С нами ваша информация будет представлена в удобном и понятном виде, гарантируя легкость-->
+<!--                        восприятия и использования.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <a href="#" class="text-link">Все поддерживаемые языки</a>-->
+<!--            </div>-->
+<!--        </div>`,-->
+<!--        "left-content": `-->
+<!--           <div class="box export-box">-->
+<!--            <div class="box__title">-->
+<!--                <h2>Экспорт файла</h2>-->
+<!--            </div>-->
+<!--            <div class="box__content">-->
+<!--                <div class="cards">-->
+<!--                    <div class="card">-->
+<!--                        <div class="card__title">-->
+<!--                            <h3>DOCX</h3>-->
+<!--                            <p>MS Word</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/word-icon.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <div class="card__title">-->
+<!--                            <h3>XLSX</h3>-->
+<!--                            <p>MS Excel </p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/excel-icon.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <div class="card__title">-->
+<!--                            <h3>PDF</h3>-->
+<!--                            <p style="opacity: 0">Pdf</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/pdf-icon.png" alt="pdf-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <div class="card__title">-->
+<!--                            <h3>TXT</h3>-->
+<!--                            <p>Блокнот</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/txt-icon.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <div class="card__title">-->
+<!--                            <h3>SRT</h3>-->
+<!--                            <p>Субтитры</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/youtube-icon.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="box_foot">-->
+<!--                <p>-->
+<!--                    Вы можете экспортировать файлы в нужный для Вас формат и делиться готовым результатом.-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--           `,-->
+<!--        "right-content": `-->
+<!--            <div class="box security-box">-->
+<!--            <div class="box__title">-->
+<!--                <h2>Данные надежно защищены: храним, шифруем, никому не передаем</h2>-->
+<!--            </div>-->
+<!--            <div class="box__content">-->
+<!--                <div class="cards">-->
+<!--                    <div class="card" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Резервное копирование</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/search.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Все аккаунты имеют требования аутентификации, чтобы защитить в вашем личном кабинете. Мы не передаем ваши данные третьим лицам.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Доступ и хранение</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/person.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Передаваемые данные шифруются с использованием TLS 1.2+, а при хранении — с использованием стандартного алгоритма AES-256.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Безопасность</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/lock.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
+<!--                        <div class="card__title">-->
+<!--                            <p>Шифрование</p>-->
+<!--                        </div>-->
+<!--                        <div class="card__image">-->
+<!--                            <img src="public/img/files.png" alt="word-icon">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="security-box__text">
-                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>
-            </div>
-        </div>`
-    };
+<!--            <div class="security-box__text">-->
+<!--                <p id="security-text">Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием и надежными протоколами хранения.</p>-->
+<!--            </div>-->
+<!--        </div>`-->
+<!--    };-->
 
-    positions.forEach(({ x, y, z, rx, ry, contentId }) => {
-        const face = createFace(contentId); // Используем готовый HTML контент
-        face.position.set(x, y, z);
-        face.rotation.y = ry;
-        face.rotation.x = rx;
-        cube.add(face);
-    });
+<!--    positions.forEach(({ x, y, z, rx, ry, contentId }) => {-->
+<!--        const face = createFace(contentId); // Используем готовый HTML контент-->
+<!--        face.position.set(x, y, z);-->
+<!--        face.rotation.y = ry;-->
+<!--        face.rotation.x = rx;-->
+<!--        cube.add(face);-->
+<!--    });-->
 
-    // Добавляем управление мышью (OrbitControls)
-    const controls = new OrbitControls(camera, cssRenderer.domElement);
-    controls.enableDamping = true; // Плавность вращения
-    controls.dampingFactor = 0.05;
-    controls.rotateSpeed = 0.5; // Скорость вращения
-    controls.enableZoom = false; // Отключаем зум, если не нужен
+<!--    // Добавляем управление мышью (OrbitControls)-->
+<!--    const controls = new OrbitControls(camera, cssRenderer.domElement);-->
+<!--    controls.enableDamping = true; // Плавность вращения-->
+<!--    controls.dampingFactor = 0.05;-->
+<!--    controls.rotateSpeed = 0.5; // Скорость вращения-->
+<!--    controls.enableZoom = false; // Отключаем зум, если не нужен-->
 
-    scene.add(cube);
+<!--    scene.add(cube);-->
 
-    // Анимация вращения куба
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update(); // Управление мышью
-        cssRenderer.render(scene, camera);
-    }
+<!--    // Анимация вращения куба-->
+<!--    function animate() {-->
+<!--        requestAnimationFrame(animate);-->
+<!--        controls.update(); // Управление мышью-->
+<!--        cssRenderer.render(scene, camera);-->
+<!--    }-->
 
-    animate();
-</script>
+<!--    animate();-->
+<!--</script>-->
 </body>
 </html>
