@@ -15,5 +15,6 @@ export const settings = {
     borderRadius: 4,
 
     backgroundBlur: 30,
-    borderColor: "#000000"
+    // borderColor: "#000000"
+    borderColor: "#1b1b1b"
 };

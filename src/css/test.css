@@ -82,7 +82,8 @@ img {
 
 .support-lan-box {
     height: 100%;
-    width: 892px !important;
+    /*width: 892px !important;*/
+    width: 887px !important;
 
     display: block;
 }
@@ -95,18 +96,21 @@ img {
 
 .micro-box {
     height: 100%;
-    width: 950px !important
+    /*width: 950px !important;*/
+    width: 944px !important
 }
 
 .security-box {
     height: 100%;
-    width: 948px !important;
+    /*width: 948px !important;*/
+    width: 944px !important;
     justify-content: start;
 }
 
 .export-box {
     height: 100%;
-    width: 892px !important
+    /*width: 892px !important;*/
+    width: 887px !important
 }
 
 .text-list {

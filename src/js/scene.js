@@ -14,6 +14,8 @@ camera.position.set(0, 0, 3.6);
 // export const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 // camera.position.z = 1600;
 
+
+
 export const renderer = new WebGLRenderer({antialias: false});
 renderer.domElement.style.position = "absolute";
 renderer.domElement.style.top = "0";

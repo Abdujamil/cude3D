@@ -52,11 +52,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     // Позиции граней
+    // const positions = [
+    //     {x: 0, y: -1, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+    //     {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+    //     {x: -514, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+    //     {x: 515, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+    // ];
     const positions = [
-        {x: 0, y: 0, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-        {x: 1, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
-        {x: -514, y: 0, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
-        {x: 515, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+        {x: 0, y: 0, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+        {x: 1, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //   security
+        {x: -510, y: 0, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, //  Export
+        {x: 511, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // react
     ];
 
     // Создаем HTML-элементы для граней куба
@@ -293,7 +299,28 @@ window.addEventListener('DOMContentLoaded', () => {
                     <div class="loading">    
                       <section>
                           <div class="cube center nucleus">
-                            <div id="ui"></div>
+                            <div class="cube-container">
+                                <div class="cube-track">
+                                    <div class="cube">NL</div>
+                                    <div class="cube">JPN</div>
+                                    <div class="cube">ITA</div>
+                                    <div class="cube">EN</div>
+                                    <div class="cube">ESP</div>
+                                    <div class="cube">PTB</div>
+                                    <div class="cube">FRA</div>
+                                    <div class="cube">DEU</div>
+                        
+                                    <!-- Дублируем для плавности -->
+                                    <div class="cube">NL</div>
+                                    <div class="cube">JPN</div>
+                                    <div class="cube">ITA</div>
+                                    <div class="cube">EN</div>
+                                    <div class="cube">ESP</div>
+                                    <div class="cube">PTB</div>
+                                    <div class="cube">FRA</div>
+                                    <div class="cube">DEU</div>
+                                </div>
+                            </div>
                         </div>
                            
                           <article class="ring1">
@@ -993,30 +1020,30 @@ window.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        const ui = document.getElementById("ui");
+        // const ui = document.getElementById("ui");
         // const ui = document.querySelector(".cube");
-        const languages = ["NL", "JPN", "ITA", "EN", "ESP", "PTB", "FRA", "DEU"];
-        let currentIndex = 0;
-        const animationDuration = 2500; // Время между сменами языка
+        // const languages = ["NL", "JPN", "ITA", "EN", "ESP", "PTB", "FRA", "DEU"];
+        // let currentIndex = 0;
+        // const animationDuration = 2500; // Время между сменами языка
+        //
+        // let div = document.createElement("div");
+        // div.className = "text";
+        // div.textContent = languages[currentIndex];
+        // ui.appendChild(div);
+        //
+        // function changeLanguage() {
+        //     let $text = $(".text");
+        //
+        //     // Запускаем эффект подпрыгивания
+        //     bounceElement($text, "0px", "-100px", 500);
+        //
+        //     setTimeout(() => {
+        //         currentIndex = (currentIndex + 1) % languages.length;
+        //         $text.text(languages[currentIndex]); // Меняем язык
+        //     }, 300); // После прыжка меняем текст
+        // }
 
-        let div = document.createElement("div");
-        div.className = "text";
-        div.textContent = languages[currentIndex];
-        ui.appendChild(div);
-
-        function changeLanguage() {
-            let $text = $(".text");
-
-            // Запускаем эффект подпрыгивания
-            bounceElement($text, "0px", "-100px", 500);
-
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % languages.length;
-                $text.text(languages[currentIndex]); // Меняем язык
-            }, 300); // После прыжка меняем текст
-        }
-
-        setInterval(changeLanguage, animationDuration);
+        // setInterval(changeLanguage, animationDuration);
 
 
     }, 300);
