@@ -4,15 +4,15 @@ import {settings} from './config.js';
 export function setupGUI(camera, cube) {
     const gui = new GUI();
 
-    // const cubeSettings = {
-    //     'Цвет куба': 0x000000,
-    //     'Прозрачность': .4,
-    //     'Отражение':  0,
-    //     'Металличность': 1,
-    //     'Шероховатость': .4,
-    //     'Размер фаски': 0.04,
-    //     'Стиль стекла': 'Обычное',
-    // };
+    const cubeSettings = {
+        'Цвет куба': 0x000000,
+        'Прозрачность': .4,
+        'Отражение':  0,
+        'Металличность': 1,
+        'Шероховатость': .4,
+        'Размер фаски': 0.04,
+        'Стиль стекла': 'Обычное',
+    };
 
     const scrollSettings = {
         'Длительность анимации': settings.animationDuration,
@@ -55,7 +55,7 @@ export function setupGUI(camera, cube) {
             settings.rotationSpeed = scrollSettings['Скор. вращения куба'];
         });
 
-    // const cubeFolder = gui.addFolder('Внешний куб');
+    const cubeFolder = gui.addFolder('Внешний куб');
     //
     // // cubeFolder.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
     //
@@ -87,22 +87,22 @@ export function setupGUI(camera, cube) {
     //         });
     //     });
     //
-    // cubeFolder.add(cubeSettings, 'Металличность', 0, 1)
-    //     .onChange(() => {
-    //         cube.traverse((child) => {
-    //             if (child.isMesh) {
-    //                 child.material.metalness = cubeSettings['Металличность'];
-    //             }
-    //         });
-    //     });
-    //
-    // cubeFolder.add(cubeSettings, 'Шероховатость', 0, 1)
-    //     .onChange(() => {
-    //         cube.traverse((child) => {
-    //             if (child.isMesh) {
-    //                 child.material.roughness = cubeSettings['Шероховатость'];
-    //             }
-    //         });
-    //     });
+    cubeFolder.add(cubeSettings, 'Металличность', 0, 1)
+        .onChange(() => {
+            cube.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.metalness = cubeSettings['Металличность'];
+                }
+            });
+        });
+
+    cubeFolder.add(cubeSettings, 'Шероховатость', 0, 1)
+        .onChange(() => {
+            cube.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.roughness = cubeSettings['Шероховатость'];
+                }
+            });
+        });
 }
 

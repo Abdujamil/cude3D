@@ -53,10 +53,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Позиции граней
     const positions = [
-        {x: 0, y: -1, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-        {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
-        {x: -514, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
-        {x: 515, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+        {x: 0, y: 0, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+        {x: 1, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+        {x: -514, y: 0, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+        {x: 515, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
     ];
 
     // Создаем HTML-элементы для граней куба
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
         div.style.background = 'rgba(5,5,5,0.4)';
         // div.style.background = 'rgba(255,255,255,0.4)';
         // div.style.width = "960px";
-        div.style.border = '1px solid black';
+        div.style.border = `1px solid ${settings.borderColor}`;
         div.style.height = "520px";
         div.style.padding = "40px";
         div.innerHTML = contentHTML[contentId];
@@ -83,11 +83,13 @@ window.addEventListener('DOMContentLoaded', () => {
     function updateBlur() {
         faces.forEach(face => {
             face.element.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
+            face.element.style.border = `1px solid ${settings.borderColor}`;
         });
     }
 
     const gui = new GUI();
     gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
+    gui.addColor(settings, 'borderColor').onChange(updateBlur);
 
     // const facesFolder = gui.addFolder("Faces Positions");
     //
@@ -225,61 +227,51 @@ window.addEventListener('DOMContentLoaded', () => {
                 <div class="cards">
                     <div class="cardWrap">
                         <div class="card">
-<!--                            <div class="cardBg" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHEWg4bEBkqykz_amIDAnmRsi2Gi4dbRgN3w&s');"></div>-->
                             <div class="cardBg card__image" style="background-image: url('/img/word-icon.svg');">
                                 <div class="card__title cardInfo">
                                 <h3>DOCX</h3>
                                 <p>MS Word</p>
                             </div>
-<!--                                <img src="/img/word-icon.png" alt="word-icon">-->
                             </div>
                         </div>
                     </div>
                     <div class="cardWrap"> 
                         <div class="card">
-<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
                             <div class="cardBg card__image" style="background-image: url('/img/excel-icon.svg');">
                                 <div class="card__title cardInfo">
                                 <h3>XLSX</h3>
                                 <p>MS Excel </p>
                             </div>
-<!--                                <img src="/img/excel-icon.png" alt="word-icon">-->
                             </div>
                         </div>
                     </div>
                     <div class="cardWrap">
                         <div class="card">
-<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
                             <div class="cardBg card__image" style="background-image: url('/img/pdf-icon.svg');">
                                 <div class="card__title cardInfo">
                                 <h3>PDF</h3>
                                 <p >Документ</p>
                             </div>
-<!--                                <img src="/img/pdf-icon.png" alt="pdf-icon">-->
                             </div>
                         </div>
                     </div>
                     <div class="cardWrap">
                         <div class="card">
-<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
                             <div class="cardBg card__image" style="background-image: url('/img/txt-icon.png');" >
                                 <div class="card__title cardInfo">
                                     <h3>TXT</h3>
                                     <p>Блокнот</p>
                                 </div>
-<!--                                <img src="/img/txt-icon.png" alt="word-icon">-->
                             </div>
                         </div>
                     </div>
                     <div class="cardWrap">
                         <div class="card">
-<!--                            <div class="cardBg" style="background-image: url('https://m.jagranjosh.com/imported/images/E/Articles/maths2.jpg');"></div>-->
                             <div class="cardBg card__image" style="background-image: url('/img/srt-icon.svg');" >
                                 <div class="card__title cardInfo">
                                     <h3>SRT</h3>
                                     <p>Субтитры</p>
                                 </div>
-<!--                                <img src="/img/youtube-icon.png" alt="word-icon">-->
                             </div>
                         </div>
                     </div>
@@ -298,58 +290,20 @@ window.addEventListener('DOMContentLoaded', () => {
                      <h2>Поддерживаемые языки</h2>
                  </div>
                  <div class="support-lan-box__container">
-                    <div class="loading">
-<!--                         <div id="nucleus"></div>-->
-<!--                          <div class="arc arc-1">-->
-<!--                                 <div class="electron">-->
-<!--                                      <img src="/img/иконка языка.svg" alt="lang">-->
-<!--                                 </div>-->
-<!--                           </div>-->
-<!--                          <div class="arc arc-2">-->
-<!--                                <div class="electron">-->
-<!--                                  <img src="/img/иконка языка-1.svg" alt="lang">-->
-<!--                                </div>-->
-<!--                          </div>-->
-<!--                          <div class="arc arc-3">-->
-<!--                                 <div class="electron">-->
-<!--                                   <img src="/img/иконка языка-2.svg" alt="lang">-->
-<!--                                 </div>-->
-<!--                          </div>-->
-    
+                    <div class="loading">    
                       <section>
                           <div class="cube center nucleus">
-<!--                                  <div class="face front"><img src="/img/lang1.png" alt="front"></div>-->
-<!--                                  <div class="face back"><img src="/img/lang2.png" alt="back"></div>-->
-<!--                                  <div class="face left"><img src="/img/lang3.png" alt="left"></div>-->
-<!--                                  <div class="face right"><img src="/img/lang4.png" alt="right"></div>-->
-<!--                                  <div class="face top"><img src="/img/lang4.png" alt="top"></div>-->
-<!--                                  <div class="face bottom"><img src="/img/lang4.png" alt="bottom"></div>-->
-                                <div id="ui"></div>
-                           </div>
+                            <div id="ui"></div>
+                        </div>
                            
-<!--                             <div class="center nucleus">-->
-<!--                             </div>  -->
-                         
                           <article class="ring1">
-                            <div class="r-anim">
-<!--                                <div class="electron">-->
-<!--                                    <img src="/img/lang1.png" alt="lang">-->
-<!--                                </div>-->
-                            </div>
+                            <div class="r-anim"></div>
                           </article>
                           <article class="ring2">
-                            <div class="r-anim">
-<!--                                <div class="electron">-->
-<!--                                    <img src="/img/lang2.png" alt="lang">-->
-<!--                                </div>-->
-                            </div>
+                            <div class="r-anim"></div>
                           </article>
                           <article class="ring3">
-                            <div class="r-anim">
-<!--                                <div class="electron">-->
-<!--                                    <img src="/img/lang3.png" alt="lang">-->
-<!--                                </div>-->
-                            </div>
+                            <div class="r-anim"></div>
                           </article>
                       </section>
                     </div>
@@ -942,7 +896,6 @@ window.addEventListener('DOMContentLoaded', () => {
             element.addEventListener("mousemove", (ele) => {
                 requestAnimationFrame(() => {
                     const card = element.querySelector(".card");
-                    // const cardText = card.querySelector(".card__title");
                     const cardBg = card.querySelector(".cardBg");
 
                     state.mouseX = ele.clientX - element.getBoundingClientRect().left - state.width / 2;
@@ -951,12 +904,10 @@ window.addEventListener('DOMContentLoaded', () => {
                     const angleX = (state.mouseX / state.width) * 50;
                     const angleY = (state.mouseY / state.height) * -50;
                     card.style.transform = `rotateY(${angleX}deg) rotateX(${angleY}deg)`;
-                    // cardText.style.transform = `rotateY(${angleX}deg) rotateX(${angleY}deg)`;
 
                     const posX = (state.mouseX / state.width) * -60;
                     const posY = (state.mouseY / state.height) * -60;
                     cardBg.style.transform = `translateX(${posX}px) translateY(${posY}px)`;
-                    // cardText.style.transform = `translateX(${posX}px) translateY(${posY}px)`;
                 });
             });
 
@@ -987,64 +938,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         setInterval(updateCubeImages, 2000);
 
-        // Effect text
-
-        // const element = $("#security-text"); // Получаем элемент через jQuery
-        //
-        // function bounceElement(
-        //     $element,
-        //     startPosition = "0",
-        //     endPosition = "72px",
-        //     duration = 500,
-        //     easing = "easeOutBounce"
-        // ) {
-        //     $element.stop(true, true).css("top", startPosition).animate(
-        //         { top: endPosition },
-        //         {
-        //             duration: duration,
-        //             easing: easing,
-        //         }
-        //     );
-        // }
-        //
-        // bounceElement(element);
-        // $(document).ready(function () {
-        //     const $securityText = $(".security-box__text");
-        //     const $cardsContainer = $(".security-box .cards");
-        //
-        //     if ($securityText.length === 0 || $cardsContainer.length === 0) {
-        //         console.error("Не найден .security-box или #security-text");
-        //         return;
-        //     }
-        //
-        //     function bounceElement($element, startPosition = "0px", endPosition = "40px", duration = 500) {
-        //         $element
-        //             .stop(true, true)
-        //             .css({ top: startPosition, opacity: 0 }) // Начальное положение и прозрачность
-        //             .animate(
-        //                 { top: endPosition, opacity: 1 },
-        //                 {
-        //                     duration: duration,
-        //                     easing: "easeOutBounce",
-        //                 }
-        //             );
-        //     }
-        //
-        //     $cardsContainer.on("mouseover", ".card", function () {
-        //         const text = $(this).data("text");
-        //         if (text) {
-        //             $securityText.text(text);
-        //             bounceElement($securityText);
-        //         }
-        //     });
-        //
-        //     $cardsContainer.on("mouseout", ".card", function () {
-        //         $securityText.stop(true, true).fadeOut(200, function () {
-        //             $(this).css({ top: "0px", opacity: 0 }).show();
-        //         });
-        //     });
-        // });
-
+        // Effect text security
         $(document).ready(function () {
             const $securityText = $(".security-box__text");
             const $cardsContainer = $(".security-box .cards");
@@ -1088,36 +982,40 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        //Animate text atom
+        function bounceElement($element, startPosition = "0px", endPosition = "20px", duration = 300) {
+            $element.stop(true, true).css("top", startPosition).animate(
+                { top: endPosition },
+                { duration: duration, easing: "easeOutBounce" }
+            ).animate(
+                { top: startPosition },
+                { duration: duration, easing: "easeInBounce" }
+            );
+        }
 
-        //Animate text
         const ui = document.getElementById("ui");
+        // const ui = document.querySelector(".cube");
         const languages = ["NL", "JPN", "ITA", "EN", "ESP", "PTB", "FRA", "DEU"];
         let currentIndex = 0;
-        const animationDuration = 6000; // Время анимации в миллисекундах
+        const animationDuration = 2500; // Время между сменами языка
 
-        // Создаем 40 текстовых элементов
-        for (let i = 0; i < 40; i++) {
-            let div = document.createElement("div");
-            div.className = "text";
-            div.textContent = languages[currentIndex]; // Начальный язык
-            ui.appendChild(div);
-        }
+        let div = document.createElement("div");
+        div.className = "text";
+        div.textContent = languages[currentIndex];
+        ui.appendChild(div);
 
-        // Функция смены языка после завершения анимации
         function changeLanguage() {
-            currentIndex = (currentIndex + 1) % languages.length; // Меняем индекс языка
+            let $text = $(".text");
 
-            document.querySelectorAll(".text").forEach((div) => {
-                // Здесь можно добавить плавное исчезновение текста
-                // div.style.opacity = "0"; // Начинаем плавное исчезновение текста
-                setTimeout(() => {
-                    div.textContent = languages[currentIndex]; // Меняем язык
-                    // div.style.opacity = "1"; // Плавно возвращаем текст на экран
-                }, 500); // Плавный переход
-            });
+            // Запускаем эффект подпрыгивания
+            bounceElement($text, "0px", "-100px", 500);
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % languages.length;
+                $text.text(languages[currentIndex]); // Меняем язык
+            }, 300); // После прыжка меняем текст
         }
 
-        // Меняем язык через каждые 6.5 секунд (когда анимация заканчивается)
         setInterval(changeLanguage, animationDuration);
 
 
