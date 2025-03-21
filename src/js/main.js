@@ -7,9 +7,11 @@ import {setupPostProcessing} from "./postProcessing.js";
 import {settings} from "./config.js";
 import {CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
 import {GUI} from "lil-gui";
-
 import $ from "jquery";
 import "jquery.easing";
+import VanillaTilt from "vanilla-tilt";
+import {ceil} from "three/tsl";
+import {flattenJSON} from "three/src/animation/AnimationUtils.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     // document.body.appendChild(cssRenderer.domElement);
@@ -122,40 +124,40 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="box__content">
                 <ul class="text-list">
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Бесплатные 30 минут при регистрации.</p>
-                    </li>
-                    <li>
-                        <img src="/img/done.png" alt="done icon">
+                        <img src="/img/done.svg" alt="done icon">
                         <p>Стоимость минуты от 1 рубля.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Покупайте минуты себе и делитесь ими.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Посекундная тарификация.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Покупка минут в подарок.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Дарите минуты в подарок.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение баланса другого аккаунта.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Покупайте минуты на другой аккаунт.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение балансом мобильного телефона.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Делитесь своими минутами.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Пополнение банковской картой, QR-кодом, СБП.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Пополнение картой, QR-кодом, СБП.</p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Платите только за использованные секунды. </p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Пополнение балансом телефона. </p>
                     </li>
                     <li>
-                        <img src="/img/done.png" alt="done icon">
-                        <p>Постоплата, рассрочка платежа  юр. лицам.</p>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Пополнение с расчётного счёта.</p>
+                    </li>
+                    <li>
+                        <img src="/img/done.svg" alt="done icon">
+                        <p>Постоплата, рассрочка платежа.</p>
                     </li>
                 </ul>
             </div>
@@ -169,51 +171,92 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="box__content">
                 <div class="cards">
                     <div class="cards__top">
-                        <figure class="card card-1"
-                             data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
-                            <div class="card__title">
-                                <p>
-                                Резервное копирование
-                                </p>
+<!--                        <figure class="card card-1" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">-->
+<!--                                <div class="card__title">-->
+<!--                                    <p>-->
+<!--                                    Резервное копирование-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                                <div class="card__image-lock card__image">-->
+<!--                                    <img src="/img/1.svg" alt="lock-icon">-->
+<!--                                </div>-->
+<!--                        </figure>-->
+<!--                        <figure class="card card-2" data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">-->
+<!--                            <div class="card__title">-->
+<!--                                <p>-->
+<!--                                Доступ и хранение-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                            <div class="card__image-file card__image">-->
+<!--                                <img src="/img/2.svg" alt="file-icon">-->
+<!--                            </div>-->
+<!--                        </figure>-->
+<!--                      -->
+                       <div class="tilt-cont">
+                            <div class="tilt" 
+                                     data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
+                                        <div class="tilt-inner" >
+                                            <p>Доступ и хранение</p>
+                                            <div class="card__image-lock card__image">
+                                                <img src="/img/1.svg" alt="lock-icon">
+                                            </div>
+                                        </div>
                             </div>
-                            <div class="card__image-lock card__image">
-                                <img src="/img/1.svg" alt="lock-icon">
-                            </div>
-                        </figure>
-                        <figure class="card card-2"
-                             data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
-                            <div class="card__title">
-                                <p>
-                                Доступ и хранение
-                                </p>
-                            </div>
-                            <div class="card__image-file card__image">
-                                <img src="/img/2.svg" alt="file-icon">
-                            </div>
-                        </figure>
+                       </div>
+                       <div class="tilt-cont">
+                            <div class="tilt" 
+                                    data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
+                                    <div class="tilt-inner">
+                                        <p>Резервное копирование</p>
+                                         <div class="card__image-file card__image">
+                                           <img src="/img/2.svg" alt="file-icon">
+                                        </div>
+                                    </div>
+                               </div>
+                       </div>       
                     </div>
                     <div class="cards__bottom">
-                        <figure class="card card-3"
-                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
-                            <div class="card__title">
-                                <p>
-                                Безопасность
-                                </p>
+<!--                        <figure class="card card-3"-->
+<!--                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">-->
+<!--                            <div class="card__title">-->
+<!--                                <p>-->
+<!--                                Безопасность-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                            <div class="card__image-search card__image">-->
+<!--                                <img src="/img/3.svg" alt="search-icon">-->
+<!--                            </div>-->
+<!--                        </figure>-->
+<!--                        <figure class="card card-4"-->
+<!--                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
+<!--                            <div class="card__title">-->
+<!--                                <p>-->
+<!--                                Шифрование</p>-->
+<!--                            </div>-->
+<!--                            <div class="card__image-person card__image">-->
+<!--                                <img src="/img/4.svg" alt="person-icon">-->
+<!--                            </div>-->
+<!--                        </figure>-->
+                        <div class="tilt-cont">
+                             <div class="tilt" data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
+                                        <div class="tilt-inner">
+                                            <p>Безопасность</p>
+                                              <div class="card__image-search card__image">
+                                               <img src="/img/3.svg" alt="file-icon">
+                                            </div>
+                                        </div>
                             </div>
-                            <div class="card__image-search card__image">
-                                <img src="/img/3.svg" alt="search-icon">
+                        </div>
+                        <div class="tilt-cont">
+                            <div class="tilt" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
+                                <div class="tilt-inner">
+                                   <p>Шифрование</p>
+                                      <div class="card__image-person card__image">
+                                      <img src="/img/4.svg" alt="file-icon">
+                                   </div>
+                                </div>
                             </div>
-                        </figure>
-                        <figure class="card card-4"
-                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
-                            <div class="card__title">
-                                <p>
-                                Шифрование</p>
-                            </div>
-                            <div class="card__image-person card__image">
-                                <img src="/img/4.svg" alt="person-icon">
-                            </div>
-                        </figure>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -309,8 +352,18 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div class="cube">PTB</div>
                                     <div class="cube">FRA</div>
                                     <div class="cube">DEU</div>
-                        
-                                    <!-- Дублируем для плавности -->
+                                </div>
+                                <div class="cube-track">
+                                    <div class="cube">NL</div>
+                                    <div class="cube">JPN</div>
+                                    <div class="cube">ITA</div>
+                                    <div class="cube">EN</div>
+                                    <div class="cube">ESP</div>
+                                    <div class="cube">PTB</div>
+                                    <div class="cube">FRA</div>
+                                    <div class="cube">DEU</div>
+                                </div>
+                                <div class="cube-track">
                                     <div class="cube">NL</div>
                                     <div class="cube">JPN</div>
                                     <div class="cube">ITA</div>
@@ -321,7 +374,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div class="cube">DEU</div>
                                 </div>
                             </div>
-                        </div>
+                          </div>
                            
                           <article class="ring1">
                             <div class="r-anim"></div>
@@ -347,7 +400,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             восприятия и использования.
                         </p>
                     </div>
-                    <a href="#" class="text-link">Все поддерживаемые языки</a>
+<!--                    <a href="#" class="text-link">Все поддерживаемые языки</a>-->
                 </div> 
                 </div>
             </div>
@@ -871,19 +924,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const electrons = document.querySelectorAll('.electron img'); // Берем все изображения
         const arcs = document.querySelectorAll('.arc'); // Берем все орбиты (они анимируются)
 
-        // const icons = [
-        //     {'url': '/img/lang-icon.svg'},
-        //     {'url': '/img/lang-icon1.svg'},
-        //     {'url': '/img/lang-icon2.svg'},
-        //     {'url': '/img/lang-icon3.svg'},
-        //     {'url': '/img/lang-icon4.svg'},
-        //     {'url': '/img/lang-icon5.svg'},
-        //     {'url': '/img/lang-icon6.svg'},
-        //     {'url': '/img/lang-icon7.svg'},
-        //     {'url': '/img/lang-icon8.svg'},
-        //     {'url': '/img/lang-icon9.svg'},
-        //     {'url': '/img/lang-icon10.svg'},
-        // ];
         const icons = [
             {'url': '/img/lang1.png'},
             {'url': '/img/lang1.png'},
@@ -958,11 +998,13 @@ window.addEventListener('DOMContentLoaded', () => {
         function getRandomIcon() {
             return icons[Math.floor(Math.random() * icons.length)].url; // Берём случайный URL
         }
+
         function updateCubeImages() {
             faces.forEach(face => {
                 face.src = getRandomIcon(); // Меняем src картинки
             });
         }
+
         setInterval(updateCubeImages, 2000);
 
         // Effect text security
@@ -979,9 +1021,9 @@ window.addEventListener('DOMContentLoaded', () => {
             function bounceElement($element, startPosition = "0px", endPosition = "40px", duration = 500) {
                 $element
                     .stop(true, true)
-                    .css({ top: startPosition, opacity: 0 })
+                    .css({top: startPosition, opacity: 0})
                     .animate(
-                        { top: endPosition, opacity: 1 },
+                        {top: endPosition, opacity: 1},
                         {
                             duration: duration,
                             easing: "easeOutBounce",
@@ -989,7 +1031,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     );
             }
 
-            $cardsContainer.on("mouseenter", ".card", function () {
+            $cardsContainer.on("mouseenter", ".tilt", function () {
                 // Если мышка снова попала на ту же карту, не запускаем анимацию
                 if (lastHoveredCard === this) return;
                 lastHoveredCard = this; // Запоминаем последнюю карту
@@ -1001,22 +1043,80 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            $cardsContainer.on("mouseleave", ".card", function () {
+            $cardsContainer.on("mouseleave", ".tilt", function () {
                 lastHoveredCard = null; // Сбрасываем последнюю карту, когда мышка уходит
                 $securityText.stop(true, true).fadeOut(200, function () {
-                    $(this).css({ top: "0px", opacity: 0 }).show();
+                    $(this).css({top: "0px", opacity: 0}).show();
                 });
             });
         });
 
+
+        const tiltElements = document.querySelectorAll(".tilt");
+        let timeoutId = null;
+        VanillaTilt.init(tiltElements, {
+            max: 25,        // Максимальный угол наклона
+            speed: 1000,     // Скорость возвращения
+            glare: true,    // Блик
+            "max-glare": .1,  // Интенсивность блика
+            perspective: 2000, // Глубина 3D
+            scale: 1.05,
+            reset: false,
+            reverse: true,
+            axis: "y",
+        });
+        tiltElements.forEach((element) => {
+            element.addEventListener("mouseenter", () => {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                    console.log("❌ Таймер сброшен");
+                    timeoutId = null;
+                }
+                element.classList.add("tilt-hover"); // Добавляем эффект сразу при наведении
+            });
+            element.addEventListener("mousemove", () => {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                    console.log("❌ Таймер сброшен");
+                    timeoutId = null;
+                }
+                element.classList.add("tilt-hover"); // Добавляем эффект сразу при наведении
+            });
+
+            element.addEventListener("mouseleave", () => {
+                setTimeout(() => {
+                    // Уничтожаем текущий эффект
+                    element.vanillaTilt.destroy();
+
+                    // Создаем новый с reverse: true
+                    VanillaTilt.init(element, {
+                        max: 25,
+                        speed: 1000,
+                        glare: true,
+                        "max-glare": 0.1,
+                        perspective: 2000,
+                        scale: 1.05,
+                        reset: false,
+                        reverse: true, // Изменяем параметр
+                        axis: "y",
+                    });
+
+                    element.classList.remove("tilt-hover");
+                    timeoutId = null;
+                }, 1000);
+            });
+        });
+
+
+
         //Animate text atom
         function bounceElement($element, startPosition = "0px", endPosition = "20px", duration = 300) {
             $element.stop(true, true).css("top", startPosition).animate(
-                { top: endPosition },
-                { duration: duration, easing: "easeOutBounce" }
+                {top: endPosition},
+                {duration: duration, easing: "easeOutBounce"}
             ).animate(
-                { top: startPosition },
-                { duration: duration, easing: "easeInBounce" }
+                {top: startPosition},
+                {duration: duration, easing: "easeInBounce"}
             );
         }
 
@@ -1044,7 +1144,6 @@ window.addEventListener('DOMContentLoaded', () => {
         // }
 
         // setInterval(changeLanguage, animationDuration);
-
 
     }, 300);
 })

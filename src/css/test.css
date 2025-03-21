@@ -108,19 +108,19 @@ img {
 }
 
 .export-box {
-    height: 100%;
+    height: 102%;
     /*width: 892px !important;*/
     width: 887px !important
 }
 
 .text-list {
     display: flex;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: start;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 25px
+    gap: 20px
 }
 
 .cards, .text-list li {
@@ -132,14 +132,14 @@ img {
 .text-list li {
     list-style: none;
     display: flex;
-    -ms-flex-align: center;
-    align-items: center;
+    -ms-flex-align: baseline;
+    align-items: baseline;
     gap: 10px
 }
 
 .text-list li p {
     font-weight: 400;
-    font-size: 18px
+    font-size: 21px
 }
 
 .micro-box .box__img {
@@ -177,7 +177,7 @@ img {
 }
 
 .text, .text p, .text-link, .text-content p {
-    font-size: 18px
+    font-size: 20px
 }
 
 .text-content {
@@ -205,7 +205,10 @@ img {
 }
 
 .security-box .box__content {
-    width: 100%
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cards {
@@ -221,7 +224,7 @@ img {
 .cards .card {
     width: 160px;
     height: 210px;
-    border-radius: 4px;
+    border-radius: 6px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -251,7 +254,7 @@ img {
 .card__title p {
     width: 100px;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 21px;
     line-height: 24px;
 
     transition: font-size .3s ease;
@@ -262,7 +265,7 @@ img {
     max-width: 537px;
     height: 40px;
     text-align: center;
-    font-size: 20px
+    font-size: 21px
 }
 
 .security-box .cards .card {
@@ -328,13 +331,13 @@ img {
 
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .security-box__text p {
     font-style: normal;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 21px;
 
     opacity: 0;
     width: 80%;
@@ -394,22 +397,23 @@ img {
 }
 
 .security-box .cards {
+    width: 82%;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
 }
 
 .security-box .cards .cards__top,
 .security-box .cards .cards__bottom {
     max-height: 105px;
     display: flex;
-    gap: 10px
+    gap: 20px
 }
 
 .security-box .card__image {
     width: 70px;
     height: 70px;
     overflow: hidden;
-    transition: all .2s ease-in-out;
+    transition: all .3s ease-in-out;
 
     z-index: 9999;
 }
@@ -421,19 +425,19 @@ img {
 
 .security-box .card__image-lock {
     width: 105px;
-    height: 110px;
+    height: 125px;
     position: relative;
 }
 
 .security-box .card__image-lock img {
     position: absolute;
-    left: 0;
+    left: -15px;
     top: 8px;
 }
 
 .security-box .card__image-file {
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 115px;
     position: relative;
 }
 
@@ -444,15 +448,15 @@ img {
 }
 
 .security-box .card__image-person {
-    width: 110px;
-    height: 90px;
+    width: 115px;
+    height: 110px;
     position: relative;
 
 }
 
 .security-box .card__image-search {
-    width: 82px;
-    height: 70px;
+    width: 130px;
+    height: 75px;
     position: relative;
 }
 
@@ -463,8 +467,13 @@ img {
     top: 0;
 }
 
+.security-box .card__image-search img{
+    left: 22px;
+    max-width: 90px;
+}
+
 .security-box .card__image-person img {
-    top: 10px;
+    top: 15px;
     left: 0;
 }
 
@@ -477,131 +486,212 @@ img {
 
 /*---------------------------- Effect card security ----------------------------*/
 
-.cards .card:after {
-    position: absolute;
+/*.cards .card:after {*/
+/*    position: absolute;*/
+/*}*/
+
+/*.security-box .cards .card {*/
+/*    overflow: hidden;*/
+/*    transform-origin: center top;*/
+/*    transform-style: preserve-3d;*/
+/*    transform: translateZ(0);*/
+/*    transition: 0.3s;*/
+/*}*/
+
+
+/*.security-box .cards .card figcaption {*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    padding: 20px;*/
+/*    padding-bottom: 10px;*/
+/*    font-size: 21px;*/
+/*    background: none;*/
+/*    color: #fff;*/
+/*    transform: translateY(100%);*/
+/*    transition: 0.3s;*/
+/*}*/
+
+/*.security-box .cards .card:after {*/
+/*    content: '';*/
+/*    z-index: 10;*/
+/*    width: 200%;*/
+/*    height: 100%;*/
+/*    top: -105%;*/
+/*    left: -20px;*/
+/*    opacity: 0.1;*/
+/*    transform: rotate(25deg);*/
+/*    background: linear-gradient(to top, transparent, #fff 15%, rgba(255, 255, 255, 0.5));*/
+/*    transition: 0.3s;*/
+/*}*/
+
+
+/*.security-box .cards .card:hover,*/
+/*.security-box .cards .card:focus,*/
+/*.security-box .cards .card:active {*/
+/*    transform: translateY(-15px) translateX(-10px) scale(1.05) rotateX(15deg) !important;*/
+/*    !*transform: translateY(-15px) translateX(0px) translateZ(20px) scale(1.01) !important;*!*/
+/*    height: 120px;*/
+/*}*/
+
+/*.security-box .cards .card:hover .card__title p,*/
+/*.security-box .cards .card:focus .card__title p,*/
+/*.security-box .cards .card:active .card__title p {*/
+/*    font-size: 24px;*/
+/*}*/
+
+/*.security-box .cards .card:hover .card__image-search {*/
+/*    !*width: 100px;*!*/
+/*    !*height: 85px;*!*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.security-box .cards .card:focus .card__image-search,*/
+/*.security-box .cards .card:active .card__image-search,*/
+/*.security-box .cards .card:hover .card__image-person,*/
+/*.security-box .cards .card:focus .card__image-person,*/
+/*.security-box .cards .card:active .card__image-person {*/
+/*    !*width: 150px;*!*/
+/*    !*height: 115px;*!*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.security-box .cards .card:hover .card__image-lock,*/
+/*.security-box .cards .card:focus .card__image-lock,*/
+/*.security-box .cards .card:active .card__image-lock {*/
+/*    !*width: 125px;*!*/
+/*    !*height: 130px;*!*/
+
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.security-box .cards .card:hover .card__image-file {*/
+/*    !*width: 135px;*!*/
+/*    !*height: 130px;*!*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.security-box .cards .card:focus .card__image-file,*/
+/*.security-box .cards .card:active .card__image-file {*/
+/*    !*width: 125px;*!*/
+/*    !*height: 120px;*!*/
+/*    transform: scale(1.2);*/
+/*}*/
+
+/*.security-box .cards .card-1:hover,*/
+/*.security-box .cards .card-1:focus,*/
+/*.security-box .cards .card-1:active {*/
+/*    transform: translateY(-15.7px)!important;*/
+/*    height: 120px !important;*/
+/*}*/
+
+/*.security-box .cards .card-2:hover,*/
+/*.security-box .cards .card-2:focus,*/
+/*.security-box .cards .card-2:active {*/
+/*    transform: translateY(-15.7px) translateX(0px) scale(1) rotateX(0deg) !important;*/
+/*    height: 120px !important;*/
+/*}*/
+
+/*.security-box .cards .card-3:hover,*/
+/*.security-box .cards .card-3:focus,*/
+/*.security-box .cards .card-3:active {*/
+/*    transform: translateY(0px) translateX(0px) scale(1) rotateX(15deg) !important;*/
+/*    height: 125px !important;*/
+/*}*/
+
+/*.security-box .cards .card-4:hover,*/
+/*.security-box .cards .card-4:focus,*/
+/*.security-box .cards .card-4:active {*/
+/*    transform: translateY(0px) translateX(0px) scale(1) !important;*/
+/*    height: 120px !important;*/
+/*}*/
+
+
+/*.security-box .cards .card:hover figcaption,*/
+/*.security-box .cards .card:focus figcaption,*/
+/*.security-box .cards .card:active figcaption {*/
+/*    transform: none;*/
+/*}*/
+
+/*.security-box .cards .card:hover:after,*/
+/*.security-box .cards .card:focus:after,*/
+/*.security-box .cards .card:active:after {*/
+/*    transform: rotate(15deg);*/
+/*    top: -15%;*/
+/*    opacity: 0.15;*/
+/*}*/
+
+.tilt-cont{
+    width: 376px;
+    height: 105px;
+    transition: opacity 1s ease-in-out;
 }
 
-.security-box .cards .card {
-    overflow: hidden;
-    transform-origin: center top;
-    transform-style: preserve-3d;
-    transform: translateZ(0);
-    transition: 0.3s;
-}
+/*.cards:hover .tilt-cont {*/
+/*    !*opacity: .15;*!*/
+/*    opacity: .3;*/
+/*}*/
 
+/* Но ту, на которую навели, оставляем видимой */
+/*.cards:hover .tilt-cont:hover {*/
+/*    opacity: 1;*/
+/*}*/
 
-.security-box .cards .card figcaption {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    padding-bottom: 10px;
-    font-size: 20px;
-    background: none;
-    color: #fff;
-    transform: translateY(100%);
-    transition: 0.3s;
-}
-
-.security-box .cards .card:after {
-    content: '';
-    z-index: 10;
-    width: 200%;
+.tilt {
+    width: 100%;
     height: 100%;
-    top: -105%;
-    left: -20px;
-    opacity: 0.1;
-    transform: rotate(25deg);
-    background: linear-gradient(to top, transparent, #fff 15%, rgba(255, 255, 255, 0.5));
-    transition: 0.3s;
+    background: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 6px;
+    /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);*/
+    background: rgba(0, 0, 0, .5);
+    border: 2px solid transparent;
+
+
+    transform-style: preserve-3d; /* Включаем 3D */
+    perspective: 2000px; /* Глубина */
+
+    transition: all .1s ease-in-out;
 }
 
-.security-box .cards .card:hover,
-.security-box .cards .card:focus,
-.security-box .cards .card:active {
-    transform: translateY(-15px) translateX(-10px) scale(1.05) rotateX(15deg) !important;
-    height: 120px;
+.tilt.tilt-hover,
+.tilt:hover{
+    border: 2px solid rgb(73 71 71);
 }
 
-.security-box .cards .card:hover .card__title p,
-.security-box .cards .card:focus .card__title p,
-.security-box .cards .card:active .card__title p {
-    font-size: 24px;
+.tilt-inner {
+    transform: translateZ(30px);
+    transform-style: preserve-3d;
+    width: 98%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 11px 11px 24px;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 24px;
+    transition: all .1s ease-in;
+    border: 2px solid rgb(73 71 71);
 }
 
-.security-box .cards .card:hover .card__image-search {
-    width: 100px;
-    height: 85px;
+.tilt.tilt-hover .tilt-inner,
+.tilt:hover .tilt-inner{
+    width: 98%;
+    height: 110%;
+    backdrop-filter: blur(30px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.security-box .cards .card:focus .card__image-search,
-.security-box .cards .card:active .card__image-search,
-.security-box .cards .card:hover .card__image-person,
-.security-box .cards .card:focus .card__image-person,
-.security-box .cards .card:active .card__image-person {
-    width: 150px;
-    height: 115px;
-}
-
-.security-box .cards .card:hover .card__image-lock,
-.security-box .cards .card:focus .card__image-lock,
-.security-box .cards .card:active .card__image-lock {
-    width: 125px;
-    height: 130px;
-}
-
-.security-box .cards .card:hover .card__image-file {
-    width: 135px;
-    height: 130px;
-}
-
-.security-box .cards .card:focus .card__image-file,
-.security-box .cards .card:active .card__image-file {
-    width: 125px;
-    height: 120px;
-}
-
-.security-box .cards .card-1:hover,
-.security-box .cards .card-1:focus,
-.security-box .cards .card-1:active {
-    transform: translateY(-15px) translateX(0px) scale(1) rotateX(0deg) !important;
-    height: 120px !important;
-}
-
-.security-box .cards .card-2:hover,
-.security-box .cards .card-2:focus,
-.security-box .cards .card-2:active {
-    transform: translateY(-15px) translateX(0px) scale(1) rotateX(0deg) !important;
-    height: 120px !important;
-}
-
-.security-box .cards .card-3:hover,
-.security-box .cards .card-3:focus,
-.security-box .cards .card-3:active {
-    transform: translateY(0px) translateX(0px) scale(1) rotateX(15deg) !important;
-    height: 125px !important;
-}
-
-.security-box .cards .card-4:hover,
-.security-box .cards .card-4:focus,
-.security-box .cards .card-4:active {
-    transform: translateY(0px) translateX(0px) scale(1) !important;
-    height: 120px !important;
-}
-
-
-.security-box .cards .card:hover figcaption,
-.security-box .cards .card:focus figcaption,
-.security-box .cards .card:active figcaption {
-    transform: none;
-}
-
-.security-box .cards .card:hover:after,
-.security-box .cards .card:focus:after,
-.security-box .cards .card:active:after {
-    transform: rotate(15deg);
-    top: -15%;
-    opacity: 0.15;
+.tilt-inner p{
+    max-width: 100px;
+    text-align: left;
+    line-height: 25px;
 }
 
 /*---------------------------- Atom new styles ----------------------------*/
@@ -726,57 +816,136 @@ section:hover .ring1 div::after {
     top: -1em;
 }
 
+section:hover .center {
+    transform: translate(-50%, 20%);
+    width: 300px;
+}
+
+/*section:hover .center::after,*/
+/*section:hover .center::before {*/
+/*    width: 100%;*/
+/*    opacity: 0;*/
+/*}*/
+
+/*section:hover .center::before{*/
+/*    background: linear-gradient(to right, rgb(27 27 26) 0%, rgba(255, 255, 255, 0) 20%);*/
+/*}*/
+
+/*section:hover .center::after {*/
+/*    background: linear-gradient(to left, rgb(9 9 9) 0%, rgba(255, 255, 255, 0) 20%);*/
+/*}*/
+
+section:hover .center .cube-track {
+    /*animation: moveIconsHorizontally 10s linear infinite;*/
+    /*flex-direction: row;*/
+}
+
 .center {
     height: 3em;
-    width: 5em;
+    /*width: 5em;*/
+    /*width: 62px;*/
+    width: 105px;
     position: absolute;
     left: 50%;
     top: 0;
     transform-origin: center;
     transform: translate(-50%, 280%);
-    transition: transform 1s ease-in-out;
+    transition: all 1s ease-in-out;
     overflow: hidden;
+    white-space: nowrap;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*.center::before {*/
+/*    content: " ";*/
+/*    position: absolute;*/
+/*    z-index: 9;*/
+/*    width: 20px;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background: linear-gradient(to right, rgb(12 12 12) 0%, rgba(255, 255, 255, 0) 20%);*/
+/*}*/
 
+/*.center::after {*/
+/*    content: " ";*/
+/*    position: absolute;*/
+/*    z-index: 9;*/
+/*    width: 20px;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    background: linear-gradient(to left, rgb(12 12 12) 0%, rgba(255, 255, 255, 0) 20%);*/
+/*}*/
 
 .cube-track {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    /*flex-direction: column;*/
     gap: 20px; /* Расстояние между иконками */
-    animation: moveIcons 15s linear infinite;
+    animation: moveIcons 45s linear infinite;
+    will-change: transform;
+    /*transform: translateX(70px);*/
 }
 
 .cube-track .cube,
-.cube .text{
+.cube .text {
     position: relative;
     font-size: 24px;
     color: #5eacff;
+    min-width: 60px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .cube-container {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    /*flex-direction: column;*/
     gap: 20px; /* Расстояние между иконками */
     overflow: hidden;
     width: 100%; /* Ширина контейнера */
     text-align: center;
 }
 
+section:hover .cube-track .cube{
+    /*min-width: 80px !important;*/
+}
+
+section:hover .cube-track {
+    /*animation: moveIcons2 45s linear infinite;*/
+}
+
+section:hover .center .cube-container {
+    width: 100%;
+}
 
 /* Анимация движения по горизонтали */
 @keyframes moveIcons {
+    /*100% {*/
+    /*    transform: translateX(calc(-100px * 12));*/
+    /*}*/
     from {
-        transform: translateY(0);
+        transform: translateX(70px);
     }
     to {
-        transform: translateY(-50%);
+        transform: translateX(calc(-160px * 12));
     }
+}
+
+@keyframes moveIcons2{
+    100% {
+        transform: translateX(calc(-100px * 12));
+    }
+    /*from {*/
+    /*    transform: translateX(70px);*/
+    /*}*/
+    /*to {*/
+    /*    transform: translateX(calc(-240px * 12));*/
+    /*}*/
 }
 
 #ui {
@@ -897,7 +1066,8 @@ section:hover .ring1 div::after {
 .export-box .card {
     position: relative;
     -webkit-box-flex: 0;
-    height: 217.5px;
+    /*height: 217.5px;*/
+    height: 225.5px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0) 0 30px 60px 0,
     inset rgba(15, 15, 15, 0) 0 0 0 5px,

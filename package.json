@@ -26,6 +26,7 @@
     "rollup-plugin-visualizer": "^5.14.0",
     "stats.js": "^0.17.0",
     "three": "^0.173.0",
+    "vanilla-tilt": "^1.8.1",
     "visualizer": "^3.1.0"
   }
 }

@@ -14,7 +14,7 @@ export const settings = {
     rotationSpeed: 0.0008,
     borderRadius: 4,
 
-    backgroundBlur: 30,
+    backgroundBlur: 25,
     // borderColor: "#000000"
     borderColor: "#1b1b1b"
 };

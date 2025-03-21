@@ -75,7 +75,6 @@ export function loadModel(cube, modelPath) {
         (error) => console.error(`Ошибка загрузки модели ${modelPath}:`, error)
     );
 }
-
 // export function loadMicrophoneModel(cube, modelPath) {
 //     loader.load(
 //         `models/${modelPath}`,
