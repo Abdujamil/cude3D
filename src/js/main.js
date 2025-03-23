@@ -343,36 +343,138 @@ window.addEventListener('DOMContentLoaded', () => {
                       <section>
                           <div class="cube center nucleus">
                             <div class="cube-container">
-                                <div class="cube-track">
-                                    <div class="cube">NL</div>
-                                    <div class="cube">JPN</div>
-                                    <div class="cube">ITA</div>
-                                    <div class="cube">EN</div>
-                                    <div class="cube">ESP</div>
-                                    <div class="cube">PTB</div>
-                                    <div class="cube">FRA</div>
-                                    <div class="cube">DEU</div>
-                                </div>
-                                <div class="cube-track">
-                                    <div class="cube">NL</div>
-                                    <div class="cube">JPN</div>
-                                    <div class="cube">ITA</div>
-                                    <div class="cube">EN</div>
-                                    <div class="cube">ESP</div>
-                                    <div class="cube">PTB</div>
-                                    <div class="cube">FRA</div>
-                                    <div class="cube">DEU</div>
-                                </div>
-                                <div class="cube-track">
-                                    <div class="cube">NL</div>
-                                    <div class="cube">JPN</div>
-                                    <div class="cube">ITA</div>
-                                    <div class="cube">EN</div>
-                                    <div class="cube">ESP</div>
-                                    <div class="cube">PTB</div>
-                                    <div class="cube">FRA</div>
-                                    <div class="cube">DEU</div>
-                                </div>
+                            <div class="cube-track">
+                                <div class="cube">NL</div>
+                                <div class="cube">JA</div>
+                                <div class="cube">IT</div>
+                                <div class="cube">EN</div>
+                                <div class="cube">ES</div>
+                                <div class="cube">PT</div>
+                                <div class="cube">FR</div>
+                                <div class="cube">DE</div>
+                                <div class="cube">AF</div>
+                                <div class="cube">SQ</div>
+                                <div class="cube">AM</div>
+                                <div class="cube">AR</div>
+                                <div class="cube">HY</div>
+                                <div class="cube">AS</div>
+                                <div class="cube">AZ</div>
+                                <div class="cube">BA</div>
+                                <div class="cube">EU</div>
+                                <div class="cube">BE</div>
+                                <div class="cube">BN</div>
+                                <div class="cube">BS</div>
+                                <div class="cube">BR</div>
+                                <div class="cube">BG</div>
+                                <div class="cube">MY</div>
+                                <div class="cube">CA</div>
+                                <div class="cube">ZH</div>
+                                <div class="cube">HR</div>
+                                <div class="cube">CS</div>
+                                <div class="cube">DA</div>
+                                <div class="cube">ET</div>
+                                <div class="cube">FO</div>
+                                <div class="cube">FI</div>
+                                <div class="cube">GL</div>
+                                <div class="cube">KA</div>
+                                <div class="cube">EL</div>
+                                <div class="cube">GU</div>
+                                <div class="cube">HT</div>
+                                <div class="cube">HA</div>
+                                <div class="cube">HAW</div>
+                                <div class="cube">HE</div>
+                                <div class="cube">HI</div>
+                                <div class="cube">HU</div>
+                                <div class="cube">IS</div>
+                                <div class="cube">ID</div>
+                                <div class="cube">JV</div>
+                                <div class="cube">KN</div>
+                                <div class="cube">KK</div>
+                                <div class="cube">KM</div>
+                                <div class="cube">KO</div>
+                                <div class="cube">LO</div>
+                                <div class="cube">LA</div>
+                                <div class="cube">LV</div>
+                                <div class="cube">LB</div>
+                                <div class="cube">LN</div>
+                                <div class="cube">LT</div>
+                                <div class="cube">MK</div>
+                                <div class="cube">MG</div>
+                                <div class="cube">MS</div>
+                                <div class="cube">ML</div>
+                                <div class="cube">MT</div>
+                                <div class="cube">MI</div>
+                                <div class="cube">MR</div>
+                                <div class="cube">MN</div>
+                                <div class="cube">NE</div>
+                                <div class="cube">NO</div>
+                                <div class="cube">NN</div>
+                                <div class="cube">OC</div>
+                                <div class="cube">PA</div>
+                                <div class="cube">PS</div>
+                                <div class="cube">FA</div>
+                                <div class="cube">PL</div>
+                                <div class="cube">RO</div>
+                                <div class="cube">RU</div>
+                                <div class="cube">SA</div>
+                                <div class="cube">SR</div>
+                                <div class="cube">SN</div>
+                                <div class="cube">SD</div>
+                                <div class="cube">SI</div>
+                                <div class="cube">SK</div>
+                                <div class="cube">SL</div>
+                                <div class="cube">SO</div>
+                                <div class="cube">SU</div>
+                                <div class="cube">SW</div>
+                                <div class="cube">SV</div>
+                                <div class="cube">TL</div>
+                                <div class="cube">TG</div>
+                                <div class="cube">TA</div>
+                                <div class="cube">TT</div>
+                                <div class="cube">TE</div>
+                                <div class="cube">TH</div>
+                                <div class="cube">BO</div>
+                                <div class="cube">TR</div>
+                                <div class="cube">TK</div>
+                                <div class="cube">UK</div>
+                                <div class="cube">UR</div>
+                                <div class="cube">UZ</div>
+                                <div class="cube">VI</div>
+                                <div class="cube">CY</div>
+                                <div class="cube">YI</div>
+                                <div class="cube">YO</div>
+                            </div>
+
+<!--                                <div class="cube-track">-->
+<!--                                    <div class="cube">NL</div>-->
+<!--                                    <div class="cube">JPN</div>-->
+<!--                                    <div class="cube">ITA</div>-->
+<!--                                    <div class="cube">EN</div>-->
+<!--                                    <div class="cube">ESP</div>-->
+<!--                                    <div class="cube">PTB</div>-->
+<!--                                    <div class="cube">FRA</div>-->
+<!--                                    <div class="cube">DEU</div>-->
+<!--                                </div>-->
+<!--                                <div class="cube-track">-->
+<!--                                    <div class="cube">NL</div>-->
+<!--                                    <div class="cube">JPN</div>-->
+<!--                                    <div class="cube">ITA</div>-->
+<!--                                    <div class="cube">EN</div>-->
+<!--                                    <div class="cube">ESP</div>-->
+<!--                                    <div class="cube">PTB</div>-->
+<!--                                    <div class="cube">FRA</div>-->
+<!--                                    <div class="cube">DEU</div>-->
+<!--                                </div>-->
+<!--                                <div class="cube-track">-->
+<!--                                    <div class="cube">NL</div>-->
+<!--                                    <div class="cube">JPN</div>-->
+<!--                                    <div class="cube">ITA</div>-->
+<!--                                    <div class="cube">EN</div>-->
+<!--                                    <div class="cube">ESP</div>-->
+<!--                                    <div class="cube">PTB</div>-->
+<!--                                    <div class="cube">FRA</div>-->
+<!--                                    <div class="cube">DEU</div>-->
+<!--                                </div>-->
                             </div>
                           </div>
                            
@@ -1106,8 +1208,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
             });
         });
-
-
 
         //Animate text atom
         function bounceElement($element, startPosition = "0px", endPosition = "20px", duration = 300) {

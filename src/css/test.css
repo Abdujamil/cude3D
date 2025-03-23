@@ -84,7 +84,7 @@ img {
     height: 100%;
     /*width: 892px !important;*/
     width: 887px !important;
-
+    padding-left: 12px;
     display: block;
 }
 
