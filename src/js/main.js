@@ -165,180 +165,164 @@ window.addEventListener('DOMContentLoaded', () => {
             `,
         "back-content": `
            <div class="box security-box">
-            <div class="box__title">
-                <h2>Мы бережно храним и защищаем ваши данные</h2>
-            </div>
-            <div class="box__content">
-                <div class="cards">
-                    <div class="cards__top">
-<!--                        <figure class="card card-1" data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">-->
-<!--                                <div class="card__title">-->
-<!--                                    <p>-->
-<!--                                    Резервное копирование-->
-<!--                                    </p>-->
-<!--                                </div>-->
-<!--                                <div class="card__image-lock card__image">-->
-<!--                                    <img src="/img/1.svg" alt="lock-icon">-->
-<!--                                </div>-->
-<!--                        </figure>-->
-<!--                        <figure class="card card-2" data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">-->
-<!--                            <div class="card__title">-->
-<!--                                <p>-->
-<!--                                Доступ и хранение-->
-<!--                                </p>-->
-<!--                            </div>-->
-<!--                            <div class="card__image-file card__image">-->
-<!--                                <img src="/img/2.svg" alt="file-icon">-->
-<!--                            </div>-->
-<!--                        </figure>-->
-<!--                      -->
-                       <div class="tilt-cont">
-                            <div class="tilt" 
-                                     data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
-                                        <div class="tilt-inner" >
-                                            <p>Доступ и хранение</p>
-                                            <div class="card__image-lock card__image">
-                                                <img src="/img/1.svg" alt="lock-icon">
-                                            </div>
-                                        </div>
-                            </div>
-                       </div>
-                       <div class="tilt-cont">
-                            <div class="tilt" 
-                                    data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
-                                    <div class="tilt-inner">
-                                        <p>Резервное копирование</p>
-                                         <div class="card__image-file card__image">
-                                           <img src="/img/2.svg" alt="file-icon">
-                                        </div>
+               <div class="security-box__container">
+                    <div class="box__title">
+                        <h2>Безупречная защита</h2>
+                    </div>
+                    <div class="box__content">
+                        <div class="cards">
+                            <div class="cards__top">
+                               <div class="tilt-cont">
+                                    <div class="tilt" 
+                                             data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
+                                                <div class="tilt-inner" >
+                                                    <p>Доступ и хранение</p>
+                                                    <div class="card__image-lock card__image">
+                                                        <img src="/img/1.svg" alt="lock-icon">
+                                                    </div>
+                                                </div>
                                     </div>
                                </div>
-                       </div>       
-                    </div>
-                    <div class="cards__bottom">
-<!--                        <figure class="card card-3"-->
-<!--                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">-->
-<!--                            <div class="card__title">-->
-<!--                                <p>-->
-<!--                                Безопасность-->
-<!--                                </p>-->
-<!--                            </div>-->
-<!--                            <div class="card__image-search card__image">-->
-<!--                                <img src="/img/3.svg" alt="search-icon">-->
-<!--                            </div>-->
-<!--                        </figure>-->
-<!--                        <figure class="card card-4"-->
-<!--                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
-<!--                            <div class="card__title">-->
-<!--                                <p>-->
-<!--                                Шифрование</p>-->
-<!--                            </div>-->
-<!--                            <div class="card__image-person card__image">-->
-<!--                                <img src="/img/4.svg" alt="person-icon">-->
-<!--                            </div>-->
-<!--                        </figure>-->
-                        <div class="tilt-cont">
-                             <div class="tilt" data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
-                                        <div class="tilt-inner">
-                                            <p>Безопасность</p>
-                                              <div class="card__image-search card__image">
-                                               <img src="/img/3.svg" alt="file-icon">
+                               <div class="tilt-cont">
+                                    <div class="tilt" 
+                                            data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
+                                            <div class="tilt-inner">
+                                                <p>Резервное копирование</p>
+                                                 <div class="card__image-file card__image">
+                                                   <img src="/img/2.svg" alt="file-icon">
+                                                </div>
                                             </div>
-                                        </div>
+                                       </div>
+                               </div>       
                             </div>
-                        </div>
-                        <div class="tilt-cont">
-                            <div class="tilt" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
-                                <div class="tilt-inner">
-                                   <p>Шифрование</p>
-                                      <div class="card__image-person card__image">
-                                      <img src="/img/4.svg" alt="file-icon">
-                                   </div>
+                            <div class="cards__bottom">
+        <!--                        <figure class="card card-3"-->
+        <!--                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">-->
+        <!--                            <div class="card__title">-->
+        <!--                                <p>-->
+        <!--                                Безопасность-->
+        <!--                                </p>-->
+        <!--                            </div>-->
+        <!--                            <div class="card__image-search card__image">-->
+        <!--                                <img src="/img/3.svg" alt="search-icon">-->
+        <!--                            </div>-->
+        <!--                        </figure>-->
+        <!--                        <figure class="card card-4"-->
+        <!--                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
+        <!--                            <div class="card__title">-->
+        <!--                                <p>-->
+        <!--                                Шифрование</p>-->
+        <!--                            </div>-->
+        <!--                            <div class="card__image-person card__image">-->
+        <!--                                <img src="/img/4.svg" alt="person-icon">-->
+        <!--                            </div>-->
+        <!--                        </figure>-->
+                                <div class="tilt-cont">
+                                     <div class="tilt" data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
+                                                <div class="tilt-inner">
+                                                    <p>Безопасность</p>
+                                                      <div class="card__image-search card__image">
+                                                       <img src="/img/3.svg" alt="file-icon">
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                                <div class="tilt-cont">
+                                    <div class="tilt" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
+                                        <div class="tilt-inner">
+                                           <p>Шифрование</p>
+                                              <div class="card__image-person card__image">
+                                              <img src="/img/4.svg" alt="file-icon">
+                                           </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                <div class="security-box__text">
-                    <p id="security-text">
-                        Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.
-                    </p>
+                    <div class="security-box__text">
+                        <p id="security-text">
+                            Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.
+                        </p>
+                    </div>
                 </div>
             </div>
           `,
         "left-content": `
-            <div class="box export-box">
-            <div class="box__title">
-                <h2>Экспорт файла</h2>
-            </div>
-            <div class="box__content">
-                <div class="cards">
-                    <div class="cardWrap">
-                        <div class="card">
-                            <div class="cardBg card__image" style="background-image: url('/img/word-icon.svg');">
-                                <div class="card__title cardInfo">
-                                <h3>DOCX</h3>
-                                <p>MS Word</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardWrap"> 
-                        <div class="card">
-                            <div class="cardBg card__image" style="background-image: url('/img/excel-icon.svg');">
-                                <div class="card__title cardInfo">
-                                <h3>XLSX</h3>
-                                <p>MS Excel </p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardWrap">
-                        <div class="card">
-                            <div class="cardBg card__image" style="background-image: url('/img/pdf-icon.svg');">
-                                <div class="card__title cardInfo">
-                                <h3>PDF</h3>
-                                <p >Документ</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardWrap">
-                        <div class="card">
-                            <div class="cardBg card__image" style="background-image: url('/img/txt-icon.png');" >
-                                <div class="card__title cardInfo">
-                                    <h3>TXT</h3>
-                                    <p>Блокнот</p>
+        <div class="box export-box">
+            <div class="export-box__container">
+                <div class="box__title">
+                    <h2>Экспорт файла</h2>
+                </div>
+                <div class="box__content">
+                    <div class="cards">
+                        <div class="cardWrap">
+                            <div class="card">
+                                <div class="cardBg card__image" style="background-image: url('/img/word-icon.svg');">
+                                    <div class="card__title cardInfo">
+                                    <h3>DOCX</h3>
+                                    <p>MS Word</p>
+                                </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="cardWrap">
-                        <div class="card">
-                            <div class="cardBg card__image" style="background-image: url('/img/srt-icon.svg');" >
-                                <div class="card__title cardInfo">
-                                    <h3>SRT</h3>
-                                    <p>Субтитры</p>
+                        <div class="cardWrap"> 
+                            <div class="card">
+                                <div class="cardBg card__image" style="background-image: url('/img/excel-icon.svg');">
+                                    <div class="card__title cardInfo">
+                                    <h3>XLSX</h3>
+                                    <p>MS Excel </p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardWrap">
+                            <div class="card">
+                                <div class="cardBg card__image" style="background-image: url('/img/pdf-icon.svg');">
+                                    <div class="card__title cardInfo">
+                                    <h3>PDF</h3>
+                                    <p >Документ</p>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardWrap">
+                            <div class="card">
+                                <div class="cardBg card__image" style="background-image: url('/img/txt-icon.png');" >
+                                    <div class="card__title cardInfo">
+                                        <h3>TXT</h3>
+                                        <p>Блокнот</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardWrap">
+                            <div class="card">
+                                <div class="cardBg card__image" style="background-image: url('/img/srt-icon.svg');" >
+                                    <div class="card__title cardInfo">
+                                        <h3>SRT</h3>
+                                        <p>Субтитры</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box_foot">
-                <p>
-                    Вы можете экспортировать файлы в нужный для Вас формат и делиться готовым результатом.
-                </p>
+                <div class="box_foot">
+                    <p>
+                        Вы можете экспортировать файлы в нужный для Вас формат и делиться готовым результатом.
+                    </p>
+                </div>
             </div>
         </div>
            `,
         "right-content": `
             <div class="box support-lan-box" xmlns="http://www.w3.org/1999/html">
-                <div class="title">
-                     <h2>Поддерживаемые языки</h2>
-                 </div>
-                 <div class="support-lan-box__container">
+                <div class="support-lan-box__cont">
+                    <div class="title">
+                         <h2>Поддерживаемые языки</h2>
+                     </div>
+                    <div class="support-lan-box__container">
                     <div class="loading">    
                       <section>
                           <div class="cube center nucleus">
@@ -502,8 +486,8 @@ window.addEventListener('DOMContentLoaded', () => {
                             восприятия и использования.
                         </p>
                     </div>
-<!--                    <a href="#" class="text-link">Все поддерживаемые языки</a>-->
                 </div> 
+                </div>
                 </div>
             </div>
             `
@@ -528,6 +512,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let interactionScale = 1;
     let scaleFrom = 1;
     let scaleStartTime = 0;
+
 
     // Загружаем Three.js модули после первого взаимодействия
     let scaleToValue = 1;
@@ -713,7 +698,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         });
 
-        // Wheel handler
+            // Wheel handler
         // cssRenderer.domElement.addEventListener('wheel', (event) => {
         //     isActive = true;
         //     animate();
@@ -739,7 +724,6 @@ window.addEventListener('DOMContentLoaded', () => {
         //
         //     // console.log('wheel is start');
         // });
-
         // renderer.domElement.addEventListener('wheel', (event) => {
         //     isActive = true;
         //     animate();
@@ -1000,29 +984,6 @@ window.addEventListener('DOMContentLoaded', () => {
     setupDebug(camera, cube);
 
     setTimeout(() => {
-        // const securityText = document.getElementById("security-text");
-        // const cardsContainer = document.querySelector(".security-box .cards");
-        //
-        // if (!securityText || !cardsContainer) {
-        //     console.error("Не найден .security-box или security-text");
-        //     return;
-        // }
-        //
-        // cardsContainer.addEventListener("mouseover", function (event) {
-        //     const card = event.target.closest(".card");
-        //     if (card && card.dataset.text) {
-        //         securityText.textContent = card.dataset.text;
-        //         securityText.style.opacity = "1";
-        //     }
-        // });
-        //
-        // cardsContainer.addEventListener("mouseout", function (event) {
-        //     const card = event.target.closest(".card");
-        //     if (card) {
-        //         securityText.style.opacity = "0";
-        //     }
-        // });
-
         const electrons = document.querySelectorAll('.electron img'); // Берем все изображения
         const arcs = document.querySelectorAll('.arc'); // Берем все орбиты (они анимируются)
 
@@ -1120,7 +1081,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            function bounceElement($element, startPosition = "0px", endPosition = "40px", duration = 500) {
+            function bounceElement($element, startPosition = "0px", endPosition = "50px", duration = 500) {
                 $element
                     .stop(true, true)
                     .css({top: startPosition, opacity: 0})
@@ -1210,7 +1171,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         //Animate text atom
-        function bounceElement($element, startPosition = "0px", endPosition = "20px", duration = 300) {
+        function bounceElement($element, startPosition = "0px", endPosition = "30px", duration = 300) {
             $element.stop(true, true).css("top", startPosition).animate(
                 {top: endPosition},
                 {duration: duration, easing: "easeOutBounce"}
@@ -1245,6 +1206,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         // setInterval(changeLanguage, animationDuration);
 
-    }, 300);
+        //Atom script for hover delay
+        // const section = document.querySelector("section");
+        // let hoverTimer;
+        // section.addEventListener("mouseenter", () => {
+        //     hoverTimer = setTimeout(() => {
+        //         section.classList.add("hover-active");
+        //     }, 300); // Ждём 2 секунды перед запуском
+        // });
+        // section.addEventListener("mouseleave", () => {
+        //     clearTimeout(hoverTimer); // Если пользователь ушел раньше 2 секунд, отменяем таймер
+        //     section.classList.remove("hover-active"); // Можно убрать, если нужно сбрасывать анимацию
+        // });
+
+    }, 200);
 })
 

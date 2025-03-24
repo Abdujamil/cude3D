@@ -85,7 +85,7 @@ img {
     /*width: 892px !important;*/
     width: 887px !important;
     padding-left: 12px;
-    display: block;
+    /*display: block;*/
 }
 
 .support-lan-box__container {
@@ -94,23 +94,51 @@ img {
     justify-content: space-between;
 }
 
+.support-lan-box__cont{
+    width: 100%;
+    height: 100%;
+    max-height: 375px;
+}
+
 .micro-box {
     height: 100%;
     /*width: 950px !important;*/
-    width: 944px !important
+    width: 944px !important;
+    padding-right: 12px;
+    padding-left: 46px;
 }
 
 .security-box {
     height: 100%;
     /*width: 948px !important;*/
     width: 944px !important;
-    justify-content: start;
+    justify-content: center;
+    /*gap: 20px;*/
 }
 
+.security-box__container {
+    height: 100%;
+    max-height: 390px;
+}
+
+
+
 .export-box {
-    height: 102%;
+    height: 100%;
     /*width: 892px !important;*/
-    width: 887px !important
+    width: 887px !important;
+    gap: 0;
+    justify-content: center;
+    position: relative;
+}
+
+.export-box__container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    height: 100%;
+    max-height: 390px;
 }
 
 .text-list {
@@ -120,7 +148,7 @@ img {
     align-items: baseline;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 20px
+    gap: 30px
 }
 
 .cards, .text-list li {
@@ -145,7 +173,7 @@ img {
 .micro-box .box__img {
     width: 420px;
     height: 420px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .support-lan-box .box__img {
@@ -171,7 +199,7 @@ img {
 }
 
 .title h2 {
-    margin-bottom: 62px;
+    margin-bottom: 25px;
     font-size: 36px;
     text-align: center;
 }
@@ -180,9 +208,9 @@ img {
     font-size: 20px
 }
 
-.text-content {
-    margin-bottom: 30px
-}
+/*.text-content {*/
+/*    margin-bottom: 30px*/
+/*}*/
 
 .text-link {
     font-weight: 700;
@@ -197,7 +225,14 @@ img {
 }
 
 .export-box .box__title {
-    margin-bottom: 15px
+    margin-bottom: 42px
+}
+
+.export-box .box__content{
+    /*margin-bottom: 33px;*/
+    height: 100%;
+    max-height: 220px;
+    margin-top: 2px;
 }
 
 .export-box .box__title h2 {
@@ -218,7 +253,8 @@ img {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    gap: 20px
+    gap: 20px;
+    height: 100%;
 }
 
 .cards .card {
@@ -260,12 +296,20 @@ img {
     transition: font-size .3s ease;
 }
 
+.export-box .box_foot{
+    margin-top: 22px;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+}
+
 .box_foot p {
     width: 100%;
     max-width: 537px;
     height: 40px;
     text-align: center;
-    font-size: 21px
+    font-size: 21px;
+    margin: 0 auto;
 }
 
 .security-box .cards .card {
@@ -295,6 +339,10 @@ img {
     margin-top: 20px
 }
 
+.security-box .box__title{
+    margin-bottom: 42px;
+}
+
 .security-box h2 {
     width: 100%;
     /*max-width: 858px;*/
@@ -303,16 +351,17 @@ img {
     font-weight: 400;
     font-size: 40px;
     /*line-height: 120%;*/
-    margin-bottom: -5px;
+    /*margin-bottom: -5px;*/
+    margin: 0 auto;
 }
 
 .security-box__text {
     position: relative;
     width: 100%;
     max-width: 732px;
-    bottom: 0px;
+    bottom: 0;
     z-index: 2;
-    left: 38%;
+    left: 50%;
     text-align: center;
 
     -webkit-transform: translate(-50%, -50%);
@@ -325,9 +374,9 @@ img {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
 
     font-style: normal;
     font-weight: 400;
@@ -397,9 +446,15 @@ img {
 }
 
 .security-box .cards {
-    width: 82%;
+    width: 100%;
     flex-direction: column;
-    gap: 16px;
+    gap: 0;
+    justify-content: start;
+}
+
+
+.security-box .cards .cards__top{
+    margin-bottom: 18px;
 }
 
 .security-box .cards .cards__top,
@@ -432,7 +487,7 @@ img {
 .security-box .card__image-lock img {
     position: absolute;
     left: -15px;
-    top: 8px;
+    top: -17px;
 }
 
 .security-box .card__image-file {
@@ -443,7 +498,7 @@ img {
 
 .security-box .card__image-file img {
     position: absolute;
-    top: 22px;
+    top: 0;
     left: 5px;
 }
 
@@ -468,12 +523,12 @@ img {
 }
 
 .security-box .card__image-search img{
-    left: 22px;
+    left: 26px;
     max-width: 90px;
 }
 
 .security-box .card__image-person img {
-    top: 15px;
+    top: -2px;
     left: 0;
 }
 
@@ -669,7 +724,7 @@ img {
     height: 100%;
 
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: 11px 11px 11px 24px;
     border-radius: 6px;
@@ -692,6 +747,7 @@ img {
     max-width: 100px;
     text-align: left;
     line-height: 25px;
+    margin-top: 13px;
 }
 
 /*---------------------------- Atom new styles ----------------------------*/
@@ -798,11 +854,11 @@ section:hover .ring1 img, section:hover .ring2 img, section:hover .ring3 img {
     height: auto;
 }
 
-section:hover .r-anim {
-    /*border: 0.6em solid rgba(94, 172, 255, 1);*/
-    /*border-top: 1em solid rgba(94, 172, 255, 1);*/
-    /*border-bottom: 1em solid rgba(94, 172, 255, 1);*/
-}
+/*section:hover .r-anim {*/
+/*    !*border: 0.6em solid rgba(94, 172, 255, 1);*!*/
+/*    !*border-top: 1em solid rgba(94, 172, 255, 1);*!*/
+/*    !*border-bottom: 1em solid rgba(94, 172, 255, 1);*!*/
+/*}*/
 
 section:hover .ring1 div::after,
 section:hover .ring2 div::after,
@@ -817,7 +873,7 @@ section:hover .ring1 div::after {
 }
 
 section:hover .center {
-    transform: translate(-50%, 20%);
+    transform: translate(-50%, 10%);
     width: 300px;
 }
 
@@ -835,10 +891,10 @@ section:hover .center {
 /*    background: linear-gradient(to left, rgb(9 9 9) 0%, rgba(255, 255, 255, 0) 20%);*/
 /*}*/
 
-section:hover .center .cube-track {
-    /*animation: moveIconsHorizontally 10s linear infinite;*/
-    /*flex-direction: row;*/
-}
+/*section:hover .center .cube-track {*/
+/*    !*animation: moveIconsHorizontally 10s linear infinite;*!*/
+/*    !*flex-direction: row;*!*/
+/*}*/
 
 .center {
     height: 3em;
@@ -1025,6 +1081,7 @@ section:hover .center .cube-container {
     cursor: pointer;
 
     will-change: transform;
+    height: 100%;
 }
 
 .export-box .cardWrap:hover .cardInfo {
@@ -1067,7 +1124,8 @@ section:hover .center .cube-container {
     position: relative;
     -webkit-box-flex: 0;
     /*height: 217.5px;*/
-    height: 225.5px;
+    /*height: 225.5px;*/
+    height: 100%;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0) 0 30px 60px 0,
     inset rgba(15, 15, 15, 0) 0 0 0 5px,
