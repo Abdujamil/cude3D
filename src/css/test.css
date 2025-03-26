@@ -118,9 +118,8 @@ img {
 
 .security-box__container {
     height: 100%;
-    max-height: 390px;
+    max-height: 392px;
 }
-
 
 
 .export-box {
@@ -138,7 +137,7 @@ img {
     text-align: center;
 
     height: 100%;
-    max-height: 390px;
+    max-height: 392px;
 }
 
 .text-list {
@@ -148,7 +147,7 @@ img {
     align-items: baseline;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 30px
+    gap: 24px
 }
 
 .cards, .text-list li {
@@ -201,7 +200,7 @@ img {
 .title h2 {
     margin-bottom: 25px;
     font-size: 36px;
-    text-align: center;
+    text-align: left;
 }
 
 .text, .text p, .text-link, .text-content p {
@@ -306,7 +305,7 @@ img {
 .box_foot p {
     width: 100%;
     max-width: 537px;
-    height: 40px;
+    height: 52px;
     text-align: center;
     font-size: 21px;
     margin: 0 auto;
@@ -486,7 +485,7 @@ img {
 
 .security-box .card__image-lock img {
     position: absolute;
-    left: -15px;
+    left: -8px;
     top: -17px;
 }
 
@@ -498,8 +497,8 @@ img {
 
 .security-box .card__image-file img {
     position: absolute;
-    top: 0;
-    left: 5px;
+    top: 3px;
+    left: 12px;
 }
 
 .security-box .card__image-person {
@@ -523,13 +522,13 @@ img {
 }
 
 .security-box .card__image-search img{
-    left: 26px;
+    left: 38px;
     max-width: 90px;
 }
 
 .security-box .card__image-person img {
     top: -2px;
-    left: 0;
+    left: 8px;
 }
 
 /*body > div:nth-child(7) > div{*/
@@ -746,8 +745,8 @@ img {
 .tilt-inner p{
     max-width: 100px;
     text-align: left;
-    line-height: 25px;
-    margin-top: 13px;
+    margin-top: 10px;
+    margin-left: 7px;
 }
 
 /*---------------------------- Atom new styles ----------------------------*/
@@ -785,7 +784,8 @@ section:hover .electron {
     border-radius: 50%;
 
     width: 320px;
-    height: 316px;
+    /*height: 316px;*/
+    height: 330px;
     perspective: 800px;
 
     position: absolute;
@@ -1144,7 +1144,7 @@ section:hover .center .cube-container {
     height: 101%;
     background-repeat: no-repeat;
     background-position: center bottom;
-    background-size: auto;
+    background-size: 70px 69px;
     transition: all 1.5s ease-in-out;
     pointer-events: none;
 }

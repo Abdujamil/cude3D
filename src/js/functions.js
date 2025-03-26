@@ -284,7 +284,6 @@ export function applyDefaultMaterial(model) {
     model.traverse((child) => {
 
 
-
         if (child.isMesh) {
             child.material.transparent = true;
             child.material.color.set(0x000000);
@@ -300,7 +299,7 @@ export function applyDefaultMaterial(model) {
     });
 }
 
-const initialQuaternion = new Quaternion();
+export const initialQuaternion = new Quaternion();
 
 export function getRotationPercentage(cube) {
     //Получаем текущий кватернион
@@ -321,9 +320,15 @@ export function getRotationPercentage(cube) {
 
     // Масштабируем угол в процентное значение
     let percentage = Math.ceil((angle / (2 * Math.PI)) * 100);
+    // let percentage = Math.round((angle / (Math.PI * 2)) * 4) * 25;
 
-    [0, 25, 75, 100].forEach(num => {
-        if (Math.abs(percentage - num) <= 1.5) {
+    // [0, 25, 75, 100].forEach(num => {
+    //     if (Math.abs(percentage - num) <= 2) {
+    //         percentage = num
+    //     }
+    // })
+    [0, 90, 180, 270].forEach(num => {
+        if (Math.abs(percentage - num) <= 2) {
             percentage = num
         }
     })

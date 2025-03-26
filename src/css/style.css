@@ -85,7 +85,8 @@ canvas {
 
 .slider_cube-nav {
     height: 50px;
-    width: 100px;
+    /*width: 100px;*/
+    width: 93px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -93,7 +94,7 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 6px;
+    margin: 0 7px;
     cursor: grab;
     background: 0 0
 }

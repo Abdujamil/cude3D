@@ -1,6 +1,6 @@
 import {Raycaster, Vector2, Fog, Object3D, Group} from 'three/src/Three.js';
 import {scene, camera, renderer, controls, cssRenderer} from './scene.js';
-import {getRotationPercentage, loadEnvironment} from './functions.js';
+import {getRotationPercentage, initialQuaternion, loadEnvironment} from './functions.js';
 import {loadModel} from "./modelLoader.js";
 import {setupDebug} from "./debug.js";
 import {setupPostProcessing} from "./postProcessing.js";
@@ -62,8 +62,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // ];
     const positions = [
         {x: 0, y: 0, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-        {x: 1, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //   security
-        {x: -510, y: 0, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, //  Export
+        {x: 0, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, // security
+        {x: -510, y: 0, z: 1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, //  Export
         {x: 511, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // react
     ];
 
@@ -174,13 +174,13 @@ window.addEventListener('DOMContentLoaded', () => {
                             <div class="cards__top">
                                <div class="tilt-cont">
                                     <div class="tilt" 
-                                             data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
-                                                <div class="tilt-inner" >
-                                                    <p>Доступ и хранение</p>
-                                                    <div class="card__image-lock card__image">
-                                                        <img src="/img/1.svg" alt="lock-icon">
-                                                    </div>
-                                                </div>
+                                        data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
+                                           <div class="tilt-inner" >
+                                               <p>Доступ и хранение</p>
+                                               <div class="card__image-lock card__image">
+                                                   <img src="/img/1.svg" alt="lock-icon">
+                                               </div>
+                                           </div>
                                     </div>
                                </div>
                                <div class="tilt-cont">
@@ -319,9 +319,7 @@ window.addEventListener('DOMContentLoaded', () => {
         "right-content": `
             <div class="box support-lan-box" xmlns="http://www.w3.org/1999/html">
                 <div class="support-lan-box__cont">
-                    <div class="title">
-                         <h2>Поддерживаемые языки</h2>
-                     </div>
+                   
                     <div class="support-lan-box__container">
                     <div class="loading">    
                       <section>
@@ -476,6 +474,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     <div class="box__text">
                    
                     <div class="text-content">
+                         <div class="title">
+                             <h2>Поддерживаемые языки</h2>
+                         </div>
                         <p>
                             Наш сервис обладает способностью распознавать и транскрибировать речь более чем на 100 языках:
                             English, Español, Français, German, Italiana, 日本語, Nederlands, Português. Мы предоставляем
@@ -547,6 +548,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // loadMicrophoneModel(cube, "microphone.glb");
     loadModel(cube, "new_cube.glb");
+    initialQuaternion.copy(cube.quaternion);
 
 
     // loadModel(cube, "cube_bevel_0.04_meshopt.glb");
@@ -698,7 +700,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         });
 
-            // Wheel handler
+        // Wheel handler
         // cssRenderer.domElement.addEventListener('wheel', (event) => {
         //     isActive = true;
         //     animate();
@@ -830,6 +832,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         navs.forEach(nav => {
             nav.addEventListener('mousedown', (e) => {
+                isActive = true;
+                animate();
                 isDraggingSlide = true;
                 startX = e.clientX - currentX;
                 nav.classList.add('dragging');
@@ -852,31 +856,91 @@ window.addEventListener('DOMContentLoaded', () => {
             updateNavPosition();
         });
 
+        const rotations = [
+            0,                // 1-я грань (0°)
+            Math.PI / 2,      // 2-я грань (90°)
+            Math.PI,          // 3-я грань (180°)
+            (3 * Math.PI) / 2 // 4-я грань (270°)
+        ];
         // Добавляем клик по квадратикам (дополнительно к mousemove)
         items.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault(); // Предотвращаем переход по ссылке
 
                 const itemLeft = item.offsetLeft; // Берем позицию квадратика
-                const offset = 61.8; // Смещаем на 20px левее
+                // const offset = 61.8; // Смещаем на 20px левее
+                const offset = 11.8;
                 animateToPosition(itemLeft - offset); // Запускаем анимацию с учетом смещения
             });
         });
 
+        // function animateToPosition(targetX) {
+        //     // let startTime;
+        //     // const startX = currentX;
+        //     // const duration = 500; // Длительность анимации в мс
+        //     //
+        //     // function step(timestamp) {
+        //     //     if (!startTime) startTime = timestamp;
+        //     //     const progress = Math.min((timestamp - startTime) / duration, 1);
+        //     //     currentX = startX + (targetX - startX) * easeOutQuad(progress);
+        //     //
+        //     //     updateNavPosition(); // Обновляем положение навигации
+        //     //
+        //     //     if (progress < 1) {
+        //     //         requestAnimationFrame(step);
+        //     //     }
+        //     // }
+        //     //
+        //     // requestAnimationFrame(step);
+        //
+        //     let startTime;
+        //     const startX = currentX;
+        //     const duration = 500; // Длительность анимации в мс
+        //     let targetRotationIndex = Math.round(targetX / (sliderCube.offsetWidth / rotations.length));
+        //     let targetRotation = rotations[targetRotationIndex];
+        //
+        //     function step(timestamp) {
+        //         if (!startTime) startTime = timestamp;
+        //         const progress = Math.min((timestamp - startTime) / duration, 1);
+        //         // cubeGroup.rotation.y = currentRotationY + (targetRotation - currentRotationY) * easeOutQuad(progress);
+        //         currentX = currentRotationY + (targetRotation - currentRotationY) * easeOutQuad(progress);
+        //
+        //         updateNavPosition();
+        //
+        //         if (progress < 1) {
+        //             requestAnimationFrame(step);
+        //         } else {
+        //             currentRotationY = targetRotation; // Установим точное значение после анимации
+        //         }
+        //     }
+        //
+        //     requestAnimationFrame(step);
+        // }
         function animateToPosition(targetX) {
             let startTime;
             const startX = currentX;
+            const startRotation = currentRotationY;
             const duration = 500; // Длительность анимации в мс
+
+            let targetRotationIndex = Math.round(targetX / (sliderCube.offsetWidth / rotations.length));
+            let targetRotation = rotations[targetRotationIndex];
 
             function step(timestamp) {
                 if (!startTime) startTime = timestamp;
                 const progress = Math.min((timestamp - startTime) / duration, 1);
-                currentX = startX + (targetX - startX) * easeOutQuad(progress);
 
-                updateNavPosition(); // Обновляем положение навигации
+                // Плавный поворот куба
+                cubeGroup.rotation.y = startRotation + (targetRotation - startRotation) * easeOutQuad(progress);
+
+                // Обновление позиции палочек
+                currentX = (cubeGroup.rotation.y / (Math.PI * 2)) * navWidth * 3.95;
+                console.log(currentX);
+                updateNavPosition();
 
                 if (progress < 1) {
                     requestAnimationFrame(step);
+                } else {
+                    currentRotationY = targetRotation; // Устанавливаем точное значение
                 }
             }
 
@@ -1219,6 +1283,6 @@ window.addEventListener('DOMContentLoaded', () => {
         //     section.classList.remove("hover-active"); // Можно убрать, если нужно сбрасывать анимацию
         // });
 
-    }, 200);
+    }, 250);
 })
 
