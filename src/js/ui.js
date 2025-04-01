@@ -87,22 +87,22 @@ export function setupGUI(camera, cube) {
     //         });
     //     });
     //
-    cubeFolder.add(cubeSettings, 'Металличность', 0, 1)
-        .onChange(() => {
-            cube.traverse((child) => {
-                if (child.isMesh) {
-                    child.material.metalness = cubeSettings['Металличность'];
-                }
-            });
-        });
-
-    cubeFolder.add(cubeSettings, 'Шероховатость', 0, 1)
-        .onChange(() => {
-            cube.traverse((child) => {
-                if (child.isMesh) {
-                    child.material.roughness = cubeSettings['Шероховатость'];
-                }
-            });
-        });
+    // cubeFolder.add(cubeSettings, 'Металличность', 0, 1)
+    //     .onChange(() => {
+    //         cube.traverse((child) => {
+    //             if (child.isMesh) {
+    //                 child.material.metalness = cubeSettings['Металличность'];
+    //             }
+    //         });
+    //     });
+    //
+    // cubeFolder.add(cubeSettings, 'Шероховатость', 0, 1)
+    //     .onChange(() => {
+    //         cube.traverse((child) => {
+    //             if (child.isMesh) {
+    //                 child.material.roughness = cubeSettings['Шероховатость'];
+    //             }
+    //         });
+    //     });
 }
 

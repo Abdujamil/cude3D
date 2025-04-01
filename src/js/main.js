@@ -10,6 +10,7 @@ import {GUI} from "lil-gui";
 import $ from "jquery";
 import "jquery.easing";
 import VanillaTilt from "vanilla-tilt";
+
 import {ceil} from "three/tsl";
 import {flattenJSON} from "three/src/animation/AnimationUtils.js";
 
@@ -53,19 +54,50 @@ window.addEventListener('DOMContentLoaded', () => {
     // cube.position.y = 0.53;
 
 
+    // if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    //     // Специфическое исправление для iOS
+    //     const positions = [
+    //         {x: 0, y: -1, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+    //         {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+    //         {x: -510, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+    //         {x: 510, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
+    //     ];
+    // }
+
     // Позиции граней
-    // const positions = [
-    //     {x: 0, y: -1, z: 486, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-    //     {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
-    //     {x: -514, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
-    //     {x: 515, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
-    // ];
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // v-base
     const positions = [
-        {x: 0, y: 0, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
-        {x: 0, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, // security
-        {x: -510, y: 0, z: 1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, //  Export
-        {x: 511, y: 0, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // react
+        {x: 0, y: 0, z: 483.5, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+        {x: 1, y: -1, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, //  Export
+        {x: -511, y: -1, z: -1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, // react
+        {x: 510, y: -1, z: 0, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // security
     ];
+
+    // Корректировка позиций для iOS
+    // if (isIOS) {
+    //     positions = positions.map(({x, y, z, rx, ry, contentId}) => {
+    //         // Добавляем корректировки только для iOS
+    //         return {
+    //             x: x * 1.05, // Корректировка по оси X
+    //             y: y * 1.05, // Корректировка по оси Y
+    //             z,
+    //             rx,
+    //             ry,
+    //             contentId
+    //         };
+    //     });
+    // }
+
+
+    //v-2
+    // const positions = [
+    //     {x: 0, y: 0, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
+    //     {x: 0, y: 0, z: -485, rx: 0, ry: Math.PI, contentId: "back-content"}, // security
+    //     {x: -510, y: 0, z: 1, rx: 0, ry: -Math.PI / 2, contentId: "left-content"}, //  Export
+    //     {x: 510, y: 0, z: 1, rx: 0, ry: Math.PI / 2, contentId: "right-content"}, // react
+    // ];
 
     // Создаем HTML-элементы для граней куба
     let currentFace = null;
@@ -82,6 +114,7 @@ window.addEventListener('DOMContentLoaded', () => {
         div.style.padding = "40px";
         div.innerHTML = contentHTML[contentId];
         div.style.overflow = "hidden";
+        div.style.willChange = "transform, opacity";
         let object = new CSS3DObject(div);
         faces.push(object);
         currentFace = object;
@@ -95,9 +128,9 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const gui = new GUI();
-    gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
-    gui.addColor(settings, 'borderColor').onChange(updateBlur);
+    // const gui = new GUI();
+    // gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
+    // gui.addColor(settings, 'borderColor').onChange(updateBlur);
 
     // const facesFolder = gui.addFolder("Faces Positions");
     //
@@ -119,7 +152,31 @@ window.addEventListener('DOMContentLoaded', () => {
         "front-content": `
             <div class="box micro-box">
              <div class="box__img">
-                <img src="/img/microphone.webp" alt="microphone">
+<!--                <img src="/img/micrafon/9.png" alt="microphone">-->
+               <a class="Magic360" data-options="
+                images: 
+                /img/micrafon/0.png
+                /img/micrafon/1.png 
+                /img/micrafon/2.png
+                /img/micrafon/3.png
+                /img/micrafon/4.png
+                /img/micrafon/5.png
+                /img/micrafon/6.png
+                /img/micrafon/7.png
+                /img/micrafon/8.png
+                /img/micrafon/9.png
+                /img/micrafon/-1.png
+                /img/micrafon/-2.png
+                /img/micrafon/-3.png
+                /img/micrafon/-4.png
+                /img/micrafon/-5.png
+                /img/micrafon/-6.png
+                /img/micrafon/-7.png
+                /img/micrafon/-8.png
+                /img/micrafon/-9.png
+                ">
+               
+                <img src="/img/micrafon/0.png" alt="microphone"/></a>
             </div>
             <div class="box__content">
                 <ul class="text-list">
@@ -176,10 +233,11 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div class="tilt" 
                                         data-text="Данные автоматически сохраняются на наших серверах посредством облачных резервных копий с усовершенствованным шифрованием  и надежными протоколами хранения.">
                                            <div class="tilt-inner" >
-                                               <p>Доступ и хранение</p>
-                                               <div class="card__image-lock card__image">
-                                                   <img src="/img/1.svg" alt="lock-icon">
-                                               </div>
+                                               <p>Резервное копирование</p>
+                                                 
+                                                      <div class="card__image-file card__image">
+                                                   <img src="/img/2.svg" alt="file-icon">
+                                                </div>
                                            </div>
                                     </div>
                                </div>
@@ -187,10 +245,10 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <div class="tilt" 
                                             data-text="Все аккаунты имеют требования аутентификации,чтобы защитить в вашем личном кабинете. Мы не передаём баши данные третьим лицам.">
                                             <div class="tilt-inner">
-                                                <p>Резервное копирование</p>
-                                                 <div class="card__image-file card__image">
-                                                   <img src="/img/2.svg" alt="file-icon">
-                                                </div>
+                                                <p>Шифрование</p>
+                                                <div class="card__image-person card__image">
+                                                <img src="/img/4.svg" alt="file-icon">
+                                              </div>
                                             </div>
                                        </div>
                                </div>       
@@ -220,20 +278,23 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <div class="tilt-cont">
                                      <div class="tilt" data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
                                                 <div class="tilt-inner">
-                                                    <p>Безопасность</p>
-                                                      <div class="card__image-search card__image">
-                                                       <img src="/img/3.svg" alt="file-icon">
-                                                    </div>
+                                                    <p>Доступ и хранение</p>
+                                                    
+                                                    
+                                                    <div class="card__image-lock card__image">
+                                                   <img src="/img/1.svg" alt="lock-icon">
+                                               </div>
                                                 </div>
                                     </div>
                                 </div>
                                 <div class="tilt-cont">
                                     <div class="tilt" data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">
                                         <div class="tilt-inner">
-                                           <p>Шифрование</p>
-                                              <div class="card__image-person card__image">
-                                              <img src="/img/4.svg" alt="file-icon">
-                                           </div>
+                                           <p>Безопасность</p>
+                                            
+                                               <div class="card__image-search card__image">
+                                                       <img src="/img/3.svg" alt="file-icon">
+                                                    </div>
                                         </div>
                                     </div>
                                 </div>
@@ -814,6 +875,63 @@ window.addEventListener('DOMContentLoaded', () => {
         cssRenderer.domElement.addEventListener('mouseup', stopDragging);
         cssRenderer.domElement.addEventListener('mouseleave', stopDragging);
 
+        // for mobile version
+
+        // if (window.innerWidth < 768) {
+        // Обработчик касания (аналоzг mousedown)
+        cssRenderer.domElement.addEventListener('touchstart', (event) => {
+            isActive = true;
+            animate();
+
+            const touch = event.touches[0];
+            mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects([cube]);
+
+            if (intersects.length > 0) {
+                animateScale(settings.scaleSmall);
+                isDragging = true;
+                lastMousePosition = {x: touch.clientX, y: touch.clientY};
+            }
+        });
+
+        // Обработчик перемещения пальцем (аналог mousemove)
+        cssRenderer.domElement.addEventListener('touchmove', (event) => {
+            if (!isDragging) return;
+
+            isActive = true;
+            animate();
+
+            const touch = event.touches[0];
+            deltaMove.x = Math.min(touch.clientX - lastMousePosition.x, 30);
+
+            lastMousePosition = {x: touch.clientX, y: touch.clientY};
+
+            const sensitivity = settings.sensitivity;
+            const rotationSpeed = settings.rotationSpeed;
+
+            targetRotationY = settings.durationRotate * 1.8 * rotationSpeed * sensitivity * Math.sign(deltaMove.x);
+
+            if (!inertia || Math.sign(rotationVelocityAdd) !== Math.sign(deltaMove.x)) {
+                rotationVelocityAdd = 0.01 * Math.sign(deltaMove.x);
+            }
+
+            rotationVelocity = targetRotationY;
+            dragStartTime = performance.now();
+            inertia = true;
+
+            event.preventDefault(); // Предотвращает скролл страницы при свайпе
+        }, {passive: false});
+
+        // Обработчик окончания касания (аналог mouseup)
+        cssRenderer.domElement.addEventListener('touchend', () => {
+            animateScale(1);
+            isDragging = false;
+        });
+        // }
+
         // Запускаем анимацию
         animate();
 
@@ -934,7 +1052,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 // Обновление позиции палочек
                 currentX = (cubeGroup.rotation.y / (Math.PI * 2)) * navWidth * 3.95;
-                console.log(currentX);
+                // console.log(currentX);
                 updateNavPosition();
 
                 if (progress < 1) {
@@ -1169,13 +1287,47 @@ window.addEventListener('DOMContentLoaded', () => {
                     bounceElement($securityText);
                 }
             });
-
             $cardsContainer.on("mouseleave", ".tilt", function () {
                 lastHoveredCard = null; // Сбрасываем последнюю карту, когда мышка уходит
                 $securityText.stop(true, true).fadeOut(200, function () {
-                    $(this).css({top: "0px", opacity: 0}).show();
+                    $(this).css({top: "0", opacity: 0}).show();
                 });
             });
+
+
+            const $langBlock = $(".support-lan-box .loading");
+            const $langSection = $(".support-lan-box section");
+            const $langSlider = $(".support-lan-box .center");
+
+            function bounceElementSlider($el, up = true) {
+                if (up) {
+                    // Поднимаем вверх и увеличиваем
+                    $el.stop(true, true).animate(
+                        {top: "-110px", left: '45%', width: "300px"},
+                        {duration: 500, easing: "easeOutBounce",}
+                    );
+                    $langBlock.css("height", "292px");
+
+                } else {
+                    // Возвращаем обратно
+                    $el.stop(true, true).animate(
+                        {top: "24px", left: '53%', width: "110px"},
+                        {duration: 500,easing: "easeOutBounce",}
+                    );
+                    $langBlock.css("height", "340px");
+
+                }
+            }
+
+            $langSection.hover(
+                function () {
+                    bounceElementSlider($langSlider, true); // Навели мышь → подпрыгнул
+                },
+                function () {
+                    bounceElementSlider($langSlider, false); // Убрали мышь → вернулся
+                }
+            );
+
         });
 
 
@@ -1282,6 +1434,69 @@ window.addEventListener('DOMContentLoaded', () => {
         //     clearTimeout(hoverTimer); // Если пользователь ушел раньше 2 секунд, отменяем таймер
         //     section.classList.remove("hover-active"); // Можно убрать, если нужно сбрасывать анимацию
         // });
+
+        //Magic 360
+        // const imageCount = 19; // Количество кадров
+        // const imageFolder = "/img/micrafon/"; // Папка с изображениями
+        // const imageExt = ".png"; // Расширение файлов
+        //
+        // // Генерируем список файлов
+        // const images = Array.from({ length: imageCount }, (_, i) =>
+        //     `${imageFolder}${i - 9}${imageExt}` // Если у тебя от -9 до 9
+        // );
+        //
+        // console.log(images); // Проверка, какие пути получились
+        //
+        // // Генерируем строку параметров
+        // const options = `columns:${imageCount};rows:1;spin:mousewheel;mousewheel-step:1;loop-column:true;images:${images.join(" ")}`;
+        //
+        // // Устанавливаем в Magic360
+        // const magicElement = document.getElementById("microfon-360");
+        // if (magicElement) {
+        //     magicElement.setAttribute("data-magic360-options", options);
+        //
+        //     // Добавляем превью картинку
+        //     const img = document.createElement("img");
+        //     img.src = images[9]; // Ставим среднюю картинку
+        //     img.alt = "micrafon";
+        //     magicElement.appendChild(img);
+        //
+        //     // Запускаем Magic360 после небольшой задержки
+        //     window.onload = function () {
+        //         if (typeof Magic360 !== "undefined" && Magic360.refresh) {
+        //             Magic360.refresh();
+        //         } else {
+        //             console.error("❌ Magic360 не загрузился");
+        //         }
+        //     };
+        // } else {
+        //     console.error("❌ Не найден элемент #microfon-360");
+        // }
+
+        const script = document.createElement("script");
+        script.src = "/magic360/magic360.js";
+        script.onload = () => Magic360.start();
+        document.body.appendChild(script);
+
+        // Remove text on magic360
+        const observer = new MutationObserver(() => {
+            document.querySelectorAll("span").forEach((el) => {
+                if (el.innerText.includes("Magic 360™ trial version")) {
+                    el.remove();
+                }
+            });
+        });
+        observer.observe(document.body, {childList: true, subtree: true});
+
+        setInterval(() => {
+            document.querySelectorAll("a div").forEach((el) => {
+                if (el.innerText.includes("Magic 360™ trial version")) {
+                    el.innerText = ""; // Очищаем текст
+                }
+            });
+        }, 80);
+
+        // Object.defineProperty(Magic360, "insertText", { value: () => {} });
 
     }, 250);
 })

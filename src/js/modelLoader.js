@@ -1,5 +1,5 @@
 // import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-// import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+// import { MeshoptDecoder } from 'three/addons/magic360/meshopt_decoder.module.js';
 // export function loadModel(cube, modelPath, applyDefaultMaterial, addPlanesToCube) {
 //     const loader = new GLTFLoader();
 //
