@@ -154,7 +154,7 @@ img {
     align-items: baseline;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 22px
+    gap: 23px
 }
 
 .cards, .text-list li {
@@ -178,11 +178,13 @@ img {
 
 .micro-box .box__img {
     /*width: 420px;*/
-    width: 320px;
-    height: 370px;
+    /*width: 319px;*/
+    width: 310px;
+    height: 371px;
+    /*height: 398px;*/
     overflow: hidden;
     background: #070707;
-    border: 1px solid #434141;
+    border: 2px solid rgb(73 71 71);
     border-radius: 4px;
     position: relative;
 }
@@ -194,9 +196,10 @@ img {
 
 .micro-box .box__img img {
     /*position: absolute;*/
-    /*width: 320px;*/
+    /*width: 320px !important;*/
+    width: 100% !important;
     /*height: 385px;*/
-    /*height: 100%;*/
+    height: 100%;
     /*left: 50%;*/
     /*top: 50%;*/
     /*transform: translate(-50%, -50%);*/
@@ -1217,16 +1220,18 @@ section:hover .center .cube-container {
 }
 
 .Magic360 {
+    height: 100%;
     display: initial !important;
-    transform: translate3d(0px, 0px, 0px) !important;
+    transform: translate3d(0px, -46px, 0px) !important;
     font-size: 0 !important;
 }
 .Magic360-container{
-    max-width: 317px;
+    height: 100%;
+    max-width: 317px !important;
 }
 
 .Magic360 canvas{
-    height: 80% !important;
+    /*height: 80% !important;*/
 }
 
 .Magic360 div a {
