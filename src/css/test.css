@@ -23,7 +23,7 @@
 
 body {
     max-height: 527px;
-    background: #000;
+    background: #141414;
     overflow: hidden;
     color: #ccc;
 
@@ -170,6 +170,11 @@ img {
     align-items: baseline;
     gap: 10px
 }
+.text-list li img{
+    width: 18px;
+    height: 18px;
+}
+
 
 .text-list li p {
     font-weight: 400;

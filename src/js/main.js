@@ -90,7 +90,6 @@ window.addEventListener('DOMContentLoaded', () => {
     //     });
     // }
 
-
     //v-2
     // const positions = [
     //     {x: 0, y: 0, z: 484, rx: 0, ry: 0, contentId: "front-content"}, // microphone
@@ -107,8 +106,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const div = document.createElement("div");
         div.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
         div.style.background = 'rgba(5,5,5,0.4)';
-        // div.style.background = 'rgba(255,255,255,0.4)';
-        // div.style.width = "960px";
         div.style.border = `1px solid ${settings.borderColor}`;
         div.style.height = "520px";
         div.style.padding = "40px";
@@ -121,62 +118,18 @@ window.addEventListener('DOMContentLoaded', () => {
         return currentFace;
     }
 
-    function updateBlur() {
-        faces.forEach(face => {
-            face.element.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
-            face.element.style.border = `1px solid ${settings.borderColor}`;
-        });
-    }
-
-    // const gui = new GUI();
-    // gui.add(settings, 'backgroundBlur', 0, 100, 1).onChange(updateBlur);
-    // gui.addColor(settings, 'borderColor').onChange(updateBlur);
-
-    // const facesFolder = gui.addFolder("Faces Positions");
-    //
-    // positions.forEach((pos, index) => {
-    //     const faceFolder = facesFolder.addFolder(`Face ${index + 1} (${pos.contentId})`);
-    //     faceFolder.add(pos, "y", -1000, 1000, 1).name("Position Y").onChange(() => updateFacePosition(index));
-    //     faceFolder.add(pos, "x", -1000, 1000, 1).name("Position X").onChange(() => updateFacePosition(index));
-    //     faceFolder.add(pos, "z", -1000, 1000, 1).name("Position Z").onChange(() => updateFacePosition(index));
-    // });
-    //
-    // function updateFacePosition(index) {
-    //     const face = faces[index];
-    //     if (face) {
-    //         face.position.set(positions[index].x, positions[index].y, positions[index].z);
-    //     }
+    // function updateBlur() {
+    //     faces.forEach(face => {
+    //         face.element.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
+    //         face.element.style.border = `1px solid ${settings.borderColor}`;
+    //     });
     // }
 
     const contentHTML = {
         "front-content": `
             <div class="box micro-box">
              <div class="box__img">
-<!--                <img src="/img/micrafon/9.png" alt="microphone">-->
-<!--               <a class="Magic360" data-options="-->
-<!--                images: -->
-<!--                /img/micrafon/0.png-->
-<!--                /img/micrafon/1.png -->
-<!--                /img/micrafon/2.png-->
-<!--                /img/micrafon/3.png-->
-<!--                /img/micrafon/4.png-->
-<!--                -->
-<!--                /img/micrafon/3.png-->
-<!--                /img/micrafon/2.png-->
-<!--                /img/micrafon/1.png -->
-<!--                /img/micrafon/0.png-->
-<!--                -->
-<!--                /img/micrafon/-1.png-->
-<!--                /img/micrafon/-2.png-->
-<!--                /img/micrafon/-3.png-->
-<!--                /img/micrafon/-4.png-->
-<!--                -->
-<!--                /img/micrafon/-3.png-->
-<!--                /img/micrafon/-2.png-->
-<!--                /img/micrafon/-1.png-->
-<!--                /img/micrafon/0.png-->
-<!--                ">-->
-                <img src="/img/micrafon/0.png" alt="microphone"/></a>
+                <img rel="preload" src="/img/micrafon/0.png" alt="microphone"/></a>
             </div>
             <div class="box__content">
                 <ul class="text-list">
@@ -254,27 +207,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                </div>       
                             </div>
                             <div class="cards__bottom">
-        <!--                        <figure class="card card-3"-->
-        <!--                             data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">-->
-        <!--                            <div class="card__title">-->
-        <!--                                <p>-->
-        <!--                                Безопасность-->
-        <!--                                </p>-->
-        <!--                            </div>-->
-        <!--                            <div class="card__image-search card__image">-->
-        <!--                                <img src="/img/3.svg" alt="search-icon">-->
-        <!--                            </div>-->
-        <!--                        </figure>-->
-        <!--                        <figure class="card card-4"-->
-        <!--                             data-text="Защита данных пользователей — высший приоритет для нас, поэтому мы используем методы обеспечения безопасности корпоративного уровня.">-->
-        <!--                            <div class="card__title">-->
-        <!--                                <p>-->
-        <!--                                Шифрование</p>-->
-        <!--                            </div>-->
-        <!--                            <div class="card__image-person card__image">-->
-        <!--                                <img src="/img/4.svg" alt="person-icon">-->
-        <!--                            </div>-->
-        <!--                        </figure>-->
                                 <div class="tilt-cont">
                                      <div class="tilt" data-text="Передаваемые данные шифруются с использованием TLS 12+, а при хранении — с использованием стандартного алгоритма AE5–256.">
                                                 <div class="tilt-inner">
@@ -487,37 +419,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 <div class="cube">YI</div>
                                 <div class="cube">YO</div>
                             </div>
-
-<!--                                <div class="cube-track">-->
-<!--                                    <div class="cube">NL</div>-->
-<!--                                    <div class="cube">JPN</div>-->
-<!--                                    <div class="cube">ITA</div>-->
-<!--                                    <div class="cube">EN</div>-->
-<!--                                    <div class="cube">ESP</div>-->
-<!--                                    <div class="cube">PTB</div>-->
-<!--                                    <div class="cube">FRA</div>-->
-<!--                                    <div class="cube">DEU</div>-->
-<!--                                </div>-->
-<!--                                <div class="cube-track">-->
-<!--                                    <div class="cube">NL</div>-->
-<!--                                    <div class="cube">JPN</div>-->
-<!--                                    <div class="cube">ITA</div>-->
-<!--                                    <div class="cube">EN</div>-->
-<!--                                    <div class="cube">ESP</div>-->
-<!--                                    <div class="cube">PTB</div>-->
-<!--                                    <div class="cube">FRA</div>-->
-<!--                                    <div class="cube">DEU</div>-->
-<!--                                </div>-->
-<!--                                <div class="cube-track">-->
-<!--                                    <div class="cube">NL</div>-->
-<!--                                    <div class="cube">JPN</div>-->
-<!--                                    <div class="cube">ITA</div>-->
-<!--                                    <div class="cube">EN</div>-->
-<!--                                    <div class="cube">ESP</div>-->
-<!--                                    <div class="cube">PTB</div>-->
-<!--                                    <div class="cube">FRA</div>-->
-<!--                                    <div class="cube">DEU</div>-->
-<!--                                </div>-->
                             </div>
                           </div>
                            
@@ -600,6 +501,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const navWidth = firstNav.offsetWidth;
     const gap = sliderCube.offsetWidth - navWidth;
+
     // const initialRotation = (90 * Math.PI) / 180; // Переводим градусы в радианы
     // cube.rotation.y = initialRotation;
     // currentRotationY = initialRotation;
@@ -666,9 +568,11 @@ window.addEventListener('DOMContentLoaded', () => {
         //Image update(microphone)
         let targetRotationY = cubeGroup.rotation.y; // Целевая ротация
         let currentRotationY = cubeGroup.rotation.y; // Текущее значение
+        let lastRotationY = cubeGroup.rotation.y;
+
         let lastIndex = 0; // Переменная для последнего индекса картинки
-        let maxRotationLimit = 3; // Максимальный индекс для поворота вправо
-        let minRotationLimit = -3; // Минимальный индекс для поворота влево
+        let maxRotationLimit = 1; // Максимальный индекс для поворота вправо
+        let minRotationLimit = -1; // Минимальный индекс для поворота влево
 
         let previousRotationY = currentRotationY; // Предыдущий угол для отслеживания направления вращения
 
@@ -711,26 +615,38 @@ window.addEventListener('DOMContentLoaded', () => {
         //     }
         // }
 
+        let imageIndex = 0;
+        const images = ["/img/micrafon/0.png", "/img/micrafon/1.png", "/img/micrafon/-1.png"];
+
         function updateMicrophoneImage() {
-            let angle = (-MathUtils.radToDeg(cubeGroup.rotation.y) ) % 360;
-            console.log("Вызов updateMicrophoneImage, угол:", angle);
+            let angle = (-MathUtils.radToDeg(cubeGroup.rotation.y)) % 360;
 
-            let index = Math.round(angle / 25) % 8;
-            if (index > 3) index -= 8;
-            if (index < -6) index += 8;
+            // Приводим угол к диапазону -180 ... 180 для корректной работы
+            if (angle > 180) angle -= 360;
+            if (angle < -180) angle += 360;
 
-            if (index > maxRotationLimit || index < minRotationLimit) {
-                console.warn("Граница достигнута! Выполняем сброс.");
-                lastIndex = null;
-                document.querySelector(".box__img img").src = "/img/micrafon/-3.png";
-                return;
+            // console.log("Вызов updateMicrophoneImage, угол:", angle);
+
+            // Если угол прошел через 0 (делаем сброс)
+            if (Math.abs(angle) < 5 && Math.abs(lastRotationY) > 350) {
+                // console.log("RESET: Сброс угла!");
+                imageIndex = 0;
+                document.querySelector(".box__img img").src = images[imageIndex];
             }
 
-            if (index !== lastIndex) {
-                lastIndex = index;
-                const newSrc = `/img/micrafon/${index}.png`;
-                document.querySelector(".box__img img").src = newSrc;
+            // Проверяем смену картинки по порогу ±35°
+            if (angle >= 25 && lastRotationY < 25) {
+                imageIndex = 1;
+                document.querySelector(".box__img img").src = images[imageIndex];
+            } else if (angle <= -25 && lastRotationY > -25) {
+                imageIndex = 2;
+                document.querySelector(".box__img img").src = images[imageIndex];
+            } else if (angle < 10 && angle > -10) {
+                imageIndex = 0;
+                document.querySelector(".box__img img").src = images[imageIndex];
             }
+
+            lastRotationY = angle; // Запоминаем текущий угол
         }
 
         // document.addEventListener('wheel', (event) => {
@@ -749,12 +665,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const INACTIVITY_TIMEOUT = 2000; // Через 2 сек бездействия рендер остановится
 
 
-        let isImageUpdateAllowed = true; // Флаг, можно ли обновлять картинку
-        function resetMicrophoneImage() {
-            console.log("Сброс изображения, так как угол вышел за диапазон.");
-            lastIndex = 0; // Сбрасываем индекс
-            document.querySelector(".box__img img").src = `/img/micrafon/0.png`; // Ставим дефолтное изображение
-        }
         const animate = () => {
             if (!isActive) return; // Если анимация выключена, выходим
 
@@ -790,27 +700,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     cubeGroup.rotation.y += rotationVelocityAdd;
                     currentRotationY = cubeGroup.rotation.y;
 
-                    // Получаем текущий угол
-                    let angle = -MathUtils.radToDeg(cubeGroup.rotation.y) % 360;
-
-                    // Если впервые пересекли границу, БЛОКИРУЕМ обновление и сбрасываем изображение
-                    if (angle >= 75 || angle <= -75) {
-                        if (isImageUpdateAllowed) {
-                            console.log("Граница достигнута! Блокируем обновление изображения.");
-                            isImageUpdateAllowed = false; // Блокируем обновление
-                            resetMicrophoneImage(); // Сбрасываем картинку
-                        }
-                    }
-                    // Если вернулись в диапазон, РАЗБЛОКИРУЕМ обновление
-                    else {
-                        if (!isImageUpdateAllowed) {
-                            console.log("Вернулись в диапазон! Разрешаем обновление изображения.");
-                            isImageUpdateAllowed = true; // Разрешаем обновление
-                        }
-
-                        // Обновляем картинку, ТОЛЬКО если разрешено
-                        updateMicrophoneImage();
-                    }
+                    updateMicrophoneImage(); // Обновляем картинку
 
 
                     if (Math.abs(rotationVelocityAdd) < 0.001) {
@@ -845,11 +735,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 isActive = false; // Останавливаем рендер
                 // console.log("Rendering stopped");
             }
-
         };
 
         // magic360
-        const magicElement = document.querySelector('.Magic360');
+        // const magicElement = document.querySelector('.Magic360');
 
         // Переменные для контроля вращения
         let isSpinning = false;
@@ -939,27 +828,27 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         // Функция запуска анимации вращения Magic360
-        function updateSpin() {
-            if (!isSpinning) return;
-
-            let now = performance.now();
-            let deltaTime = now - lastMoveTime;
-
-            if (deltaTime > 100) {
-                spinVelocity *= spinDecay; // Плавное замедление
-                if (Math.abs(spinVelocity) < 0.05) {
-                    spinVelocity = 0;
-                    isSpinning = false;
-                }
-                if (magicElement && typeof Magic360 !== "undefined") {
-                    Magic360.spin(magicElement, spinVelocity);
-                }
-            }
-
-            if (isSpinning) {
-                requestAnimationFrame(updateSpin); // Зацикливаем анимацию
-            }
-        }
+        // function updateSpin() {
+        //     if (!isSpinning) return;
+        //
+        //     let now = performance.now();
+        //     let deltaTime = now - lastMoveTime;
+        //
+        //     if (deltaTime > 100) {
+        //         spinVelocity *= spinDecay; // Плавное замедление
+        //         if (Math.abs(spinVelocity) < 0.05) {
+        //             spinVelocity = 0;
+        //             isSpinning = false;
+        //         }
+        //         if (magicElement && typeof Magic360 !== "undefined") {
+        //             Magic360.spin(magicElement, spinVelocity);
+        //         }
+        //     }
+        //
+        //     if (isSpinning) {
+        //         requestAnimationFrame(updateSpin); // Зацикливаем анимацию
+        //     }
+        // }
 
         // Mouse move handler
         cssRenderer.domElement.addEventListener('mousemove', (event) => {
@@ -982,17 +871,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 renderer.domElement.style.cursor = 'pointer';
                 cssRenderer.domElement.style.cursor = 'pointer';
             }
-
             if (!isDragging) return
 
-
             deltaMove.x = Math.min(event.clientX - lastMousePosition.x, 30)
-
             lastMousePosition = {x: event.clientX, y: event.clientY};
 
             const sensitivity = settings.sensitivity;
             const rotationSpeed = settings.rotationSpeed;
-
             targetRotationY = settings.durationRotate * 1.8 * rotationSpeed * sensitivity * Math.sign(deltaMove.x);
 
             if (!inertia || Math.sign(rotationVelocityAdd) !== Math.sign(deltaMove.x)) {
@@ -1003,14 +888,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
             dragStartTime = performance.now();
             inertia = true;
-
-            // Привязываем Magic360 к движению куба
-            // if (magicElement && typeof Magic360 !== "undefined") {
-            //     let spinSpeed = 0.5;
-            //     spinVelocity = deltaMove.x * spinSpeed;
-            //     lastMoveTime = performance.now();
-            //     Magic360.spin(magicElement, spinVelocity);
-            // }
         });
 
         // Mouse up and leave handlers
@@ -1027,7 +904,6 @@ window.addEventListener('DOMContentLoaded', () => {
         cssRenderer.domElement.addEventListener('mouseleave', stopDragging);
 
         // for mobile version
-
         if (window.innerWidth < 768) {
             // Обработчик касания (аналоzг mousedown)
             cssRenderer.domElement.addEventListener('touchstart', (event) => {
@@ -1096,9 +972,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Запускаем анимацию
-        animate();
-
         function animateScale(toMultiplier) {
             scaleFrom = interactionScale;
             scaleToValue = toMultiplier;
@@ -1117,6 +990,7 @@ window.addEventListener('DOMContentLoaded', () => {
             nav.addEventListener('mousedown', (e) => {
                 isActive = true;
                 animate();
+
                 isDraggingSlide = true;
                 startX = e.clientX - currentX;
                 nav.classList.add('dragging');
@@ -1239,7 +1113,10 @@ window.addEventListener('DOMContentLoaded', () => {
             navs.forEach(nav => nav.classList.remove('dragging'));
         });
 
+
         updateNavPosition(true);
+        // Запускаем анимацию
+        animate();
     }
 
     document.addEventListener("mousemove", loadThreeModules, {once: true});
@@ -1289,25 +1166,25 @@ window.addEventListener('DOMContentLoaded', () => {
 
     updateNavPosition(true);
 
-    function updateItemOpacity() {
-        items.forEach(item => {
-            const itemLeft = item.offsetLeft;
-            let opacity = 0.6;
-
-            const firstNavLeft = firstNav.offsetLeft;
-            const secondNavLeft = secondNav.offsetLeft;
-
-            const firstNavRight = firstNavLeft + navWidth;
-            const secondNavRight = secondNavLeft + navWidth;
-
-
-            if ((itemLeft > firstNavLeft && itemLeft < firstNavRight) || (itemLeft > secondNavLeft && itemLeft < secondNavRight)) {
-                opacity = 1;
-            }
-
-            item.style.opacity = opacity;
-        });
-    }
+    // function updateItemOpacity() {
+    //     items.forEach(item => {
+    //         const itemLeft = item.offsetLeft;
+    //         let opacity = 0.6;
+    //
+    //         const firstNavLeft = firstNav.offsetLeft;
+    //         const secondNavLeft = secondNav.offsetLeft;
+    //
+    //         const firstNavRight = firstNavLeft + navWidth;
+    //         const secondNavRight = secondNavLeft + navWidth;
+    //
+    //
+    //         if ((itemLeft > firstNavLeft && itemLeft < firstNavRight) || (itemLeft > secondNavLeft && itemLeft < secondNavRight)) {
+    //             opacity = 1;
+    //         }
+    //
+    //         item.style.opacity = opacity;
+    //     });
+    // }
 
     const renderOnce = () => {
         if (isRendered) return; // Если уже отрендерили, выходим
@@ -1330,34 +1207,34 @@ window.addEventListener('DOMContentLoaded', () => {
     setupDebug(camera, cube);
 
     setTimeout(() => {
-        const electrons = document.querySelectorAll('.electron img'); // Берем все изображения
-        const arcs = document.querySelectorAll('.arc'); // Берем все орбиты (они анимируются)
-
-        const icons = [
-            {'url': '/img/lang1.png'},
-            {'url': '/img/lang1.png'},
-            {'url': '/img/lang2.png'},
-            {'url': '/img/lang3.png'},
-            {'url': '/img/lang4.png'},
-            {'url': '/img/lang5.png'},
-            {'url': '/img/lang6.png'},
-            {'url': '/img/lang7.png'},
-            {'url': '/img/lang8.png'},
-        ];
-
-        let currentIndexes = [0, 1, 2]; // Индексы текущих иконок
-
-        arcs.forEach((arc, i) => {
-            arc.addEventListener('animationiteration', () => { // Когда орбита завершила оборот
-                electrons[i].style.opacity = '0'; // Плавно исчезает перед сменой
-
-                setTimeout(() => {
-                    currentIndexes[i] = (currentIndexes[i] + 1) % icons.length; // Берем следующую иконку
-                    electrons[i].src = icons[currentIndexes[i]].url; // Меняем картинку
-                    electrons[i].style.opacity = '1'; // Плавно появляется
-                }, 800); // Небольшая задержка для плавности смены
-            });
-        });
+        // const electrons = document.querySelectorAll('.electron img'); // Берем все изображения
+        // const arcs = document.querySelectorAll('.arc'); // Берем все орбиты (они анимируются)
+        //
+        // const icons = [
+        //     {'url': '/img/lang1.png'},
+        //     {'url': '/img/lang1.png'},
+        //     {'url': '/img/lang2.png'},
+        //     {'url': '/img/lang3.png'},
+        //     {'url': '/img/lang4.png'},
+        //     {'url': '/img/lang5.png'},
+        //     {'url': '/img/lang6.png'},
+        //     {'url': '/img/lang7.png'},
+        //     {'url': '/img/lang8.png'},
+        // ];
+        //
+        // let currentIndexes = [0, 1, 2]; // Индексы текущих иконок
+        //
+        // arcs.forEach((arc, i) => {
+        //     arc.addEventListener('animationiteration', () => { // Когда орбита завершила оборот
+        //         electrons[i].style.opacity = '0'; // Плавно исчезает перед сменой
+        //
+        //         setTimeout(() => {
+        //             currentIndexes[i] = (currentIndexes[i] + 1) % icons.length; // Берем следующую иконку
+        //             electrons[i].src = icons[currentIndexes[i]].url; // Меняем картинку
+        //             electrons[i].style.opacity = '1'; // Плавно появляется
+        //         }, 800); // Небольшая задержка для плавности смены
+        //     });
+        // });
 
         // Export cards script
         const wrapper = document.querySelectorAll(".cardWrap");
@@ -1403,20 +1280,20 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         // Cube random change icon
-        const faces = document.querySelectorAll(".face img"); // Получаем все картинки на кубе
-        function getRandomIcon() {
-            return icons[Math.floor(Math.random() * icons.length)].url; // Берём случайный URL
-        }
+        // const faces = document.querySelectorAll(".face img"); // Получаем все картинки на кубе
+        // function getRandomIcon() {
+        //     return icons[Math.floor(Math.random() * icons.length)].url; // Берём случайный URL
+        // }
+        //
+        // function updateCubeImages() {
+        //     faces.forEach(face => {
+        //         face.src = getRandomIcon(); // Меняем src картинки
+        //     });
+        // }
+        //
+        // setInterval(updateCubeImages, 2000);
 
-        function updateCubeImages() {
-            faces.forEach(face => {
-                face.src = getRandomIcon(); // Меняем src картинки
-            });
-        }
-
-        setInterval(updateCubeImages, 2000);
-
-        // Effect text security
+        // Effect text security & atom
         $(document).ready(function () {
             const $securityText = $(".security-box__text");
             const $cardsContainer = $(".security-box .cards");
@@ -1427,7 +1304,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            function bounceElement($element, startPosition = "0px", endPosition = "50px", duration = 500) {
+            function bounceElement(
+                $element,
+                startPosition = "0px",
+                endPosition = "50px",
+                duration = 500) {
                 $element
                     .stop(true, true)
                     .css({top: startPosition, opacity: 0})
@@ -1467,18 +1348,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (up) {
                     // Поднимаем вверх и увеличиваем
                     $el.stop(true, true).animate(
-                        {top: "-110px", left: '45%', width: "300px"},
-                        {duration: 500, easing: "easeOutBounce",}
+                        {top: "-85px", left: '45%', width: "300px"},
+                        {duration: 1000, easing: "easeOutBounce",}
                     );
-                    $langBlock.css("height", "292px");
+                    // $langBlock.css("height", "292px");
 
                 } else {
                     // Возвращаем обратно
                     $el.stop(true, true).animate(
                         {top: "24px", left: '53%', width: "110px"},
-                        {duration: 500, easing: "easeOutBounce",}
+                        {duration: 1000, easing: "easeOutBounce",}
                     );
-                    $langBlock.css("height", "340px");
+                    // $langBlock.css("height", "340px");
 
                 }
             }
@@ -1493,7 +1374,6 @@ window.addEventListener('DOMContentLoaded', () => {
             );
 
         });
-
 
         const tiltElements = document.querySelectorAll(".tilt");
         let timeoutId = null;
@@ -1598,69 +1478,6 @@ window.addEventListener('DOMContentLoaded', () => {
         //     clearTimeout(hoverTimer); // Если пользователь ушел раньше 2 секунд, отменяем таймер
         //     section.classList.remove("hover-active"); // Можно убрать, если нужно сбрасывать анимацию
         // });
-
-        //Magic 360
-        // const imageCount = 19; // Количество кадров
-        // const imageFolder = "/img/micrafon/"; // Папка с изображениями
-        // const imageExt = ".png"; // Расширение файлов
-        //
-        // // Генерируем список файлов
-        // const images = Array.from({ length: imageCount }, (_, i) =>
-        //     `${imageFolder}${i - 9}${imageExt}` // Если у тебя от -9 до 9
-        // );
-        //
-        // console.log(images); // Проверка, какие пути получились
-        //
-        // // Генерируем строку параметров
-        // const options = `columns:${imageCount};rows:1;spin:mousewheel;mousewheel-step:1;loop-column:true;images:${images.join(" ")}`;
-        //
-        // // Устанавливаем в Magic360
-        // const magicElement = document.getElementById("microfon-360");
-        // if (magicElement) {
-        //     magicElement.setAttribute("data-magic360-options", options);
-        //
-        //     // Добавляем превью картинку
-        //     const img = document.createElement("img");
-        //     img.src = images[9]; // Ставим среднюю картинку
-        //     img.alt = "micrafon";
-        //     magicElement.appendChild(img);
-        //
-        //     // Запускаем Magic360 после небольшой задержки
-        //     window.onload = function () {
-        //         if (typeof Magic360 !== "undefined" && Magic360.refresh) {
-        //             Magic360.refresh();
-        //         } else {
-        //             console.error("❌ Magic360 не загрузился");
-        //         }
-        //     };
-        // } else {
-        //     console.error("❌ Не найден элемент #microfon-360");
-        // }
-
-        const script = document.createElement("script");
-        script.src = "/magic360/magic360.js";
-        script.onload = () => Magic360.start();
-        document.body.appendChild(script);
-
-        // Remove text on magic360
-        const observer = new MutationObserver(() => {
-            document.querySelectorAll("span").forEach((el) => {
-                if (el.innerText.includes("Magic 360™ trial version")) {
-                    el.remove();
-                }
-            });
-        });
-        observer.observe(document.body, {childList: true, subtree: true});
-
-        setInterval(() => {
-            document.querySelectorAll("a div").forEach((el) => {
-                if (el.innerText.includes("Magic 360™ trial version")) {
-                    el.innerText = ""; // Очищаем текст
-                }
-            });
-        }, 1);
-
-        // Object.defineProperty(Magic360, "insertText", { value: () => {} });
 
     }, 250);
 })

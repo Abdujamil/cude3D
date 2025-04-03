@@ -10,7 +10,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #000
+    background-color: #141414
 }
 
 body::-webkit-scrollbar {
@@ -35,7 +35,7 @@ canvas {
     position: fixed;
     top: 0;
     image-rendering: pixelated;
-    background: #050505 !important
+    background: #141414 !important
 }
 
 .slider_cube {

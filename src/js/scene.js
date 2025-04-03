@@ -7,7 +7,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {CSS3DRenderer} from "three/addons/renderers/CSS3DRenderer.js";
 
 export const scene = new Scene();
-scene.background = new Color('#050505');
+scene.background = new Color('#141414');
 
 export const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 // camera.position.set(0, 0, 3.6);
