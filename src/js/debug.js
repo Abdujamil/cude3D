@@ -2,7 +2,7 @@ import Stats from 'stats.js';
 import {setupGUI} from './ui.js';
 
 export function setupDebug(camera, cube) {
-    setupGUI(camera, cube);
+    // setupGUI(camera, cube);
 
     const stats = new Stats();
     stats.showPanel(0);

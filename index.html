@@ -14,44 +14,56 @@
     <link rel="preload" as="image" href="/img/micrafon/0.png" type="image/png">
 </head>
 <body>
-    <div class="slider_cube">
-    <div class="slider_cube-nav-box">
-        <button class="slider_cube-nav"></button>
-        <button class="slider_cube-nav"></button>
-    </div>
-    <div class="slider_cube-box">
-        <!--        <div class="slider_cube-item" style="opacity: 1;">-->
-        <!--            <a href="#" style="opacity: 0;"></a>-->
-        <!--        </div>-->
-        <div class="slider_cube-item" style="width: 80px;">
-            <a href="#" style="opacity: 1;"></a>
-        </div>
 
-        <!--        <div class="slider_cube-item" style="opacity: 1;">-->
-        <!--            <a href="#" style="opacity: 0;"></a>-->
-        <!--        </div>-->
-        <div class="slider_cube-item" style="width: 80px;">
-            <a href="#" style="opacity: 1;"></a>
-        </div>
-
-        <!--        <div class="slider_cube-item" style="opacity: 1;">-->
-        <!--            <a href="#" style="opacity: 0;"></a>-->
-        <!--        </div>-->
-        <div class="slider_cube-item" style="width: 80px;">
-            <a href="#" style="opacity: 1;"></a>
-        </div>
-
-        <!--        <div class="slider_cube-item" style="opacity: 1;">-->
-        <!--            <a href="#" style="opacity: 0;"></a>-->
-        <!--        </div>-->
-        <div class="slider_cube-item" style="width: 80px;">
-            <a href="#" style="opacity: 1;"></a>
-        </div>
-    </div>
-</div>
 <main>
+    <div class="slider_cube">
+        <div class="glass glass--left">
+            <script>
+                document.write(`<div class="layer"></div>`.repeat(4))
+            </script>
+        </div>
+
+        <div class="slider_cube-nav-box">
+            <button class="slider_cube-nav" aria-label="front">
+                <img src="/img/microphone-sl.png" alt="microphone-sl">
+            </button>
+            <button class="slider_cube-nav" aria-label="left"></button>
+        </div>
+        <div class="slider_cube-box">
+            <div class="glass glass--1">
+                <script>
+                    document.write(`<div class="layer"></div>`.repeat(17))
+                </script>
+            </div>
+
+            <div class="slider_cube-itemm"></div>
+<!--            <div class="slider_cube-item" style="width: 80px;">-->
+<!--                <a href="#" style="opacity: 1;" aria-label="slide 1">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="slider_cube-item" style="width: 80px;">-->
+<!--                <a href="#" style="opacity: 1;" aria-label="slide 2">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="slider_cube-item" style="width: 80px;">-->
+<!--                <a href="#" style="opacity: 1;" aria-label="slide 3">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="slider_cube-item" style="width: 80px;">-->
+<!--                <a href="#" style="opacity: 1;" aria-label="slide 4">-->
+<!--                </a>-->
+<!--            </div>-->
+        </div>
+
+        <div class="glass">
+            <script>
+                document.write(`<div class="layer"></div>`.repeat(4))
+            </script>
+        </div>
+    </div>
 </main>
 
 <script type="module" src="./src/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 </body>
 </html>

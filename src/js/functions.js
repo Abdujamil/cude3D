@@ -10,6 +10,7 @@ import {
 import {CSS3DObject} from "three/addons/renderers/CSS3DRenderer.js";
 import {scene} from "./scene.js";
 import {settings} from "./config.js";
+import {contentHTML} from "./content.js";
 
 export async function loadEnvironment() {
     const textureLoader = new TextureLoader();
@@ -327,6 +328,7 @@ export function getRotationPercentage(cube) {
     //         percentage = num
     //     }
     // })
+
     [0, 90, 180, 270].forEach(num => {
         if (Math.abs(percentage - num) <= 2) {
             percentage = num
@@ -334,4 +336,20 @@ export function getRotationPercentage(cube) {
     })
 
     return percentage
+}
+
+export function createFace(contentId, currentFace, faces) {
+    const div = document.createElement("div");
+    div.style.backdropFilter = `blur(${settings.backgroundBlur}px)`;
+    div.style.background = 'rgba(5,5,5,0.4)';
+    div.style.border = `1px solid ${settings.borderColor}`;
+    div.style.height = "520px";
+    div.style.padding = "40px";
+    div.innerHTML = contentHTML[contentId];
+    div.style.overflow = "hidden";
+    div.style.willChange = "transform, opacity";
+    let object = new CSS3DObject(div);
+    faces.push(object);
+    currentFace = object;
+    return currentFace;
 }

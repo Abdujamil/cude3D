@@ -1,6 +1,10 @@
 #cube-container, .slider_cube {
     left: 50%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex
 }
 
@@ -10,7 +14,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #141414
+    background-color: #000
 }
 
 body::-webkit-scrollbar {
@@ -18,9 +22,13 @@ body::-webkit-scrollbar {
 }
 
 #cube-container {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     position: absolute;
     top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 999999;
     width: 100%;
@@ -34,25 +42,44 @@ body::-webkit-scrollbar {
 canvas {
     position: fixed;
     top: 0;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-pixelated;
     image-rendering: pixelated;
-    background: #141414 !important
+    background: #000 !important
 }
 
 .slider_cube {
+    width: 445px;
+
     position: fixed;
     z-index: 100;
     /*top: 20px;*/
-    bottom: 10%;
+    /*bottom: 10%;*/
+    bottom: 6%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    height: 50px;
-    overflow: hidden
+    /*height: 50px;*/
+    height: 100px;
+    overflow: hidden;
+
+    justify-content: center;
 }
 
 .slider_cube-box {
-    height: 18px;
+    width: 380px;
+    /*height: 18px;*/
+    height: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    gap: 11.5px
+    gap: 11.5px;
+    position: relative;
 }
 
 .slider_cube-box::after, .slider_cube-box::before {
@@ -64,7 +91,7 @@ canvas {
     display: block;
     width: 1px;
     height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    /*border: 1px solid rgba(255, 255, 255, 0.3);*/
 }
 
 .slider_cube-item {
@@ -76,7 +103,15 @@ canvas {
     display: block;
     height: 100%;
     width: 100%;
-    border: 1px solid #ccc
+    /*border: 1px solid #ccc*/
+}
+
+.slider_cube-itemm{
+    width: 100%;
+    border: 1px solid #282828;
+    height: 10px;
+    position: absolute;
+    border-radius: 0;
 }
 
 .slider_cube-nav-box {
@@ -84,19 +119,41 @@ canvas {
 }
 
 .slider_cube-nav {
-    height: 50px;
+    height: 49px;
     /*width: 100px;*/
     width: 93px;
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     z-index: 100000;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin: 0 7px;
+    cursor: -webkit-grab;
     cursor: grab;
     background: 0 0
+}
+
+.slider_cube-nav img{
+    /*width: 94px;*/
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*left: -6px;*/
+
+    width: 130px;
+    height: 75px;
+    position: absolute;
+    bottom: -11px;
+    left: -6px;
 }
 
 .slider_cube-nav:last-child {
@@ -104,6 +161,7 @@ canvas {
 }
 
 .slider_cube-nav.dragging {
+    cursor: -webkit-grabbing;
     cursor: grabbing
 }
 
@@ -113,6 +171,7 @@ canvas {
     width: 100px;
     height: 100px;
     margin: 130px 0;
+    -webkit-perspective: 780px;
     perspective: 780px
 }
 
@@ -120,6 +179,7 @@ canvas {
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 50%;
     -moz-border-radius: 50%
@@ -128,6 +188,7 @@ canvas {
 .cssload-inner.cssload-one {
     left: 0;
     top: 0;
+    -webkit-animation: 1.15s linear infinite cssload-rotate-one;
     animation: 1.15s linear infinite cssload-rotate-one;
     border-bottom: 3px solid #5c5edc
 }
@@ -135,6 +196,7 @@ canvas {
 .cssload-inner.cssload-two {
     right: 0;
     top: 0;
+    -webkit-animation: 1.15s linear infinite cssload-rotate-two;
     animation: 1.15s linear infinite cssload-rotate-two;
     border-right: 3px solid rgba(76, 70, 101, .99)
 }
@@ -142,34 +204,73 @@ canvas {
 .cssload-inner.cssload-three {
     right: 0;
     bottom: 0;
+    -webkit-animation: 1.15s linear infinite cssload-rotate-three;
     animation: 1.15s linear infinite cssload-rotate-three;
     border-top: 3px solid #e9908a
 }
 
-@keyframes cssload-rotate-one {
+@-webkit-keyframes cssload-rotate-one {
     0% {
+        -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0);
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(0)
     }
     100% {
+        -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg)
+    }
+}
+
+@keyframes cssload-rotate-one {
+    0% {
+        -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0);
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0)
+    }
+    100% {
+        -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg)
+    }
+}
+
+@-webkit-keyframes cssload-rotate-two {
+    0% {
+        -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0);
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0)
+    }
+    100% {
+        -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg)
     }
 }
 
 @keyframes cssload-rotate-two {
     0% {
+        -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0);
         transform: rotateX(50deg) rotateY(10deg) rotateZ(0)
     }
     100% {
+        -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
         transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg)
+    }
+}
+
+@-webkit-keyframes cssload-rotate-three {
+    0% {
+        -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0);
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0)
+    }
+    100% {
+        -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg)
     }
 }
 
 @keyframes cssload-rotate-three {
     0% {
+        -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0);
         transform: rotateX(35deg) rotateY(55deg) rotateZ(0)
     }
     100% {
+        -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
         transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg)
     }
 }
-
